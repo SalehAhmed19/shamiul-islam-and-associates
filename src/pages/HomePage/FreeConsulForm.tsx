@@ -2,7 +2,7 @@ import { icons, images } from "../../assets/assets";
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Button from "../../components/ui/Buttons/Button";
-import { Fade, Zoom } from "react-awesome-reveal";
+import { Zoom } from "react-awesome-reveal";
 
 export default function FreeConsulForm() {
     return (
