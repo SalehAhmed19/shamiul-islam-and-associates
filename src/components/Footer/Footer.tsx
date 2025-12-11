@@ -64,12 +64,12 @@ export default function Footer() {
                 <div className="space-y-4">
                     <h5 className="uppercase text-base md:text-lg font-bold border-b border-gray-600 pb-2 inline-block">Practice Areas</h5>
                     <ul className="space-y-3 text-gray-300">
-                        <li className="hover:text-[#dbb671] transition-colors">Civil Law</li>
-                        <li className="hover:text-[#dbb671] transition-colors">Criminal Law</li>
-                        <li className="hover:text-[#dbb671] transition-colors">Family Law</li>
-                        <li className="hover:text-[#dbb671] transition-colors">Banking & Finance</li>
-                        <li className="hover:text-[#dbb671] transition-colors">Corporate Law</li>
-                        <li className="hover:text-[#dbb671] transition-colors">Cyber Law</li>
+                        <li className="hover:text-[#dbb671] transition-colors cursor-pointer">Civil Law</li>
+                        <li className="hover:text-[#dbb671] transition-colors cursor-pointer">Criminal Law</li>
+                        <li className="hover:text-[#dbb671] transition-colors cursor-pointer">Family Law</li>
+                        <li className="hover:text-[#dbb671] transition-colors cursor-pointer">Banking & Finance</li>
+                        <li className="hover:text-[#dbb671] transition-colors cursor-pointer">Corporate Law</li>
+                        <li className="hover:text-[#dbb671] transition-colors cursor-pointer">Cyber Law</li>
                     </ul>
                 </div>
             </div>

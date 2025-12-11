@@ -3,6 +3,7 @@ import Banner from "./Banner";
 import FreeConsulForm from "./FreeConsulForm";
 import LegalExcellence from "./LegalExcellence";
 import OurAssociates from "./OurAssociates";
+import OurBlogs from "./OurBlogs";
 // import Message from "./Message";
 import Services from "./Services";
 
@@ -15,6 +16,7 @@ export default function Home() {
             <OurAssociates />
             <LegalExcellence />
             <FreeConsulForm />
+            <OurBlogs />
         </div>
     )
 }
