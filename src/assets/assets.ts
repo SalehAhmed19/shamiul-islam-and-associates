@@ -10,6 +10,10 @@ import legal1 from "../assets/images/legal-01.png";
 import freeConsultation from "../assets/images/free-consultation.png";
 import Header from "../assets/images/Header.png";
 import signature from "../assets/images/sig.png";
+import serviceHeader from "../assets/images/service-header.png";
+import faq from "../assets/images/faq.png";
+import blogs from "../assets/images/blogs.png";
+import contact from "../assets/images/contact.png";
 
 export const images = {
     hero,
@@ -22,7 +26,11 @@ export const images = {
     legal1,
     freeConsultation,
     Header,
-    signature
+    signature,
+    serviceHeader,
+    faq,
+    blogs,
+    contact
 }
 
 import logo from "../assets/icons/logo.png"
@@ -35,6 +43,14 @@ import criminal from "../assets/icons/criminal.svg";
 import cyber from "../assets/icons/cyber.svg";
 import family from "../assets/icons/family.svg";
 import call from "../assets/icons/call.svg"
+import calendar from "../assets/icons/calendar.svg";
+import consult from "../assets/icons/consult.svg";
+import handshake from "../assets/icons/handshake.svg";
+import order from "../assets/icons/order.svg";
+import phoneBig from "../assets/icons/phoneBig.svg";
+import location from "../assets/icons/location.svg";
+import email from "../assets/icons/email (1).svg";
+import clock from "../assets/icons/clock.svg";
 
 export const icons = {
     logo,
@@ -45,7 +61,16 @@ export const icons = {
     criminal,
     cyber,
     family,
-    call, logo2
+    call,
+    calendar,
+    consult,
+    handshake,
+    order,
+    logo2,
+    clock,
+    email,
+    location,
+    phoneBig
 }
 
 import legalVideo from "../assets/video/legal.mp4";
