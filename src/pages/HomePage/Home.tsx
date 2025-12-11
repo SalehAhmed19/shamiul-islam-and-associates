@@ -1,3 +1,4 @@
+import Ask from "./Ask";
 import Banner from "./Banner";
 // import Message from "./Message";
 import Services from "./Services";
@@ -7,6 +8,7 @@ export default function Home() {
         <div>
             <Banner />
             <Services />
+            <Ask />
         </div>
     )
 }

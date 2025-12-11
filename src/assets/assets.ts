@@ -4,13 +4,15 @@ import prince1 from "../assets/images/prince-01.png";
 import prince2 from "../assets/images/prince-02.png";
 import soton1 from "../assets/images/soton-01.png";
 import zakaria1 from "../assets/images/zakaria-01.png";
+import ask from "../assets/images/ask.png";
 
 export const images = {
     hero,
     prince1,
     prince2,
     soton1,
-    zakaria1
+    zakaria1,
+    ask
 }
 
 import logo from "../assets/icons/logo.png"
