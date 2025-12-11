@@ -1,3 +1,4 @@
+import { Fade, Zoom } from "react-awesome-reveal";
 import { images } from "../../assets/assets";
 import Button from "../../components/ui/Buttons/Button";
 
@@ -16,22 +17,25 @@ export default function Banner() {
                 <div className="space-y-6 md:space-y-8 max-w-4xl">
 
                     {/* Responsive Heading */}
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase leading-tight shadow-sm">
+                    <Fade cascade={true} delay={200}><h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase leading-tight shadow-sm">
                         Solving Complex Legal
                         {/* Break line only on medium screens and up */}
                         <br className="hidden md:block" />
                         {" "}Challenges.
-                    </h1>
+                    </h1></Fade>
 
                     {/* Responsive Paragraph */}
-                    <p className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold max-w-2xl mx-auto text-gray-100">
+                    <Zoom cascade={true} delay={250}><p className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold max-w-2xl mx-auto text-gray-100">
                         Expert representation focused on achieving clear, favorable, and <br className="hidden md:block" /> decisive results for you.
                     </p>
+                    </Zoom>
                 </div>
 
                 {/* Button Container with margin top */}
                 <div className="mt-8 md:mt-12">
-                    <Button className="mx-auto block">Make enquiry</Button>
+                    <Fade cascade={true} direction="up" delay={200}>
+                        <Button className="mx-auto block">Make enquiry</Button>
+                    </Fade>
                 </div>
             </div>
         </section>

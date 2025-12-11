@@ -2,6 +2,7 @@ import { icons, images } from "../../assets/assets";
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Button from "../../components/ui/Buttons/Button";
+import { Fade, Zoom } from "react-awesome-reveal";
 
 export default function FreeConsulForm() {
     return (
@@ -15,7 +16,7 @@ export default function FreeConsulForm() {
             // Changed p-16 to responsive padding: py-12 px-4 md:p-16
             className="text-white py-12 px-4 md:p-16"
         >
-            <div className="container mx-auto">
+            <Zoom cascade={true} delay={200}><div className="container mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-center">
 
                     {/* --- Left Side: Text --- */}
@@ -103,7 +104,7 @@ export default function FreeConsulForm() {
                         </form>
                     </div>
                 </div>
-            </div>
-        </section>
+            </div></Zoom>
+        </section >
     )
 }

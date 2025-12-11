@@ -1,8 +1,9 @@
+import { Zoom } from "react-awesome-reveal";
 import type { ServiceInterface } from "../../../Interfaces/ServiceInterface";
 
 export default function ServiceCard({ icon, title, description }: ServiceInterface) {
     return (
-        <div
+        <Zoom cascade={true} delay={200}><div
             className="group cursor-pointer p-6 md:p-8 hover:-translate-y-2 transition-all duration-300 border border-transparent hover:border-[#604B33]/10 flex flex-col items-center text-center"
         >
             {/* --- Icon Wrapper --- */}
@@ -25,6 +26,6 @@ export default function ServiceCard({ icon, title, description }: ServiceInterfa
             </p>
 
             {/* Optional: Read More text appearing on hover could go here */}
-        </div>
+        </div></Zoom>
     )
 }
