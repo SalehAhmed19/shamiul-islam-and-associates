@@ -6,6 +6,8 @@ import soton1 from "../assets/images/soton-01.png";
 import zakaria1 from "../assets/images/zakaria-01.png";
 import ask from "../assets/images/ask.png";
 import footer from "../assets/images/footer-bg.png";
+import legal1 from "../assets/images/legal-01.png";
+import freeConsultation from "../assets/images/free-consultation.png";
 
 export const images = {
     hero,
@@ -14,10 +16,13 @@ export const images = {
     soton1,
     zakaria1,
     ask,
-    footer
+    footer,
+    legal1,
+    freeConsultation
 }
 
 import logo from "../assets/icons/logo.png"
+import logo2 from "../assets/icons/logo.jpg";
 import shield1 from "../assets/icons/shield 1.svg";
 import banking from "../assets/icons/banking.svg";
 import civil from "../assets/icons/civil.svg";
@@ -36,5 +41,5 @@ export const icons = {
     criminal,
     cyber,
     family,
-    call
+    call, logo2
 }
