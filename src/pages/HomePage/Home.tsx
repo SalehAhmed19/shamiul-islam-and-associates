@@ -13,7 +13,7 @@ export default function Home() {
             <Banner />
             <Services />
             <Ask />
-            <OurAssociates />
+            <OurAssociates sliceNumber={3} />
             <LegalExcellence />
             <FreeConsulForm />
             <OurBlogs />

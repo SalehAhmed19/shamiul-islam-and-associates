@@ -21,6 +21,7 @@ export default function Message() {
                                 understand your unique situation and guide you with expert advice and strong
                                 representation. Your legal clarity and peace of mind are our priority.
                             </p>
+                            <img src={images.signature} alt="signature" className="w-40 md:w-65 mx-auto md:mx-0" />
                         </div>
                     </Fade>
 

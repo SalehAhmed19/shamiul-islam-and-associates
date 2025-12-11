@@ -37,5 +37,39 @@ export const AssociatesData: AssociatesInterface[] = [
             linkedin: "",
 
         }
+    },
+    {
+        name: "Md. Golam Kibria Soton",
+        position: "Associates",
+        image: images.soton1,
+        socialLinks: {
+            facebook: "https://www.facebook.com/",
+            twitter: "",
+            instagram: "",
+            linkedin: "",
+
+        }
+    }, {
+        name: "Md. Golam Kibria Soton",
+        position: "Associates",
+        image: images.soton1,
+        socialLinks: {
+            facebook: "https://www.facebook.com/",
+            twitter: "",
+            instagram: "",
+            linkedin: "",
+
+        }
+    }, {
+        name: "Md. Golam Kibria Soton",
+        position: "Associates",
+        image: images.soton1,
+        socialLinks: {
+            facebook: "https://www.facebook.com/",
+            twitter: "",
+            instagram: "",
+            linkedin: "",
+
+        }
     }
 ]

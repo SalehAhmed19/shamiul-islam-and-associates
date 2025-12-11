@@ -3,7 +3,7 @@ import AssociatesCard from "../../components/ui/Cards/AssociatesCard";
 import Heading from "../../components/ui/Headings/Heading";
 import { AssociatesData } from "../../data/Associates";
 
-export default function OurAssociates() {
+export default function OurAssociates({ sliceNumber }: { sliceNumber?: number }) {
     return (
         <section className="py-12 md:py-16 px-4 md:px-8 bg-[#FAF9F4] space-y-8 md:space-y-10">
             <div className="space-y-2">
@@ -16,7 +16,7 @@ export default function OurAssociates() {
 
             {/* Grid is already good, just added 'max-w-7xl' to prevent stretching on huge screens */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 container mx-auto max-w-7xl">
-                {AssociatesData.map((associate, index) => (
+                {AssociatesData.slice(0, sliceNumber ? sliceNumber : AssociatesData.length).map((associate, index) => (
                     <AssociatesCard
                         key={index}
                         image={associate.image}

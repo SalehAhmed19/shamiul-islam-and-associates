@@ -8,6 +8,8 @@ import ask from "../assets/images/ask.png";
 import footer from "../assets/images/footer-bg.png";
 import legal1 from "../assets/images/legal-01.png";
 import freeConsultation from "../assets/images/free-consultation.png";
+import Header from "../assets/images/Header.png";
+import signature from "../assets/images/sig.png";
 
 export const images = {
     hero,
@@ -18,7 +20,9 @@ export const images = {
     ask,
     footer,
     legal1,
-    freeConsultation
+    freeConsultation,
+    Header,
+    signature
 }
 
 import logo from "../assets/icons/logo.png"
@@ -42,4 +46,9 @@ export const icons = {
     cyber,
     family,
     call, logo2
+}
+
+import legalVideo from "../assets/video/legal.mp4";
+export const videos = {
+    legalVideo
 }
