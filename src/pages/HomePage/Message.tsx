@@ -6,7 +6,7 @@ export default function Message() {
         // Wrapper:
         // 1. relative z-20: Ensures it sits ON TOP of the banner.
         // 2. px-4: Side padding for mobile screens so card doesn't touch edges.
-        <div className="relative z-20 px-4 md:px-8 flex justify-center">
+        <section className="relative z-20 px-4 md:px-8 flex justify-center">
 
             {/* Card Container:
                 1. -mt-XX: Pulls the card up over the banner.
@@ -35,7 +35,7 @@ export default function Message() {
                 {/* --- Image Content --- */}
                 {/* order-1: On mobile, image is FIRST. 
                     md:order-2: On desktop, image is RIGHT. */}
-                <div className="order-1 md:order-2 h-48 sm:h-64 md:h-full w-full overflow-hidden rounded-md">
+                <div className="order-1 md:order-2 h-48 sm:h-64 md:h-full w-full overflow-hidden cursor-pointer">
                     <img
                         src={images.prince1}
                         alt="prince-01"
@@ -44,6 +44,6 @@ export default function Message() {
                 </div>
 
             </div>
-        </div>
+        </section>
     );
 }

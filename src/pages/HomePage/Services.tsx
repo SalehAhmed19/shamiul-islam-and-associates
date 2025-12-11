@@ -6,7 +6,7 @@ export default function Services() {
     return (
         // bg-[#FAF9F4]: The background color for this section.
         // pb-20: Adds space at the bottom so the content doesn't end abruptly.
-        <div className="relative bg-[#FAF9F4] pb-20">
+        <section className="relative bg-[#FAF9F4] pb-20">
 
             {/* The Message component pulls itself UP (-mt) 
                 to overlap the component before this one */}
@@ -26,6 +26,6 @@ export default function Services() {
                     <ServiceCard key={idx} {...service} />
                 ))}
             </div>
-        </div>
+        </section>
     )
 }

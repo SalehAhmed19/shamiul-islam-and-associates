@@ -15,7 +15,7 @@ import Button from "../../components/ui/Buttons/Button";
 
 export default function Ask() {
     return (
-        <div
+        <section
             style={{
                 backgroundImage: `url(${images.ask})`,
                 backgroundSize: "cover",
@@ -31,6 +31,6 @@ export default function Ask() {
             </h2>
 
             <Button className="mx-auto">Ask an expert</Button>
-        </div>
+        </section>
     )
 }

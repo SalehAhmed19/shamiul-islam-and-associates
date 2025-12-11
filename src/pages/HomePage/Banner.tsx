@@ -3,7 +3,7 @@ import Button from "../../components/ui/Buttons/Button";
 
 export default function Banner() {
     return (
-        <div
+        <section
             style={{ backgroundImage: `url(${images.hero})` }}
             className="relative h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center text-white"
         >
@@ -34,6 +34,6 @@ export default function Banner() {
                     <Button className="mx-auto block">Make enquiry</Button>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
