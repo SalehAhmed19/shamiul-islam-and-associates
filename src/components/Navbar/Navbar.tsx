@@ -27,7 +27,7 @@ export default function Navbar() {
                 : "bg-transparent py-5"
                 }`}
         >
-            <div className="mx-auto flex items-center justify-between px-4 md:px-8 lg:px-16">
+            <div className="container mx-auto flex items-center justify-between px-4 md:px-0">
 
                 {/* --- LOGO --- */}
                 <div>

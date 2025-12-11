@@ -1,0 +1,12 @@
+import { icons } from "../assets/assets";
+import type { ServiceInterface } from "../Interfaces/ServiceInterface";
+
+export const servicesData: ServiceInterface[] = [
+    { icon: icons.civil, title: "Civil Law", description: "We provides clear and effective legal solutions for a wide range of civil matters. We help clients navigate complex disputes, ensuring their rights and interests are protected through dedicated representation. Our focus is on achieving favorable and timely outcomes in areas like property, contracts, and personal claims." },
+    { icon: icons.criminal, title: "Criminal Law", description: "We provides clear and effective legal solutions for a wide range of civil matters. We help clients navigate complex disputes, ensuring their rights and interests are protected through dedicated representation. Our focus is on achieving favorable and timely outcomes in areas like property, contracts, and personal claims." },
+    { icon: icons.family, title: "Family Law", description: "We provides clear and compassionate legal support for all Family Law matters. We assist with cases including divorce, child custody, and maintenance. Our goal is to achieve the best outcome through expert guidance and dedicated representation." }, { icon: icons.banking, title: "Banking & Finance", description: "We offer expert legal services in Banking and Finance, helping clients navigate complex regulations and transactions. Our focus is on providing clear, practical solutions for corporate, compliance, and dispute resolution needs. We ensure your financial and business matters are handled with precision and integrity." }, {
+        icon: icons.corporate, title: "Corporate Law", description: "We offers expert counsel in Corporate Law, simplifying complex legal challenges for businesses. We assist with a variety of needs, including contracts, compliance, and corporate structuring. Our goal is to provide clear, actionable legal guidance, ensuring your business's smooth and lawful operation."
+    }, {
+        icon: icons.cyber, title: "Cyber Law", description: "We offers expert counsel in Corporate Law, simplifying complex legal challenges for businesses. We assist with a variety of needs, including contracts, compliance, and corporate structuring. Our goal is to provide clear, actionable legal guidance, ensuring your business's smooth and lawful operation."
+    }
+]
