@@ -156,7 +156,7 @@ export default function Contact() {
                     </div>
 
                     {/* Right Column: Form */}
-                    <div className="bg-white/5 p-6 md:p-8 backdrop-blur-sm">
+                    <div>
                         <ContactForm />
                     </div>
                 </div>
