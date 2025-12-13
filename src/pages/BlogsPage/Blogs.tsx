@@ -1,29 +1,14 @@
-// import Header from "../../components/ui/Header/Header";
-// import { images } from "../../assets/assets";
-// import { blogPosts } from "../../data/blogData";
-// import BlogCard from "../../components/ui/Cards/BlogCard";
 
-// export default function Blogs() {
-//     return (
-//         <section>
-//             <div>
-//                 <Header image={images.blogs} title="Blogs" />
-//                 <div className="container py-16 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-//                     {blogPosts.map((blog, index) => (
-//                         <BlogCard key={index} image={blog.image} title={blog.title} date={blog.date} />
-//                     ))}
-//                 </div>
-//             </div>
-//         </section>
-//     )
-// }
 
 import Header from "../../components/ui/Header/Header";
 import { images } from "../../assets/assets";
-import { blogPosts } from "../../data/blogData";
 import BlogCard from "../../components/ui/Cards/BlogCard";
+import { useGetBlogs } from "../../hooks/useGetBlogs";
 
 export default function Blogs() {
+    const { blogs } = useGetBlogs()
+    console.log(blogs)
+
     return (
         <section>
             <Header image={images.blogs} title="Blogs" />
@@ -36,12 +21,13 @@ export default function Blogs() {
 
                 {/* Grid Layout */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-                    {blogPosts.map((blog, index) => (
+                    {blogs.map((blog, index) => (
                         <BlogCard
                             key={index}
                             image={blog.image}
                             title={blog.title}
                             date={blog.date}
+                            _id={blog._id}
                         />
                     ))}
                 </div>

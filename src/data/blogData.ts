@@ -8,7 +8,29 @@ export const blogPosts: Blog[] = [
         date: "October 24, 2023",
         author: "Shamiul Islam",
         image: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        excerpt: "Insolvency requires expert guidance. Learn about the critical changes in recent legislation affecting businesses and how to prepare for financial restructuring."
+        excerpt: "Insolvency requires expert guidance. Learn about the critical changes in recent legislation affecting businesses and how to prepare for financial restructuring.",
+        content: {
+            type: 'doc',
+            content: [
+                {
+                    type: 'heading',
+                    attrs: { level: 2 },
+                    content: [{ type: 'text', text: 'The Shift in Insolvency Protocols' }]
+                },
+                {
+                    type: 'paragraph',
+                    content: [
+                        { type: 'text', text: 'Insolvency requires ' },
+                        { type: 'text', marks: [{ type: 'bold' }], text: 'expert guidance' },
+                        { type: 'text', text: '. The 2024 reforms have introduced a stricter timeline for restructuring proposals. Companies now have only 90 days to present a viable plan.' }
+                    ]
+                },
+                {
+                    type: 'paragraph',
+                    content: [{ type: 'text', text: 'This shift aims to reduce the limbo period for creditors but places immense pressure on corporate legal teams to act swiftly.' }]
+                }
+            ]
+        }
     },
     {
         id: 2,
@@ -17,7 +39,25 @@ export const blogPosts: Blog[] = [
         date: "October 18, 2023",
         author: "Associate Partner",
         image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        excerpt: "Facing criminal charges can be overwhelming. This guide outlines the fundamental rights every defendant should know right from the moment of arrest."
+        excerpt: "Facing criminal charges can be overwhelming. This guide outlines the fundamental rights every defendant should know right from the moment of arrest.",
+        content: {
+            type: 'doc',
+            content: [
+                {
+                    type: 'heading',
+                    attrs: { level: 2 },
+                    content: [{ type: 'text', text: 'The Right to Remain Silent' }]
+                },
+                {
+                    type: 'paragraph',
+                    content: [
+                        { type: 'text', text: 'Facing criminal charges can be overwhelming. One of the most fundamental rights is the ' },
+                        { type: 'text', marks: [{ type: 'italic' }], text: 'right against self-incrimination' },
+                        { type: 'text', text: '. You are never required to speak to investigators without a lawyer present.' }
+                    ]
+                }
+            ]
+        }
     },
     {
         id: 3,
@@ -26,7 +66,28 @@ export const blogPosts: Blog[] = [
         date: "October 10, 2023",
         author: "Tech Legal Team",
         image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        excerpt: "As artificial intelligence grows, so do legal complexities. We explore emerging trends in data privacy regulations and what they mean for tech companies."
+        excerpt: "As artificial intelligence grows, so do legal complexities. We explore emerging trends in data privacy regulations and what they mean for tech companies.",
+        content: {
+            type: 'doc',
+            content: [
+                {
+                    type: 'heading',
+                    attrs: { level: 2 },
+                    content: [{ type: 'text', text: 'AI vs. GDPR' }]
+                },
+                {
+                    type: 'paragraph',
+                    content: [
+                        { type: 'text', text: 'As artificial intelligence grows, so do legal complexities. A major point of contention is how AI training models scrape data. ' },
+                        { type: 'text', marks: [{ type: 'bold' }], text: 'Is public data truly fair game?' }
+                    ]
+                },
+                {
+                    type: 'paragraph',
+                    content: [{ type: 'text', text: 'Regulators in the EU are suggesting new "Right to be Forgotten" clauses specifically for LLM (Large Language Model) training sets.' }]
+                }
+            ]
+        }
     },
     {
         id: 4,
@@ -35,7 +96,25 @@ export const blogPosts: Blog[] = [
         date: "September 28, 2023",
         author: "Senior Associate",
         image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        excerpt: "Recent court adjustments have shifted how mediation is approached in divorce cases involving minors. Here is what parents need to know."
+        excerpt: "Recent court adjustments have shifted how mediation is approached in divorce cases involving minors. Here is what parents need to know.",
+        content: {
+            type: 'doc',
+            content: [
+                {
+                    type: 'heading',
+                    attrs: { level: 2 },
+                    content: [{ type: 'text', text: 'Mandatory Mediation Steps' }]
+                },
+                {
+                    type: 'paragraph',
+                    content: [
+                        { type: 'text', text: 'Recent court adjustments have shifted how mediation is approached. Judges are now requiring a minimum of ' },
+                        { type: 'text', marks: [{ type: 'bold' }], text: 'three mediation sessions' },
+                        { type: 'text', text: ' before a custody trial can even be scheduled.' }
+                    ]
+                }
+            ]
+        }
     },
     {
         id: 5,
@@ -44,7 +123,25 @@ export const blogPosts: Blog[] = [
         date: "September 15, 2023",
         author: "Shamiul Islam",
         image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        excerpt: "Expanding internationally brings new IP risks. Learn the essential strategies for securing patents and trademarks across different jurisdictions."
+        excerpt: "Expanding internationally brings new IP risks. Learn the essential strategies for securing patents and trademarks across different jurisdictions.",
+        content: {
+            type: 'doc',
+            content: [
+                {
+                    type: 'heading',
+                    attrs: { level: 2 },
+                    content: [{ type: 'text', text: 'The Madrid Protocol' }]
+                },
+                {
+                    type: 'paragraph',
+                    content: [
+                        { type: 'text', text: 'Expanding internationally brings new IP risks. Utilizing the ' },
+                        { type: 'text', marks: [{ type: 'italic' }], text: 'Madrid Protocol' },
+                        { type: 'text', text: ' allows you to file one application to protect your trademark in over 120 countries simultaneously.' }
+                    ]
+                }
+            ]
+        }
     },
     {
         id: 6,
@@ -53,6 +150,24 @@ export const blogPosts: Blog[] = [
         date: "September 02, 2023",
         author: "Finance Expert",
         image: "https://images.unsplash.com/photo-1601597111158-2fceff292b5c?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        excerpt: "A deep dive into the central bank's latest policy shifts and their immediate impact on commercial lending and private asset management."
+        excerpt: "A deep dive into the central bank's latest policy shifts and their immediate impact on commercial lending and private asset management.",
+        content: {
+            type: 'doc',
+            content: [
+                {
+                    type: 'heading',
+                    attrs: { level: 2 },
+                    content: [{ type: 'text', text: 'Interest Rate Caps' }]
+                },
+                {
+                    type: 'paragraph',
+                    content: [
+                        { type: 'text', text: 'A deep dive into the central bank\'s latest policy shifts reveals a new cap on commercial lending rates. This is designed to stimulate small business growth but may ' },
+                        { type: 'text', marks: [{ type: 'strike' }], text: 'limit' },
+                        { type: 'text', text: ' strict private asset management strategies.' }
+                    ]
+                }
+            ]
+        }
     },
 ];
