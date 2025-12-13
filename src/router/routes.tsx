@@ -8,6 +8,7 @@ import Contact from "../pages/ContactPage/Contact";
 import DashboardLayout from "../layout/DashboardLayout";
 import Dashboard from "../dashboard/Dashboard";
 import Blog from "../pages/BlogsPage/Blog";
+import AddBlogs from "../dashboard/AddBlogs";
 
 export const routes = createBrowserRouter([
     {
@@ -23,6 +24,7 @@ export const routes = createBrowserRouter([
     {
         path: "/dashboard", element: <DashboardLayout />, children: [
             { path: "/dashboard", element: <Dashboard /> },
+            { path: "secure/admin-panel", element: <AddBlogs /> }
         ]
     }
 ])

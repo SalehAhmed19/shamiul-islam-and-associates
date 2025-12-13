@@ -1,15 +1,13 @@
-import type { JSONContent } from '@tiptap/core';
-
 export interface Blog {
-    _id: string;
-    id: number;
+    _id?: string;
+    id?: number;
     title: string;
+    author: string;
     category: string;
     date: string;
-    author: string;
-    image: string;
-    excerpt: string; // Keep this for preview cards
-    content: JSONContent; // The actual rich text for Tiptap
-    createdAt: string | undefined;
-    updatedAt: string | undefined;
+    excerpt: string;
+    content: string; // The HTML string from Tiptap
+    image: string | FileList | File; // Can be a URL string or a File objectch text for Tiptap
+    createdAt?: string | undefined;
+    updatedAt?: string | undefined;
 }

@@ -26,6 +26,11 @@ export const getSingleBlog = createAsyncThunk("blogs/getSingleBlog", async (id: 
     return response.data
 })
 
+export const createBlog = createAsyncThunk("blogs/createBlog", async (blog: Blog) => {
+    const response = await axios.post("http://localhost:4000/api/blogs/create-blog", blog)
+    return response.data
+})
+
 export const BlogsSlice = createSlice({
     name: "blogs",
     initialState,
@@ -54,6 +59,17 @@ export const BlogsSlice = createSlice({
         builder.addCase(getSingleBlog.rejected, (state) => {
             state.loading = false
             state.error = "Failed to fetch blog"
+        })
+        builder.addCase(createBlog.pending, (state) => {
+            state.loading = true
+        })
+        builder.addCase(createBlog.fulfilled, (state, action) => {
+            state.blog = action.payload
+            state.loading = false
+        })
+        builder.addCase(createBlog.rejected, (state) => {
+            state.loading = false
+            state.error = "Failed to create blog"
         })
     }
 })
