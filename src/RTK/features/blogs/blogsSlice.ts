@@ -31,6 +31,16 @@ export const createBlog = createAsyncThunk("blogs/createBlog", async (blog: Blog
     return response.data
 })
 
+export const updateBlog = createAsyncThunk("blogs/updateBlog", async (blog: Blog) => {
+    const response = await axios.put(`http://localhost:4000/api/blogs/update-blog/${blog._id}`, blog)
+    return response.data
+})
+
+export const deleteBlog = createAsyncThunk("blogs/deleteBlog", async (id: string) => {
+    const response = await axios.delete(`http://localhost:4000/api/blogs/delete-blog/${id}`)
+    return response.data
+})
+
 export const BlogsSlice = createSlice({
     name: "blogs",
     initialState,
@@ -70,6 +80,28 @@ export const BlogsSlice = createSlice({
         builder.addCase(createBlog.rejected, (state) => {
             state.loading = false
             state.error = "Failed to create blog"
+        })
+        builder.addCase(updateBlog.pending, (state) => {
+            state.loading = true
+        })
+        builder.addCase(updateBlog.fulfilled, (state, action) => {
+            state.blog = action.payload
+            state.loading = false
+        })
+        builder.addCase(updateBlog.rejected, (state) => {
+            state.loading = false
+            state.error = "Failed to update blog"
+        })
+        builder.addCase(deleteBlog.pending, (state) => {
+            state.loading = true
+        })
+        builder.addCase(deleteBlog.fulfilled, (state, action) => {
+            state.blog = action.payload
+            state.loading = false
+        })
+        builder.addCase(deleteBlog.rejected, (state) => {
+            state.loading = false
+            state.error = "Failed to delete blog"
         })
     }
 })

@@ -9,6 +9,9 @@ import DashboardLayout from "../layout/DashboardLayout";
 import Dashboard from "../dashboard/Dashboard";
 import Blog from "../pages/BlogsPage/Blog";
 import AddBlogs from "../dashboard/AddBlogs";
+import ProtectedRoute from "./ProtectedRoute";
+import ManageBlogs from "@/dashboard/ManageBlogs";
+import EditBlogs from "@/dashboard/EditBlogs";
 
 export const routes = createBrowserRouter([
     {
@@ -22,9 +25,10 @@ export const routes = createBrowserRouter([
         ]
     },
     {
-        path: "/dashboard", element: <DashboardLayout />, children: [
-            { path: "/dashboard", element: <Dashboard /> },
-            { path: "secure/admin-panel", element: <AddBlogs /> }
+        path: "/dashboard/secure/admin-panel", element: <ProtectedRoute><DashboardLayout /></ProtectedRoute>, children: [
+            { index: true, element: <AddBlogs /> },
+            { path: "manage-blogs", element: <ManageBlogs /> },
+            { path: "manage-blogs/edit-blogs/:id", element: <EditBlogs /> }
         ]
     }
 ])

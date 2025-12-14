@@ -68,8 +68,8 @@ export default function AddBlogs() {
     };
 
     return (
-        <section className="p-16 space-y-6">
-            <Heading className="text-center">Add Blogs</Heading>
+        <section className="py-6 space-y-6">
+            <Heading>Add Blogs</Heading>
             <div>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
