@@ -1,9 +1,11 @@
 import Heading from "../../components/ui/Headings/Heading";
-import { blogPosts } from "../../data/blogData";
 import { Fade } from "react-awesome-reveal";
 import BlogCard from "../../components/ui/Cards/BlogCard";
+import { useGetBlogs } from "../../hooks/useGetBlogs";
 
 export default function OurBlogs() {
+    const { blogs } = useGetBlogs()
+    console.log(blogs)
     return (
         // Changed fixed p-16 to responsive padding
         <section className="py-12 px-4 md:py-16 space-y-10">
@@ -22,8 +24,8 @@ export default function OurBlogs() {
             {/* Grid Section */}
             {/* Added container mx-auto here so the grid aligns with the header */}
             <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-                {blogPosts.slice(0, 3).map((blog, index) => (
-                    <BlogCard key={index} image={blog.image} title={blog.title} date={blog.date} />
+                {blogs.slice(0, 3).map((blog, index) => (
+                    <BlogCard key={index} _id={blog._id ? blog._id : ""} image={blog.image} title={blog.title} date={blog.date} />
                 ))}
             </div>
         </section>

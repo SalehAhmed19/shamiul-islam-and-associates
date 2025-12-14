@@ -4,12 +4,12 @@ import { useParams } from "react-router-dom"
 import { useGetBlog } from "../../hooks/useGetBlog"
 import { images } from "../../assets/assets"
 import BlogHeader from "../AboutPage/BlogHeader"
-import { useEditor, EditorContent } from '@tiptap/react';
+import { useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 
 export default function Blog() {
     const params = useParams()
-    const { blog, loading, error } = useGetBlog(params.id as string)
+    const { blog, loading } = useGetBlog(params.id as string)
 
     // 1. ✅ FIX: Call useEditor AT THE TOP (Before any return statements)
     const editor = useEditor({
@@ -24,7 +24,6 @@ export default function Blog() {
         },
     });
 
-    // 2. ✅ FIX: Update editor content when 'blog' data actually arrives
     useEffect(() => {
         if (editor && blog?.content) {
             editor.commands.setContent(blog.content);
@@ -41,10 +40,6 @@ export default function Blog() {
         <section>
             <BlogHeader
                 image={images.blogs}
-            // title={blog.title}
-            // author={blog.author}
-            // category={blog.category}
-            // date={date}
             />
 
             <article className="container mx-auto px-4 py-8">

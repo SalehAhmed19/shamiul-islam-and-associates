@@ -27,7 +27,7 @@ export default function Blogs() {
                             image={blog.image}
                             title={blog.title}
                             date={blog.date}
-                            _id={blog._id}
+                            _id={blog._id ? blog._id : ""}
                         />
                     ))}
                 </div>

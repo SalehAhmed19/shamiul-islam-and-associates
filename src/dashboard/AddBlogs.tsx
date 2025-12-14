@@ -142,10 +142,14 @@ export default function AddBlogs() {
                                 <FormLabel>Content</FormLabel>
                                 <FormControl>
                                     {/* ✅ CHANGED: Added value={field.value} so TipTap clears when form resets */}
-                                    <TipTap
+                                    {/* <TipTap
                                         description={field.name}
                                         onChange={field.onChange}
                                         value={field.value}
+                                    /> */}
+                                    <TipTap
+                                        description={field.value} // ✅ Pass form value here
+                                        onChange={field.onChange}
                                     />
                                 </FormControl>
                                 <FormMessage />
