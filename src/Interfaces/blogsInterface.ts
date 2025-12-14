@@ -5,7 +5,7 @@ export interface Blog {
     author: string;
     category: string;
     date: string;
-    excerpt: string;
+    relatedVideoLink: string;
     content: string; // The HTML string from Tiptap
     image: string | FileList | File; // Can be a URL string or a File objectch text for Tiptap
     createdAt?: string | undefined;

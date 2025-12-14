@@ -7,6 +7,7 @@ import Heading from "@tiptap/extension-heading";
 import Link from "@tiptap/extension-link";
 
 export default function TipTap({ description, onChange }: { description: string, onChange: (value: string) => void }) {
+
     const editor = useEditor({
         extensions: [
             // 1. Configure StarterKit to disable the default lists/headings 
@@ -22,7 +23,7 @@ export default function TipTap({ description, onChange }: { description: string,
             StarterKit.options.orderedList !== false &&
             OrderedList.configure({
                 HTMLAttributes: {
-                    class: "list-decimal pl-4",
+                    class: "list-decimal pl-8",
                 },
             }),
 
@@ -79,7 +80,7 @@ export default function TipTap({ description, onChange }: { description: string,
     return (
         <div>
             <ToolBar editor={editor} />
-            <EditorContent editor={editor} />
+            <EditorContent editor={editor} className="h-[300px] overflow-y-auto" />
 
             {/* <div dangerouslySetInnerHTML={{ __html: editor?.getHTML() }}></div> */}
         </div>
