@@ -96,7 +96,8 @@ export const BlogsSlice = createSlice({
             state.loading = true
         })
         builder.addCase(deleteBlog.fulfilled, (state, action) => {
-            state.blog = action.payload
+            // state.blog = action.payload
+            state.blogs = state.blogs.filter((blog) => blog._id !== action.meta.arg);
             state.loading = false
         })
         builder.addCase(deleteBlog.rejected, (state) => {
