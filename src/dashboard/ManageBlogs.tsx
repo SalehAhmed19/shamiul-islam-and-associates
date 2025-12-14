@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import Heading from "@/components/ui/Headings/Heading";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useAppDispatch } from "@/hooks/hooks";
 import { useGetBlogs } from "@/hooks/useGetBlogs"
 import { deleteBlog } from "@/RTK/features/blogs/blogsSlice";
@@ -64,9 +64,9 @@ export default function ManageBlogs() {
                                                 </DialogHeader>
                                                 <DialogFooter>
                                                     <DialogClose asChild>
-                                                        <Button variant="outline">Cancel</Button>
+                                                        <Button variant="outline" className="cursor-pointer">Cancel</Button>
                                                     </DialogClose>
-                                                    <Button variant="destructive" onClick={() => handleDeleteBlog(blog._id ? blog._id : "")}>Delete</Button>
+                                                    <Button variant="destructive" className="cursor-pointer" onClick={() => handleDeleteBlog(blog._id ? blog._id : "")}>Delete</Button>
                                                 </DialogFooter>
                                             </DialogContent>
                                         </Dialog>

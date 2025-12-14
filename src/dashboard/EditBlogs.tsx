@@ -11,7 +11,7 @@ export default function EditBlogs() {
         <section className="py-6 space-y-6">
             <div className="space-y-6">
                 <Heading>Edit Blogs</Heading>
-                <EditForm blog={blog} />
+                <EditForm />
             </div>
         </section>
     )

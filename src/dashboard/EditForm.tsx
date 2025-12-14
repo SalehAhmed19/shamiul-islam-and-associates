@@ -10,9 +10,13 @@ import TipTap from "@/components/ui/TextEditor/TipTap";
 import Button from "@/components/ui/Buttons/Button";
 import { updateBlog } from "@/RTK/features/blogs/blogsSlice";
 import { Edit } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useGetBlog } from "@/hooks/useGetBlog";
 
-export default function EditForm({ blog }: { blog: Blog }) {
+export default function EditForm() {
+    const { id } = useParams();
+    const { blog } = useGetBlog(id || "");
     const navigate = useNavigate()
     const fromSchema = z.object({
         title: z.string().min(3, "Title must be at least 3 characters long"),
@@ -42,7 +46,7 @@ export default function EditForm({ blog }: { blog: Blog }) {
 
     const onSubmit = (data: z.infer<typeof fromSchema>) => {
         const formData: Blog = {
-            _id: blog._id,
+            _id: blog?._id,
             title: data.title,
             category: data.category,
             date: data.date,
@@ -74,12 +78,12 @@ export default function EditForm({ blog }: { blog: Blog }) {
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <div className="flex gap-6">
+                <div className="flex flex-col md:flex-row gap-6">
                     <FormField control={form.control} name="title" render={({ field }) => (
                         <FormItem className="w-full">
                             <FormLabel>Title</FormLabel>
                             <FormControl>
-                                <Input placeholder="Enter title" {...field} />
+                                <Input className="rounded-none py-6" placeholder="Enter title" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -89,18 +93,30 @@ export default function EditForm({ blog }: { blog: Blog }) {
                         <FormItem className="w-full">
                             <FormLabel>Category</FormLabel>
                             <FormControl>
-                                <Input placeholder="Enter category" {...field} />
+                                <Select onValueChange={field.onChange}
+                                    defaultValue={field.value}>
+                                    <SelectTrigger className="w-full py-6 rounded-none">
+                                        <SelectValue placeholder="Select Category" className="placeholder:text-black" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="নারী ও শিশু নির্যাতন">নারী ও শিশু নির্যাতন</SelectItem>
+                                        <SelectItem value="বিবাহ ও তালাক">বিবাহ ও তালাক</SelectItem>
+                                        <SelectItem value="পারিবারিক আইন ও অধিকার">পারিবারিক আইন ও অধিকার</SelectItem>
+                                        <SelectItem value="ফৌজদারি আইন ও পরামর্শ">ফৌজদারি আইন ও পরামর্শ</SelectItem>
+                                        <SelectItem value="আইন ও অধিকার / মুসলিম পারিবারিক আইন">আইন ও অধিকার / মুসলিম পারিবারিক আইন</SelectItem>
+                                    </SelectContent>
+                                </Select>
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     )} />
                 </div>
-                <div className="flex gap-6">
+                <div className="flex flex-col md:flex-row gap-6">
                     <FormField control={form.control} name="date" render={({ field }) => (
                         <FormItem className="w-full">
                             <FormLabel>Date</FormLabel>
                             <FormControl>
-                                <Input placeholder="Enter date" {...field} />
+                                <Input className="rounded-none py-6" placeholder="Enter date" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -110,18 +126,18 @@ export default function EditForm({ blog }: { blog: Blog }) {
                         <FormItem className="w-full">
                             <FormLabel>Author</FormLabel>
                             <FormControl>
-                                <Input placeholder="Enter author" {...field} />
+                                <Input className="rounded-none py-6" placeholder="Enter author" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     )} />
                 </div>
-                <div className="flex gap-6">
+                <div className="flex flex-col md:flex-row gap-6">
                     <FormField control={form.control} name="image" render={({ field }) => (
                         <FormItem className="w-full">
                             <FormLabel>Image</FormLabel>
                             <FormControl>
-                                <Input type="text" {...field} placeholder="Enter image url" />
+                                <Input className="rounded-none py-6" type="text" {...field} placeholder="Enter image url" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -131,7 +147,7 @@ export default function EditForm({ blog }: { blog: Blog }) {
                         <FormItem className="w-full">
                             <FormLabel>Related Video Link</FormLabel>
                             <FormControl>
-                                <Input placeholder="Enter related video link" {...field} />
+                                <Input className="rounded-none py-6" placeholder="Enter related video link" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
