@@ -1,7 +1,7 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 import { SignOutButton, UserButton, useUser } from "@clerk/clerk-react";
-import { ChevronUp, Edit, HomeIcon, Plus, User2 } from "lucide-react";
+import { ChevronUp, Edit, Plus, User2 } from "lucide-react";
 import { Link, Navigate } from "react-router-dom";
 
 export default function AppSideBar() {

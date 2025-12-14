@@ -1,8 +1,14 @@
-import DashboardLayout from "@/layout/DashboardLayout";
-import { SignIn, useUser } from "@clerk/clerk-react";
-import { Navigate, Outlet } from "react-router-dom";
+import { SignedOut, SignIn, useUser } from "@clerk/clerk-react";
+import type { ReactNode } from "react";
+import toast from "react-hot-toast";
+import { Navigate, useLocation } from "react-router-dom";
 
-const ProtectedRoute = () => {
+interface ProtectedRouteProps {
+    children: ReactNode;
+}
+
+const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
+    const location = useLocation();
     const { isLoaded, isSignedIn, user } = useUser();
 
     if (!isLoaded) {
@@ -10,19 +16,20 @@ const ProtectedRoute = () => {
     }
 
     if (!isSignedIn) {
-        return <div className="flex justify-center items-center h-screen w-full">
-            {/* এখানে সরাসরি Clerk এর SignIn কম্পোনেন্ট কল করা হয়েছে */}
-            <SignIn />
-        </div>
+        return <div className="flex justify-center items-center h-screen w-full"><SignIn forceRedirectUrl={location.pathname} /></div>;
     }
 
     // চেক করুন ইউজারের রোল 'admin' কিনা (যদি আপনি role setup করে থাকেন)
     if (user?.publicMetadata?.role !== "admin") {
         // যদি এডমিন না হয়, তবে হোম পেজে পাঠিয়ে দিন
-        return <Navigate to="/" replace />;
+        return <>
+            {toast.error("You are not authorized to access this page!")}
+            <Navigate to="/" replace />
+            <SignedOut />
+        </>;
     }
 
-    return <DashboardLayout />;
+    return <>{children}</>;
 };
 
 export default ProtectedRoute;

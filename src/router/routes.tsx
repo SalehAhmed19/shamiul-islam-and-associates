@@ -6,7 +6,6 @@ import Service from "../pages/ServicePage/Service";
 import Blogs from "../pages/BlogsPage/Blogs";
 import Contact from "../pages/ContactPage/Contact";
 import DashboardLayout from "../layout/DashboardLayout";
-import Dashboard from "../dashboard/Dashboard";
 import Blog from "../pages/BlogsPage/Blog";
 import AddBlogs from "../dashboard/AddBlogs";
 import ProtectedRoute from "./ProtectedRoute";
