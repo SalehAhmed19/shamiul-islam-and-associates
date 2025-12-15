@@ -24,7 +24,7 @@ export default function OurBlogs() {
             {/* Grid Section */}
             {/* Added container mx-auto here so the grid aligns with the header */}
             <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-                {blogs.slice(0, 3).map((blog, index) => (
+                {blogs?.slice(0, 3).map((blog, index) => (
                     <BlogCard key={index} _id={blog._id ? blog._id : ""} image={blog.image} title={blog.title} date={blog.date} />
                 ))}
             </div>
