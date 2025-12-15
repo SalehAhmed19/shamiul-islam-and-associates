@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { Blog } from "../../../Interfaces/blogsInterface";
-import axios from "axios";
-import axiosSecure from "@/utils/axiosInstance";
+import { axiosPublic, axiosSecure } from "@/utils/axiosInstance";
 
 export interface BlogsState {
     blogs: Blog[]
@@ -18,12 +17,12 @@ const initialState: BlogsState = {
 }
 
 export const getBlogs = createAsyncThunk("blogs/getBlogs", async () => {
-    const response = await axios.get("http://localhost:4000/api/blogs")
+    const response = await axiosPublic.get("/blogs")
     return response.data
 })
 
 export const getSingleBlog = createAsyncThunk("blogs/getSingleBlog", async (id: string) => {
-    const response = await axios.get(`http://localhost:4000/api/blogs/${id}`)
+    const response = await axiosPublic.get(`/blogs/${id}`)
     return response.data
 })
 
