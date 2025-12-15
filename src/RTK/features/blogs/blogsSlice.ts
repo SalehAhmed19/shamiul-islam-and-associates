@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { Blog } from "../../../Interfaces/blogsInterface";
 import axios from "axios";
+import axiosSecure from "@/utils/axiosInstance";
 
 export interface BlogsState {
     blogs: Blog[]
@@ -26,19 +27,31 @@ export const getSingleBlog = createAsyncThunk("blogs/getSingleBlog", async (id: 
     return response.data
 })
 
-export const createBlog = createAsyncThunk("blogs/createBlog", async (blog: Blog) => {
-    const response = await axios.post("http://localhost:4000/api/blogs/create-blog", blog)
-    return response.data
+export const createBlog = createAsyncThunk("blogs/createBlog", async (blog: Blog, { rejectWithValue }) => {
+    try {
+        const response = await axiosSecure.post("/blogs/create-blog", blog)
+        return response.data
+    } catch (error) {
+        return rejectWithValue(error)
+    }
 })
 
-export const updateBlog = createAsyncThunk("blogs/updateBlog", async (blog: Blog) => {
-    const response = await axios.put(`http://localhost:4000/api/blogs/update-blog/${blog._id}`, blog)
-    return response.data
+export const updateBlog = createAsyncThunk("blogs/updateBlog", async (blog: Blog, { rejectWithValue }) => {
+    try {
+        const response = await axiosSecure.put(`/blogs/update-blog/${blog._id}`, blog)
+        return response.data
+    } catch (error) {
+        return rejectWithValue(error)
+    }
 })
 
-export const deleteBlog = createAsyncThunk("blogs/deleteBlog", async (id: string) => {
-    const response = await axios.delete(`http://localhost:4000/api/blogs/delete-blog/${id}`)
-    return response.data
+export const deleteBlog = createAsyncThunk("blogs/deleteBlog", async (id: string, { rejectWithValue }) => {
+    try {
+        const response = await axiosSecure.delete(`/blogs/delete-blog/${id}`)
+        return response.data
+    } catch (error) {
+        return rejectWithValue(error)
+    }
 })
 
 export const BlogsSlice = createSlice({

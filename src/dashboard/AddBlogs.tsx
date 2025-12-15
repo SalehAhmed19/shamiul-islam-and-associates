@@ -179,6 +179,7 @@ import toast from "react-hot-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function AddBlogs() {
+
     const currentDate = new Date().toDateString();
     const fromSchema = z.object({
         title: z.string().min(3, "Title must be at least 3 characters long"),
@@ -266,6 +267,8 @@ export default function AddBlogs() {
                                                 <SelectItem value="পারিবারিক আইন ও অধিকার">পারিবারিক আইন ও অধিকার</SelectItem>
                                                 <SelectItem value="ফৌজদারি আইন ও পরামর্শ">ফৌজদারি আইন ও পরামর্শ</SelectItem>
                                                 <SelectItem value="আইন ও অধিকার / মুসলিম পারিবারিক আইন">আইন ও অধিকার / মুসলিম পারিবারিক আইন</SelectItem>
+                                                <SelectItem value="আইন ও পরামর্শ">আইন ও পরামর্শ</SelectItem>
+                                                <SelectItem value="জমি ও সম্পত্তি">জমি ও সম্পত্তি</SelectItem>
                                             </SelectContent>
                                         </Select>
                                     </FormControl>

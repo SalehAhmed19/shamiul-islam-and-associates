@@ -104,6 +104,8 @@ export default function EditForm() {
                                         <SelectItem value="পারিবারিক আইন ও অধিকার">পারিবারিক আইন ও অধিকার</SelectItem>
                                         <SelectItem value="ফৌজদারি আইন ও পরামর্শ">ফৌজদারি আইন ও পরামর্শ</SelectItem>
                                         <SelectItem value="আইন ও অধিকার / মুসলিম পারিবারিক আইন">আইন ও অধিকার / মুসলিম পারিবারিক আইন</SelectItem>
+                                        <SelectItem value="আইন ও পরামর্শ">আইন ও পরামর্শ</SelectItem>
+                                        <SelectItem value="জমি ও সম্পত্তি">জমি ও সম্পত্তি</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </FormControl>
