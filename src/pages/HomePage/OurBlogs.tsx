@@ -4,7 +4,8 @@ import BlogCard from "../../components/ui/Cards/BlogCard";
 import { useGetBlogs } from "../../hooks/useGetBlogs";
 
 export default function OurBlogs() {
-    const { blogs } = useGetBlogs()
+    const { blogs, loading } = useGetBlogs()
+    if (loading) return <p>Loading...</p>
     console.log(blogs)
     return (
         // Changed fixed p-16 to responsive padding

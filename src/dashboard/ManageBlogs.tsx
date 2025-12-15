@@ -40,7 +40,7 @@ export default function ManageBlogs() {
                     </TableHeader>
                     <TableBody>
                         {
-                            blogs.map((blog, idx) => (
+                            blogs?.map((blog, idx) => (
                                 <TableRow key={blog._id} className="cursor-pointer">
                                     <TableCell className="font-medium">{idx + 1}</TableCell>
                                     <TableCell className="bangla">{blog.title}</TableCell>

@@ -9,7 +9,7 @@ export default function Steps() {
             {/* Adjusted py-16 to py-10 md:py-16 for better mobile vertical spacing */}
             <div className="container mx-auto py-10 md:py-16 px-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    {StepsData.map((step, index) => (
+                    {StepsData?.map((step, index) => (
                         // Adjusted padding: p-6 on mobile, p-10 on desktop
                         <Zoom cascade={true} delay={200}><div key={index} className="flex items-center gap-4 bg-white p-6 md:p-10 h-full">
 

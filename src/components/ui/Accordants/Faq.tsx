@@ -34,7 +34,7 @@ export default function Faq() {
 
                 <Fade cascade={true} delay={200} direction="up">
                     <div className="mx-auto flex flex-col gap-4">
-                        {FaqData.map((item, index) => (
+                        {FaqData?.map((item, index) => (
                             <div
                                 key={index}
                                 className="border-b border-white/20 last:border-none cursor-pointer"
