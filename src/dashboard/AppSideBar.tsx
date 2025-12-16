@@ -1,7 +1,8 @@
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuShortcut, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 import { SignOutButton, UserButton, useUser } from "@clerk/clerk-react";
-import { ChevronUp, Edit, Plus, User2 } from "lucide-react";
+import { ChevronUp, Edit, Edit2, Plus, User2, Users } from "lucide-react";
 import { Link, Navigate } from "react-router-dom";
 
 export default function AppSideBar() {
@@ -35,6 +36,37 @@ export default function AppSideBar() {
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>
                             ))}
+                        </SidebarMenu>
+                        <SidebarMenu>
+
+                            <SidebarMenuItem>
+                                <SidebarMenuButton asChild>
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <SidebarMenuButton className="focus:outline-none w-full cursor-pointer">
+                                                <Users /> Manage Associates
+                                            </SidebarMenuButton>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent className="w-56" align="start">
+                                            <DropdownMenuGroup>
+                                                <DropdownMenuItem asChild className="cursor-pointer">
+                                                    <Link to={"/dashboard/secure/admin-panel/add-associates"}>
+                                                        Add Associates
+                                                        <DropdownMenuShortcut><Plus /></DropdownMenuShortcut>
+                                                    </Link>
+                                                </DropdownMenuItem>
+                                                <DropdownMenuItem asChild className="cursor-pointer">
+                                                    <Link to={"/dashboard/secure/admin-panel/manage-associates"}>
+                                                        Manage Associates
+                                                        <DropdownMenuShortcut><Edit2 /></DropdownMenuShortcut>
+                                                    </Link>
+                                                </DropdownMenuItem>
+                                            </DropdownMenuGroup>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </SidebarMenuButton>
+                            </SidebarMenuItem>
+
                         </SidebarMenu>
                     </SidebarGroupContent>
                 </SidebarGroup>

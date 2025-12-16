@@ -1,9 +1,13 @@
 import { Fade } from "react-awesome-reveal";
 import AssociatesCard from "../../components/ui/Cards/AssociatesCard";
 import Heading from "../../components/ui/Headings/Heading";
-import { AssociatesData } from "../../data/Associates";
+import { useGetAssociates } from "@/hooks/useGetAssociates";
+import { BlogsSkeleton } from "@/components/ui/Skeletons/BlogsSkeleton";
 
 export default function OurAssociates({ sliceNumber }: { sliceNumber?: number }) {
+    const { associates, loading } = useGetAssociates()
+
+    if (loading) return <BlogsSkeleton />
     return (
         <section className="py-12 md:py-16 px-4 md:px-8 bg-[#FAF9F4] space-y-8 md:space-y-10">
             <div className="space-y-2">
@@ -16,7 +20,7 @@ export default function OurAssociates({ sliceNumber }: { sliceNumber?: number })
 
             {/* Grid is already good, just added 'max-w-7xl' to prevent stretching on huge screens */}
             <div className="flex justify-center">
-                {AssociatesData.slice(0, 1).map((associate, index) => (
+                {associates.slice(0, 1).map((associate, index) => (
                     <AssociatesCard
                         key={index}
                         image={associate.image}
@@ -28,7 +32,7 @@ export default function OurAssociates({ sliceNumber }: { sliceNumber?: number })
                 ))}
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 container mx-auto max-w-7xl">
-                {AssociatesData.slice(1, sliceNumber ? sliceNumber : AssociatesData.length).map((associate, index) => (
+                {associates.slice(1, sliceNumber ? sliceNumber : associates.length).map((associate, index) => (
                     <AssociatesCard
                         key={index}
                         image={associate.image}

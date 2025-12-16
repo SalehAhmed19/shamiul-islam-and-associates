@@ -11,6 +11,9 @@ import AddBlogs from "../dashboard/AddBlogs";
 import ProtectedRoute from "./ProtectedRoute";
 import ManageBlogs from "@/dashboard/ManageBlogs";
 import EditBlogs from "@/dashboard/EditBlogs";
+import ManageAssociates from "@/dashboard/ManageAssociates";
+import EditAssociate from "@/dashboard/EditAssociate";
+import AddAssociates from "@/dashboard/AddAssociates";
 
 export const routes = createBrowserRouter([
     {
@@ -27,7 +30,10 @@ export const routes = createBrowserRouter([
         path: "/dashboard/secure/admin-panel", element: <ProtectedRoute><DashboardLayout /></ProtectedRoute>, children: [
             { index: true, element: <AddBlogs /> },
             { path: "manage-blogs", element: <ManageBlogs /> },
-            { path: "manage-blogs/edit-blogs/:id", element: <EditBlogs /> }
+            { path: "manage-blogs/edit-blogs/:id", element: <EditBlogs /> },
+            { path: "add-associates", element: <AddAssociates /> },
+            { path: "manage-associates", element: <ManageAssociates /> },
+            { path: "manage-associates/edit-associates/:_id", element: <EditAssociate /> }
         ]
     }
 ])
