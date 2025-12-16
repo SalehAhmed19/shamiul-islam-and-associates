@@ -13,10 +13,11 @@ import { Edit } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useGetBlog } from "@/hooks/useGetBlog";
+import BlogsLoading from "@/components/ui/Loadings/BlogsLoading";
 
 export default function EditForm() {
     const { id } = useParams();
-    const { blog } = useGetBlog(id || "");
+    const { blog, loading } = useGetBlog(id || "");
     const navigate = useNavigate()
     const fromSchema = z.object({
         title: z.string().min(3, "Title must be at least 3 characters long"),
@@ -74,6 +75,8 @@ export default function EditForm() {
             content: "",
         });
     };
+
+    if (loading) return <BlogsLoading />
 
     return (
         <Form {...form}>

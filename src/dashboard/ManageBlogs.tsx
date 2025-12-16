@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import Heading from "@/components/ui/Headings/Heading";
+import BlogsLoading from "@/components/ui/Loadings/BlogsLoading";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useAppDispatch } from "@/hooks/hooks";
 import { useGetBlogs } from "@/hooks/useGetBlogs"
@@ -11,9 +12,6 @@ import { Link } from "react-router-dom";
 
 export default function ManageBlogs() {
     const { blogs, loading } = useGetBlogs();
-    if (loading) {
-        return <div>Loading...</div>
-    }
 
     const dispatch = useAppDispatch();
 
@@ -22,6 +20,7 @@ export default function ManageBlogs() {
         toast.success("Blog deleted successfully");
     }
 
+    if (loading) return <BlogsLoading />
     console.log(blogs);
     return (
         <section className="py-6 space-y-6">

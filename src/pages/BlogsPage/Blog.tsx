@@ -8,11 +8,11 @@ import BlogHeader from "../AboutPage/BlogHeader"
 import { useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import ReactPlayer from 'react-player'
+import BlogsPageLoading from '@/components/ui/Loadings/BlogsPageLoading';
 
 export default function Blog() {
     const params = useParams()
     const { blog, loading } = useGetBlog(params.id as string)
-    if (loading) return <div>Loading...</div>
 
     const editor = useEditor({
         extensions: [StarterKit],
@@ -35,6 +35,8 @@ export default function Blog() {
     if (!blog) return <div className="p-10 text-center">Blog not found</div>
 
     const sanitizedContent = DOMPurify.sanitize(blog?.content);
+
+    if (loading) return <BlogsPageLoading />
 
     return (
         <section>
