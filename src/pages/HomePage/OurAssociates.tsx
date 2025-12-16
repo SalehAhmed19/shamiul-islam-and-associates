@@ -15,14 +15,27 @@ export default function OurAssociates({ sliceNumber }: { sliceNumber?: number })
             </div>
 
             {/* Grid is already good, just added 'max-w-7xl' to prevent stretching on huge screens */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 container mx-auto max-w-7xl">
-                {AssociatesData.slice(0, sliceNumber ? sliceNumber : AssociatesData.length).map((associate, index) => (
+            <div className="flex justify-center">
+                {AssociatesData.slice(0, 1).map((associate, index) => (
                     <AssociatesCard
                         key={index}
                         image={associate.image}
                         name={associate.name}
+                        court={associate.court}
                         position={associate.position}
-                        socialLinks={associate.socialLinks}
+                    // socialLinks={associate.socialLinks}
+                    />
+                ))}
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 container mx-auto max-w-7xl">
+                {AssociatesData.slice(1, sliceNumber ? sliceNumber : AssociatesData.length).map((associate, index) => (
+                    <AssociatesCard
+                        key={index}
+                        image={associate.image}
+                        name={associate.name}
+                        court={associate.court}
+                        position={associate.position}
+                    // socialLinks={associate.socialLinks}
                     />
                 ))}
             </div>

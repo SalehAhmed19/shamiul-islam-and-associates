@@ -14,7 +14,7 @@ export default function Home() {
             <Banner />
             <Services />
             <Ask />
-            <OurAssociates sliceNumber={3} />
+            <OurAssociates sliceNumber={4} />
             <LegalExcellence />
             <FreeConsulForm />
             <Faq />

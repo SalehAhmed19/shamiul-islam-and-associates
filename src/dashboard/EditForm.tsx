@@ -14,6 +14,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useGetBlog } from "@/hooks/useGetBlog";
 import BlogsLoading from "@/components/ui/Loadings/BlogsLoading";
+import { options } from "@/data/blogsCategory";
 
 export default function EditForm() {
     const { id } = useParams();
@@ -78,6 +79,7 @@ export default function EditForm() {
 
     if (loading) return <BlogsLoading />
 
+
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -102,13 +104,11 @@ export default function EditForm() {
                                         <SelectValue placeholder="Select Category" className="placeholder:text-black" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="নারী ও শিশু নির্যাতন">নারী ও শিশু নির্যাতন</SelectItem>
-                                        <SelectItem value="বিবাহ ও তালাক">বিবাহ ও তালাক</SelectItem>
-                                        <SelectItem value="পারিবারিক আইন ও অধিকার">পারিবারিক আইন ও অধিকার</SelectItem>
-                                        <SelectItem value="ফৌজদারি আইন ও পরামর্শ">ফৌজদারি আইন ও পরামর্শ</SelectItem>
-                                        <SelectItem value="আইন ও অধিকার / মুসলিম পারিবারিক আইন">আইন ও অধিকার / মুসলিম পারিবারিক আইন</SelectItem>
-                                        <SelectItem value="আইন ও পরামর্শ">আইন ও পরামর্শ</SelectItem>
-                                        <SelectItem value="জমি ও সম্পত্তি">জমি ও সম্পত্তি</SelectItem>
+                                        {options.map((option) => (
+                                            <SelectItem key={option.value} value={option.value}>
+                                                {option.title}
+                                            </SelectItem>
+                                        ))}
                                     </SelectContent>
                                 </Select>
                             </FormControl>

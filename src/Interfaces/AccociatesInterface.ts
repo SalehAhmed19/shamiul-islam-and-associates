@@ -1,5 +1,6 @@
 export interface AssociatesInterface {
     name: string;
+    court: string;
     position: string;
     image: string;
     socialLinks: {

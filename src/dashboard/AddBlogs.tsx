@@ -13,6 +13,7 @@ import { createBlog } from "@/RTK/features/blogs/blogsSlice";
 import { useAppDispatch } from "@/hooks/hooks";
 import toast from "react-hot-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { options } from "@/data/blogsCategory";
 
 export default function AddBlogs() {
 
@@ -98,13 +99,11 @@ export default function AddBlogs() {
                                                 <SelectValue placeholder="Select Category" className="placeholder:text-black" />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectItem value="নারী ও শিশু নির্যাতন">নারী ও শিশু নির্যাতন</SelectItem>
-                                                <SelectItem value="বিবাহ ও তালাক">বিবাহ ও তালাক</SelectItem>
-                                                <SelectItem value="পারিবারিক আইন ও অধিকার">পারিবারিক আইন ও অধিকার</SelectItem>
-                                                <SelectItem value="ফৌজদারি আইন ও পরামর্শ">ফৌজদারি আইন ও পরামর্শ</SelectItem>
-                                                <SelectItem value="আইন ও অধিকার / মুসলিম পারিবারিক আইন">আইন ও অধিকার / মুসলিম পারিবারিক আইন</SelectItem>
-                                                <SelectItem value="আইন ও পরামর্শ">আইন ও পরামর্শ</SelectItem>
-                                                <SelectItem value="জমি ও সম্পত্তি">জমি ও সম্পত্তি</SelectItem>
+                                                {options.map((option) => (
+                                                    <SelectItem key={option.value} value={option.value}>
+                                                        {option.title}
+                                                    </SelectItem>
+                                                ))}
                                             </SelectContent>
                                         </Select>
                                     </FormControl>

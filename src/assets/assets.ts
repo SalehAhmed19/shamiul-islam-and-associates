@@ -14,6 +14,7 @@ import serviceHeader from "../assets/images/service-header.png";
 import faq from "../assets/images/faq.png";
 import blogs from "../assets/images/blogs.png";
 import contact from "../assets/images/contact.png";
+import tanvir from "../assets/images/tanvir.png";
 
 export const images = {
     hero,
@@ -30,7 +31,8 @@ export const images = {
     serviceHeader,
     faq,
     blogs,
-    contact
+    contact,
+    tanvir
 }
 
 import logo from "../assets/icons/logo.png"

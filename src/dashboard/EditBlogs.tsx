@@ -2,12 +2,13 @@ import Heading from "@/components/ui/Headings/Heading";
 import EditForm from "./EditForm";
 import { useGetBlog } from "@/hooks/useGetBlog";
 import { useParams } from "react-router-dom";
+import BlogsLoading from "@/components/ui/Loadings/BlogsLoading";
 
 export default function EditBlogs() {
     const { id } = useParams();
     const { blog, loading } = useGetBlog(id || "");
     if (loading) {
-        return <div>Loading...</div>;
+        return <BlogsLoading />;
     }
     console.log(blog);
     return (
