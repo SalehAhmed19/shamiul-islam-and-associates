@@ -6,7 +6,9 @@ import BlogCard from "../../components/ui/Cards/BlogCard";
 import { useGetBlogs } from "../../hooks/useGetBlogs";
 
 export default function Blogs() {
-    const { blogs } = useGetBlogs()
+    const { blogs, loading } = useGetBlogs()
+
+    if (loading) return <div>Loading...</div>
     console.log(blogs)
 
     return (

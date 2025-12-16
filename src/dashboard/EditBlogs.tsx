@@ -5,7 +5,10 @@ import { useParams } from "react-router-dom";
 
 export default function EditBlogs() {
     const { id } = useParams();
-    const { blog } = useGetBlog(id || "");
+    const { blog, loading } = useGetBlog(id || "");
+    if (loading) {
+        return <div>Loading...</div>;
+    }
     console.log(blog);
     return (
         <section className="py-6 space-y-6">

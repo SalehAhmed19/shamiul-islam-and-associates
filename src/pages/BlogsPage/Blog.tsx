@@ -12,6 +12,7 @@ import ReactPlayer from 'react-player'
 export default function Blog() {
     const params = useParams()
     const { blog, loading } = useGetBlog(params.id as string)
+    if (loading) return <div>Loading...</div>
 
     const editor = useEditor({
         extensions: [StarterKit],
