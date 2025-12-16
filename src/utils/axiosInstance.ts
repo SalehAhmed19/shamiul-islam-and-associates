@@ -3,13 +3,13 @@ import axios from "axios";
 
 // ১. বেস URL সেট করা
 export const axiosSecure = axios.create({
-    baseURL: import.meta.env.VITE_baseURL_dev, // আপনার ব্যাকএন্ডের URL
-    // baseURL: import.meta.env.VITE_baseURL_prod, // আপনার ব্যাকএন্ডের URL
+    // baseURL: import.meta.env.VITE_baseURL_dev, // আপনার ব্যাকএন্ডের URL
+    baseURL: import.meta.env.VITE_baseURL_prod, // আপনার ব্যাকএন্ডের URL
 });
 
 export const axiosPublic = axios.create({
-    baseURL: import.meta.env.VITE_baseURL_dev, // আপনার ব্যাকএন্ডের URL
-    // baseURL: import.meta.env.VITE_baseURL_prod, // আপনার ব্যাকএন্ডের URL
+    // baseURL: import.meta.env.VITE_baseURL_dev, // আপনার ব্যাকএন্ডের URL
+    baseURL: import.meta.env.VITE_baseURL_prod, // আপনার ব্যাকএন্ডের URL
 });
 
 // ২. ইন্টারসেপ্টর সেটআপ
