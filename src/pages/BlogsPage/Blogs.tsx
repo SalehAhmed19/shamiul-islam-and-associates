@@ -4,11 +4,16 @@ import Header from "../../components/ui/Header/Header";
 import { images } from "../../assets/assets";
 import BlogCard from "../../components/ui/Cards/BlogCard";
 import { useGetBlogs } from "../../hooks/useGetBlogs";
+import BlogsPageLoading from "@/components/ui/Loadings/BlogsPageLoading";
 
 export default function Blogs() {
     const { blogs, loading } = useGetBlogs()
 
-    if (loading) return <div>Loading...</div>
+    if (loading) return <section>
+        <Header image={images.blogs} title="Blogs" />
+        <BlogsPageLoading />
+
+    </section>
     console.log(blogs)
 
     return (
