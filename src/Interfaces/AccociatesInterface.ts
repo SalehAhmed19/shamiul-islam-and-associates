@@ -1,5 +1,5 @@
 export interface AssociatesInterface {
-    _id: string;
+    _id?: string;
     name: string;
     court: string;
     position: string;

@@ -7,8 +7,13 @@
 
 @custom-variant dark (&:is(.dark *));
 
-*{font-family: "Mulish", sans-serif;}
-body{font-size: 16px;}
+*{
+  font-family: "Mulish", sans-serif;
+}
+body{
+  font-size: 16px;
+  font-family: "Mulish", sans-serif;
+}
 .bangla{
   font-family: "Anek Bangla", sans-serif !important;
 }

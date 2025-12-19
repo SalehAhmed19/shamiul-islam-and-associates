@@ -143,8 +143,9 @@ export const AssociatesSlice = createSlice({
             state.loading = false
             // FIX: অ্যারে ফিল্টার করে রিমুভ করছি
             // action.payload আমরা Thunk এ 'id' রিটার্ন করেছি
-            const idToDelete = action.payload as string;
-            state.associates = state.associates.filter(item => item._id !== idToDelete);
+            // const idToDelete = action.payload as string;
+            state.associates = state.associates.filter(item => item._id !== action.meta.arg);
+            state.loading = false
         })
         builder.addCase(deleteAssociate.rejected, (state, action) => {
             state.loading = false

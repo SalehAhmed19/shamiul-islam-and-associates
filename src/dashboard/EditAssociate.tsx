@@ -13,16 +13,39 @@ import toast from "react-hot-toast"
 import { useAppDispatch } from "@/hooks/hooks"
 import type { AssociatesInterface } from "@/Interfaces/AccociatesInterface"
 import { Edit } from "lucide-react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export default function EditAssociate() {
     const { _id } = useParams()
     const { associate, loading } = useGetAssociate(_id ? _id : "")
 
+    interface CourtInterface {
+        value: string;
+        title: string;
+    }
+
+    interface DesignationInterface {
+        value: string;
+        title: string;
+    }
+
+    const designationOptions: DesignationInterface[] = [
+        { value: "Head of Legal", title: "Head of Legal" },
+        { value: "Senior Consultant", title: "Senior Consultant" },
+        { value: "Associates    ", title: "Associates" },
+    ];
+
+    const courtOptions: CourtInterface[] = [
+        { value: "Bangladesh Supreme Court", title: "Bangladesh Supreme Court" },
+        { value: "Dhaka Judge Court", title: "Dhaka Judge Court" },
+    ];
+
+
     const fromSchema = z.object({
-        name: z.string().min(3, "Title must be at least 3 characters long"),
-        position: z.string().min(3, "Category must be at least 3 characters long"),
-        image: z.string().min(3, "Date must be at least 3 characters long"),
-        court: z.string().min(3, "Date must be at least 3 characters long"),
+        name: z.string().min(3, "Name must be at least 3 characters long"),
+        position: z.string().min(3, "Designation must be at least 3 characters long"),
+        image: z.string().min(3, "Image must be at least 3 characters long"),
+        court: z.string().min(3, "Court must be at least 3 characters long"),
     });
 
     const dispatch = useAppDispatch()
@@ -100,8 +123,21 @@ export default function EditAssociate() {
                                     <FormField control={form.control} name="position" render={({ field }) => (
                                         <FormItem className="w-full">
                                             <FormLabel>Designation</FormLabel>
+                                            {/* <Input className="rounded-none py-6" placeholder="Enter category" {...field} /> */}
                                             <FormControl>
-                                                <Input className="rounded-none py-6" placeholder="Enter designation" {...field} />
+                                                <Select onValueChange={field.onChange}
+                                                    defaultValue={field.value}>
+                                                    <SelectTrigger className="w-full py-6 rounded-none">
+                                                        <SelectValue placeholder="Select Designation" className="placeholder:text-black" />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        {designationOptions.map((option) => (
+                                                            <SelectItem key={option.value} value={option.value}>
+                                                                {option.title}
+                                                            </SelectItem>
+                                                        ))}
+                                                    </SelectContent>
+                                                </Select>
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -111,8 +147,21 @@ export default function EditAssociate() {
                                     <FormField control={form.control} name="court" render={({ field }) => (
                                         <FormItem className="w-full">
                                             <FormLabel>Court</FormLabel>
+                                            {/* <Input className="rounded-none py-6" placeholder="Enter category" {...field} /> */}
                                             <FormControl>
-                                                <Input className="rounded-none py-6" placeholder="Enter court" {...field} />
+                                                <Select onValueChange={field.onChange}
+                                                    defaultValue={field.value}>
+                                                    <SelectTrigger className="w-full py-6 rounded-none">
+                                                        <SelectValue placeholder="Select Court" className="placeholder:text-black" />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        {courtOptions.map((option) => (
+                                                            <SelectItem key={option.value} value={option.value}>
+                                                                {option.title}
+                                                            </SelectItem>
+                                                        ))}
+                                                    </SelectContent>
+                                                </Select>
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
