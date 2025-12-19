@@ -15,6 +15,7 @@ import faq from "../assets/images/faq.png";
 import blogs from "../assets/images/blogs.png";
 import contact from "../assets/images/contact.png";
 import tanvir from "../assets/images/tanvir.png";
+import avatar from "@/assets/images/avatar.png";
 
 export const images = {
     hero,
@@ -32,7 +33,8 @@ export const images = {
     faq,
     blogs,
     contact,
-    tanvir
+    tanvir,
+    avatar
 }
 
 import logo from "../assets/icons/logo.png"

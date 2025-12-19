@@ -44,7 +44,7 @@ export default function EditAssociate() {
     const fromSchema = z.object({
         name: z.string().min(3, "Name must be at least 3 characters long"),
         position: z.string().min(3, "Designation must be at least 3 characters long"),
-        image: z.string().min(3, "Image must be at least 3 characters long"),
+        image: z.any(),
         court: z.string().min(3, "Court must be at least 3 characters long"),
     });
 
@@ -57,7 +57,7 @@ export default function EditAssociate() {
         defaultValues: {
             name: associate?.name || "",
             position: associate?.position || "",
-            image: associate?.image || "",
+            image: associate?.image as string || "",
             court: associate?.court || "",
         }
     });
@@ -82,7 +82,7 @@ export default function EditAssociate() {
         form.reset({
             name: associate?.name || "",
             position: associate?.position || "",
-            image: associate?.image || "",
+            image: associate?.image as string || "",
             court: associate?.court || "",
         });
 
@@ -101,7 +101,7 @@ export default function EditAssociate() {
                     <div className="p-5 border border-black/10 rounded space-y-6">
                         <p className="font-bold text-black/50">Profile Photo</p>
                         <label className="cursor-pointer">
-                            <img src={associate?.image} alt="associate" className="w-40 h-40 rounded-xl aspect-square" />
+                            <img src={associate?.image as string} alt="associate" className="w-40 h-40 rounded-xl aspect-square" />
                             <p className="text-center text-sm text-[#604B33]">Change Photo</p>
                             <p className="text-center text-xs text-black/50">Allowed *.jpeg, *.jpg, *.png, *.gif
                                 <br /> Max size of 3.1 MB</p>
@@ -177,7 +177,7 @@ export default function EditAssociate() {
                                     )} />
                                 </div>
 
-                                <Button type="submit" className="flex gap-2 items-center">Edit Blog <Edit /></Button>
+                                <Button type="submit" className="flex gap-2 items-center">Update Associate <Edit /></Button>
                             </form>
                         </Form>
                     </div>

@@ -14,16 +14,25 @@ import { useAppDispatch } from "@/hooks/hooks";
 import toast from "react-hot-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { options } from "@/data/blogsCategory";
+import { uploadToCloudinary } from "@/utils/uploadToCloudinary";
+import { Image, Plus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import AddBlogsLoading from "@/components/ui/Loadings/AddBlogsLoading";
 
 export default function AddBlogs() {
-
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const naviagte = useNavigate()
     const currentDate = new Date().toDateString();
     const fromSchema = z.object({
         title: z.string().min(3, "Title must be at least 3 characters long"),
         category: z.string().min(3, "Category must be at least 3 characters long"),
         date: z.string().min(3, "Date must be at least 3 characters long"),
         author: z.string().min(3, "Author must be at least 3 characters long"),
-        image: z.string().min(3, "Image must be at least 3 characters long"),
+        image: z.instanceof(File).refine(
+            (file) => file.size <= 3 * 1024 * 1024,
+            "Image size must be less than 3MB"
+        ),
         relatedVideoLink: z.string().min(3, "Related Video Link must be at least 3 characters long"),
         content: z.string().min(3, "Content must be at least 3 characters long"),
     });
@@ -31,43 +40,70 @@ export default function AddBlogs() {
     const form = useForm<z.infer<typeof fromSchema>>({
         mode: "onChange",
         resolver: zodResolver(fromSchema),
-        defaultValues: {
-            title: "This is a blog",
-            category: "",
-            date: currentDate,
-            author: "অ্যাড. সামিউল ইসলাম প্রিন্স",
-            image: "",
-            relatedVideoLink: "",
-            content: "This is a blog content"
-        }
+        // defaultValues: {
+        //     title: "This is a blog",
+        //     category: "",
+        //     date: currentDate,
+        //     author: "অ্যাড. সামিউল ইসলাম প্রিন্স",
+        //     image: undefined,
+        //     relatedVideoLink: "",
+        //     content: "This is a blog content"
+        // }
     });
 
     const dispatch = useAppDispatch();
 
-    const onSubmit = (data: z.infer<typeof fromSchema>) => {
-        const formData: Blog = {
-            title: data.title,
-            category: data.category,
-            date: data.date,
-            author: data.author,
-            image: data.image,
-            relatedVideoLink: data.relatedVideoLink,
-            content: data.content
-        };
+    const onSubmit = async (data: z.infer<typeof fromSchema>) => {
+        try {
+            setIsSubmitting(true)
+            let imageUrl = "";
 
-        dispatch(createBlog(formData));
-        toast.success("Blog added successfully");
+            // ১. যদি ইমেজ থাকে তবেই আপলোড হবে
+            if (data.image) {
+                // আপনার uploadToCloudinary ফাংশনটি কল করা হচ্ছে
+                imageUrl = await uploadToCloudinary(data.image);
+            }
 
-        form.reset({
-            title: "",
-            category: "",
-            date: "",
-            author: "",
-            image: "",
-            relatedVideoLink: "",
-            content: "",
-        });
+            // ২. ডাটা অবজেক্ট তৈরি করা হচ্ছে ডাটাবেসের জন্য
+            const formData: Blog = {
+                title: data.title,
+                category: data.category,
+                date: data.date,
+                author: data.author,
+                image: imageUrl, // এখানে এখন ক্লাউডিনারি থেকে আসা স্ট্রিং URL টি বসবে
+                relatedVideoLink: data.relatedVideoLink,
+                content: data.content
+            };
+
+            // ৩. রিডাক্স অ্যাকশন ডিসপ্যাচ
+            await dispatch(createBlog(formData)).unwrap();
+
+            toast.success("Blog added successfully");
+
+            // ৪. ফর্ম রিসেট
+            form.reset({
+                title: "",
+                category: "",
+                date: currentDate,
+                author: "অ্যাড. সামিউল ইসলাম প্রিন্স",
+                image: undefined,
+                relatedVideoLink: "",
+                content: ""
+            });
+
+            naviagte("/dashboard/secure/admin-panel/manage-blogs")
+
+
+        } catch (error) {
+            toast.error("Something went wrong!");
+            console.error("Submission Error:", error);
+        }
+        finally {
+            setIsSubmitting(false)
+        }
     };
+
+    if (isSubmitting) return <AddBlogsLoading />
 
     return (
         // ১. মেইন কন্টেইনারে প্যাডিং (px-4) দিলাম যাতে মোবাইলে লেগে না থাকে
@@ -136,7 +172,7 @@ export default function AddBlogs() {
 
 
                         <div className="flex flex-col md:flex-row gap-6">
-                            <FormField control={form.control} name="image" render={({ field }) => (
+                            {/* <FormField control={form.control} name="image" render={({ field }) => (
                                 <FormItem className="w-full">
                                     <FormLabel>Image</FormLabel>
                                     <FormControl>
@@ -144,7 +180,7 @@ export default function AddBlogs() {
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
-                            )} />
+                            )} /> */}
 
                             <FormField control={form.control} name="relatedVideoLink" render={({ field }) => (
                                 <FormItem className="w-full">
@@ -156,6 +192,43 @@ export default function AddBlogs() {
                                 </FormItem>
                             )} />
                         </div>
+
+                        <FormField
+                            control={form.control}
+                            name="image"
+                            render={({ field: { onChange, value, ...rest } }) => (
+                                <FormItem>
+                                    {/* FormLabel সরিয়ে দেওয়া হয়েছে অথবা 'sr-only' ক্লাস দিয়ে হাইড করা হয়েছে */}
+                                    <FormLabel htmlFor="image" className="">
+                                        <div className="cursor-pointer w-full">
+                                            {/* <img src={images.avatar} alt="avatar" className="w-40 h-40 rounded-xl aspect-square" /> */}
+                                            <div className="bg-black/5 p-5 rounded w-full h-40 flex items-center justify-center">
+                                                <Image className="text-black/20" />
+                                            </div>
+                                            <p className="text-center text-sm text-[#604B33]">Upload Thumbnail</p>
+                                            <p className="text-center text-xs text-black/50">Allowed *.jpeg, *.jpg, *.png, *.gif
+                                                <br /> Max size of 3.1 MB</p>
+                                        </div>
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            id="image"
+                                            type="file"
+                                            accept="image/*"
+                                            className="rounded-none py-2 hidden" // ফাইল ইনপুটে py-6 এর বদলে py-2 বা h-auto ভালো দেখায়
+                                            onChange={(e) => {
+                                                const file = e.target.files?.[0];
+                                                if (file) {
+                                                    onChange(file); // এটি সরাসরি ফাইল অবজেক্ট সেট করবে
+                                                }
+                                            }}
+                                            {...rest} // value বাদ দিয়ে বাকি সব (name, onBlur, ref) পাস করা হচ্ছে
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
 
                         <FormField control={form.control} name="content" render={({ field }) => (
                             <FormItem>
@@ -170,7 +243,7 @@ export default function AddBlogs() {
                             </FormItem>
                         )} />
 
-                        <Button type="submit">Add Blog</Button>
+                        <Button type="submit" className="flex gap-2 items-center">Add Blog <Plus /></Button>
                     </form>
                 </Form>
             </div>

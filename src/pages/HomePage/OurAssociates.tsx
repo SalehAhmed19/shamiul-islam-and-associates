@@ -23,7 +23,7 @@ export default function OurAssociates({ sliceNumber }: { sliceNumber?: number })
                 {associates.slice(0, 1).map((associate, index) => (
                     <AssociatesCard
                         key={index}
-                        image={associate.image}
+                        image={associate.image as string}
                         name={associate.name}
                         court={associate.court}
                         position={associate.position}
@@ -35,7 +35,7 @@ export default function OurAssociates({ sliceNumber }: { sliceNumber?: number })
                 {associates.slice(1, sliceNumber ? sliceNumber : associates.length).map((associate, index) => (
                     <AssociatesCard
                         key={index}
-                        image={associate.image}
+                        image={associate.image as string}
                         name={associate.name}
                         court={associate.court}
                         position={associate.position}

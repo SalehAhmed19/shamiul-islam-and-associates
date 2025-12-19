@@ -14,10 +14,12 @@ import { useAppDispatch } from "@/hooks/hooks"
 import type { AssociatesInterface } from "@/Interfaces/AccociatesInterface"
 import { Plus } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { uploadToCloudinary } from "@/utils/uploadToCloudinary"
+import { images } from "@/assets/assets"
 
 export default function AddAssociates() {
     const { _id } = useParams()
-    const { associate, loading } = useGetAssociate(_id ? _id : "")
+    const { loading } = useGetAssociate(_id ? _id : "")
 
     interface CourtInterface {
         value: string;
@@ -44,7 +46,10 @@ export default function AddAssociates() {
     const fromSchema = z.object({
         name: z.string().min(3, "Name must be at least 3 characters long"),
         position: z.string().min(3, "Designation must be at least 3 characters long"),
-        image: z.string().min(3, "Image must be at least 3 characters long"),
+        image: z.instanceof(File).refine(
+            (file) => file.size <= 3 * 1024 * 1024,
+            "Image size must be less than 3MB"
+        ).optional().or(z.literal("")),
         court: z.string().min(3, "Court must be at least 3 characters long"),
     });
 
@@ -54,38 +59,37 @@ export default function AddAssociates() {
     const form = useForm<z.infer<typeof fromSchema>>({
         mode: "onChange",
         resolver: zodResolver(fromSchema),
-        defaultValues: {
-            name: "",
-            position: "",
-            image: "",
-            court: "",
-        }
     });
 
-    const onSubmit = (data: z.infer<typeof fromSchema>) => {
-        const formData: AssociatesInterface = {
-            name: data.name,
-            position: data.position,
-            image: data.image,
-            court: data.court
-        };
+    const onSubmit = async (data: z.infer<typeof fromSchema>) => {
+        try {
+            let imageUrl = data.image; // যদি আগের ইমেজ থাকে
 
-        dispatch(createAssociate(formData));
-        toast.success("Associate added successfully");
-        navigate("/dashboard/secure/admin-panel/manage-associates")
+            // ১. যদি নতুন কোনো ফাইল (File Object) সিলেক্ট করা হয়, তবে আপলোড করো
+            if (data.image && typeof data.image !== "string") {
+                imageUrl = await uploadToCloudinary(data.image); // [0] removed because data.image is already a File object
+            }
 
+            // ২. আপনার ডাটা অবজেক্ট তৈরি
+            const formData: AssociatesInterface = {
+                name: data.name,
+                position: data.position,
+                image: imageUrl as string, // এখানে এখন স্ট্রিং ইউআরএল যাচ্ছে
+                court: data.court
+            };
 
-        // ✅ RESET LOGIC HERE
-        // We pass empty strings to ensure it clears completely, 
-        // otherwise it would reset to the default "This is a blog" text.
-        form.reset({
-            name: associate?.name || "",
-            position: associate?.position || "",
-            image: associate?.image || "",
-            court: associate?.court || "",
-        });
+            // ৩. ডিসপ্যাচ এবং নেভিগেট
+            await dispatch(createAssociate(formData)).unwrap();
 
-        console.log(data)
+            toast.success("Associate added successfully");
+            navigate("/dashboard/secure/admin-panel/manage-associates");
+
+            // ৪. ফর্ম রিসেট
+            form.reset();
+        } catch (error) {
+            toast.error("Something went wrong!");
+            console.error(error);
+        }
     };
 
     if (loading) return <BlogsLoading />
@@ -97,15 +101,17 @@ export default function AddAssociates() {
             <div className="space-y-6">
                 <h3 className="text-2xl font-bold">Associate info:</h3>
                 <div className="flex gap-5">
-                    {/* <div className="p-5 border border-black/10 rounded space-y-6">
+                    <div className="p-5 border border-black/10 rounded space-y-6">
                         <p className="font-bold text-black/50">Profile Photo</p>
-                        <label className="cursor-pointer">
-                            <img src={associate?.image} alt="associate" className="w-40 h-40 rounded-xl aspect-square" />
+                        <label className="cursor-pointer" htmlFor="image">
+                            <img src={images.avatar} alt="avatar" className="w-40 h-40 rounded-xl aspect-square" />
                             <p className="text-center text-sm text-[#604B33]">Change Photo</p>
                             <p className="text-center text-xs text-black/50">Allowed *.jpeg, *.jpg, *.png, *.gif
                                 <br /> Max size of 3.1 MB</p>
                         </label>
-                    </div> */}
+
+
+                    </div>
                     <div className="p-5 border border-black/10 rounded space-y-6 w-full">
                         <Form {...form}>
                             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -165,15 +171,40 @@ export default function AddAssociates() {
                                             <FormMessage />
                                         </FormItem>
                                     )} />
-                                    <FormField control={form.control} name="image" render={({ field }) => (
-                                        <FormItem className="w-full">
-                                            <FormLabel>Image</FormLabel>
-                                            <FormControl>
-                                                <Input className="rounded-none py-6" placeholder="Enter image" {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )} />
+
+                                    <FormField
+                                        control={form.control}
+                                        name="image"
+                                        render={({ field: { onChange, value, ...rest } }) => (
+                                            <FormItem className="w-full">
+                                                {/* FormLabel সরিয়ে দেওয়া হয়েছে অথবা 'sr-only' ক্লাস দিয়ে হাইড করা হয়েছে */}
+                                                {/* <FormLabel htmlFor="image" className="">
+                                                    <div className="cursor-pointer">
+                                                        <img src={images.avatar} alt="avatar" className="w-40 h-40 rounded-xl aspect-square" />
+                                                        <p className="text-center text-sm text-[#604B33]">Change Photo</p>
+                                                        <p className="text-center text-xs text-black/50">Allowed *.jpeg, *.jpg, *.png, *.gif
+                                                            <br /> Max size of 3.1 MB</p>
+                                                    </div>
+                                                </FormLabel> */}
+                                                <FormControl>
+                                                    <Input
+                                                        id="image"
+                                                        type="file"
+                                                        accept="image/*"
+                                                        className="rounded-none py-2 hidden" // ফাইল ইনপুটে py-6 এর বদলে py-2 বা h-auto ভালো দেখায়
+                                                        onChange={(e) => {
+                                                            const file = e.target.files?.[0];
+                                                            if (file) {
+                                                                onChange(file); // এটি সরাসরি ফাইল অবজেক্ট সেট করবে
+                                                            }
+                                                        }}
+                                                        {...rest} // value বাদ দিয়ে বাকি সব (name, onBlur, ref) পাস করা হচ্ছে
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
                                 </div>
 
                                 <Button type="submit" className="flex gap-2 items-center">Add Associates <Plus /></Button>

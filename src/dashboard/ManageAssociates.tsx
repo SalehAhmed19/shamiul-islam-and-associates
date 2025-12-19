@@ -42,7 +42,7 @@ export default function ManageAssociates() {
                             associates?.map((associate, idx) => (
                                 <TableRow key={idx} className="cursor-pointer">
                                     <TableCell className="font-medium flex items-center gap-2 mr-2">{idx + 1}
-                                        <img src={associate.image} alt="" className="rounded" />
+                                        <img src={associate.image as string} alt="" className="rounded" />
                                     </TableCell>
                                     <TableCell className="bangla">{associate.name}</TableCell>
                                     <TableCell className="bangla">{associate.position}</TableCell>
@@ -57,9 +57,9 @@ export default function ManageAssociates() {
                                             </DialogTrigger>
                                             <DialogContent>
                                                 <DialogHeader>
-                                                    <DialogTitle>Are you absolutely sure?</DialogTitle>
+                                                    <DialogTitle>Are you absolutely sure? Delete <span className="font-bold text-red-600">{associate.name}</span>?</DialogTitle>
                                                     <DialogDescription>
-                                                        This action cannot be undone. This will permanently delete your blog and remove data from your website.
+                                                        This action cannot be undone. This will permanently delete the associate and remove data from your website.
                                                     </DialogDescription>
                                                 </DialogHeader>
                                                 <DialogFooter>

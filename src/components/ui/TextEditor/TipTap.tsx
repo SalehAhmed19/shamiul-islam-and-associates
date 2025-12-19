@@ -76,7 +76,7 @@ export default function TipTap({ description, onChange }: TipTapProps) {
         editorProps: {
             attributes: {
                 class:
-                    "border min-h-[300px] border-input bg-white p-6 outline-none prose max-w-none",
+                    "border min-h-[300px] max-h-[300px] overflow-y-scroll border-input bg-white p-6 outline-none prose max-w-none",
             },
         },
         onUpdate({ editor }) {
@@ -99,7 +99,7 @@ export default function TipTap({ description, onChange }: TipTapProps) {
     return (
         <div className="flex flex-col gap-2">
             <ToolBar editor={editor} />
-            <EditorContent editor={editor} className="overflow-y-auto" />
+            <EditorContent editor={editor} className="overflow-y-scroll" />
         </div>
     );
 }
