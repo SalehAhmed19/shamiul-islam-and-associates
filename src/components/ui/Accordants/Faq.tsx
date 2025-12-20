@@ -67,10 +67,17 @@ export default function Faq() {
                                         : "grid-rows-[0fr] opacity-0"
                                         }`}
                                 >
-                                    <div className="overflow-hidden">
+                                    <div className="overflow-hidden space-y-3">
                                         <p className="text-gray-200 text-base leading-relaxed">
                                             {item.answer}
                                         </p>
+                                        <ul>
+                                            {item.bullets?.map((bullet, index) => (
+                                                <li key={index} className="text-gray-200 text-base leading-relaxed flex items-center ml-3">
+                                                    <span className="h-1 w-1 bg-white rounded-full inline-block mr-2"></span> {bullet}
+                                                </li>
+                                            ))}
+                                        </ul>
                                     </div>
                                 </div>
                             </div>

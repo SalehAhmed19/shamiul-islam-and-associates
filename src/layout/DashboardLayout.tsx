@@ -31,12 +31,12 @@ export default function DashboardLayout() {
             {/* ২. মেইন কন্টেন্ট এরিয়া (ট্রিগার + ডাইনামিক পেজ) */}
             <main className="w-full">
                 {/* ট্রিগার বাটনটি উপরে রাখার জন্য */}
-                <div className="p-2 border-b bg-background sticky top-0 z-10">
+                <div className="h-16 p-2 border-b bg-background sticky top-0 z-10 flex items-center">
                     <SidebarTrigger />
                 </div>
 
                 {/* ডাইনামিক সাব-রাউটগুলো এখানে রেন্ডার হবে */}
-                <div className="p-4">
+                <div className="p-4 bg-gray-50">
                     <Outlet />
                 </div>
             </main>

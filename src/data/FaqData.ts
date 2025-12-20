@@ -2,19 +2,25 @@ import type { FaqDataInterface } from "../Interfaces/FaqInterface";
 
 export const FaqData: FaqDataInterface[] = [
     {
-        question: "How we can help you?",
-        answer: "Adipiscing nam neque hendrerit nec pellentesque diam a. Varius quisque odio mauris lectus consequat sed. Pretium purus feugiat volutpat pellentesque.Potenti porta mauris nec vulputate."
+        question: "What types of cases does your firm handle?",
+        answer: "We are a full-service law firm. Our expertise spans across Civil Litigation, Criminal Defense, Corporate Law, Family Law (including Divorce and Inheritance), Land Disputes, and Writ Petitions in the Supreme Court of Bangladesh.",
     },
     {
-        question: "How to get started?",
-        answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."
+        question: "How do I book a consultation with a lawyer?",
+        answer: "You can book an appointment by calling our office directly at +880 1711 602 369, emailing us at info@shamiulislamandassociates.com, or filling out the contact form on our website. We offer both in-person meetings at our chambers and virtual consultations via Zoom/WhatsApp."
     },
     {
-        question: "What is the process?",
-        answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        question: "What should I bring to my first meeting?",
+        answer: "To provide the best advice, please bring all relevant documents, including:",
+        bullets: [
+            "National ID (NID) or Passport.",
+            "Copies of any existing court orders or summons.",
+            "Relevant contracts, land deeds (Khatiyan/Dalil), or police reports (FIR/GD).",
+            "Any other documents that may be relevant to your case."
+        ]
     },
     {
-        question: "Nulla morbi viverra odio egestas interdum integer metus puru?",
-        answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    }
+        question: "How are legal fees determined in Bangladesh?",
+        answer: "Fees vary based on the complexity of the case and the level of the court (e.g., Assistant Judge Court vs. High Court Division)."
+    },
 ];

@@ -1,3 +1,5 @@
+
+
 import { useNavigate, useParams } from "react-router-dom"
 import { useGetAssociate } from "@/hooks/useGetAssociate"
 import BlogsLoading from "@/components/ui/Loadings/BlogsLoading"
@@ -12,45 +14,34 @@ import { createAssociate } from "@/RTK/features/associates/associatesSlice"
 import toast from "react-hot-toast"
 import { useAppDispatch } from "@/hooks/hooks"
 import type { AssociatesInterface } from "@/Interfaces/AccociatesInterface"
-import { Plus } from "lucide-react"
+import { Plus, UploadCloud } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { uploadToCloudinary } from "@/utils/uploadToCloudinary"
 import { images } from "@/assets/assets"
+import { useState } from "react"
 
 export default function AddAssociates() {
     const { _id } = useParams()
     const { loading } = useGetAssociate(_id ? _id : "")
+    const [preview, setPreview] = useState<string | null>(null)
 
-    interface CourtInterface {
-        value: string;
-        title: string;
-    }
-
-    interface DesignationInterface {
-        value: string;
-        title: string;
-    }
-
-    const designationOptions: DesignationInterface[] = [
+    const designationOptions = [
         { value: "Head of Legal", title: "Head of Legal" },
         { value: "Senior Consultant", title: "Senior Consultant" },
-        { value: "Associates    ", title: "Associates" },
+        { value: "Associates", title: "Associates" },
     ];
 
-    const courtOptions: CourtInterface[] = [
+    const courtOptions = [
         { value: "Bangladesh Supreme Court", title: "Bangladesh Supreme Court" },
         { value: "Dhaka Judge Court", title: "Dhaka Judge Court" },
     ];
 
-
     const fromSchema = z.object({
         name: z.string().min(3, "Name must be at least 3 characters long"),
-        position: z.string().min(3, "Designation must be at least 3 characters long"),
-        image: z.instanceof(File).refine(
-            (file) => file.size <= 3 * 1024 * 1024,
-            "Image size must be less than 3MB"
-        ).optional().or(z.literal("")),
-        court: z.string().min(3, "Court must be at least 3 characters long"),
+        position: z.string().min(1, "Please select a designation"),
+        image: z.any().refine((file) => file instanceof File, "Profile photo is required")
+            .refine((file) => file?.size <= 3 * 1024 * 1024, "Image size must be less than 3MB"),
+        court: z.string().min(1, "Please select a court"),
     });
 
     const dispatch = useAppDispatch()
@@ -63,29 +54,23 @@ export default function AddAssociates() {
 
     const onSubmit = async (data: z.infer<typeof fromSchema>) => {
         try {
-            let imageUrl = data.image; // যদি আগের ইমেজ থাকে
-
-            // ১. যদি নতুন কোনো ফাইল (File Object) সিলেক্ট করা হয়, তবে আপলোড করো
-            if (data.image && typeof data.image !== "string") {
-                imageUrl = await uploadToCloudinary(data.image); // [0] removed because data.image is already a File object
+            let imageUrl = "";
+            if (data.image) {
+                imageUrl = await uploadToCloudinary(data.image);
             }
 
-            // ২. আপনার ডাটা অবজেক্ট তৈরি
             const formData: AssociatesInterface = {
                 name: data.name,
                 position: data.position,
-                image: imageUrl as string, // এখানে এখন স্ট্রিং ইউআরএল যাচ্ছে
+                image: imageUrl,
                 court: data.court
             };
 
-            // ৩. ডিসপ্যাচ এবং নেভিগেট
             await dispatch(createAssociate(formData)).unwrap();
-
             toast.success("Associate added successfully");
             navigate("/dashboard/secure/admin-panel/manage-associates");
-
-            // ৪. ফর্ম রিসেট
             form.reset();
+            setPreview(null);
         } catch (error) {
             toast.error("Something went wrong!");
             console.error(error);
@@ -95,124 +80,140 @@ export default function AddAssociates() {
     if (loading) return <BlogsLoading />
 
     return (
-        <section className="space-y-6">
+        <section className="py-6 px-4 md:px-0 space-y-6 max-w-6xl mx-auto">
             <Heading>Add Associate</Heading>
 
             <div className="space-y-6">
-                <h3 className="text-2xl font-bold">Associate info:</h3>
-                <div className="flex gap-5">
-                    <div className="p-5 border border-black/10 rounded space-y-6">
-                        <p className="font-bold text-black/50">Profile Photo</p>
-                        <label className="cursor-pointer" htmlFor="image">
-                            <img src={images.avatar} alt="avatar" className="w-40 h-40 rounded-xl aspect-square" />
-                            <p className="text-center text-sm text-[#604B33]">Change Photo</p>
-                            <p className="text-center text-xs text-black/50">Allowed *.jpeg, *.jpg, *.png, *.gif
-                                <br /> Max size of 3.1 MB</p>
-                        </label>
+                <h3 className="text-xl md:text-2xl font-bold text-[#604B33]">Associate Information</h3>
 
+                {/* Main Responsive Container */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
+                    {/* Left Side: Photo Upload (Spans 4 columns on large screens) */}
+                    <div className="lg:col-span-4 p-6 border border-black/10 rounded-lg bg-white flex flex-col items-center justify-center space-y-4">
+                        <p className="font-bold text-gray-500 w-full text-left">Profile Photo</p>
+
+                        <div className="relative group">
+                            <label className="cursor-pointer block" htmlFor="image">
+                                <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-gray-100 shadow-inner bg-gray-50 flex items-center justify-center">
+                                    <img
+                                        src={preview || images.avatar}
+                                        alt="avatar"
+                                        className="w-full h-full object-cover transition-opacity group-hover:opacity-80"
+                                    />
+                                    {!preview && <UploadCloud className="absolute text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity" size={40} />}
+                                </div>
+                                <div className="mt-4 text-center">
+                                    <p className="text-sm font-semibold text-[#604B33] hover:underline">Change Photo</p>
+                                    <p className="text-[10px] md:text-xs text-gray-400 mt-2">
+                                        Allowed *.jpeg, *.jpg, *.png, *.gif <br />
+                                        Max size: 3.1 MB
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
                     </div>
-                    <div className="p-5 border border-black/10 rounded space-y-6 w-full">
+
+                    {/* Right Side: Form Inputs (Spans 8 columns on large screens) */}
+                    <div className="lg:col-span-8 p-6 border border-black/10 rounded-lg bg-white">
                         <Form {...form}>
                             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                                <div className="flex flex-col md:flex-row gap-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <FormField control={form.control} name="name" render={({ field }) => (
-                                        <FormItem className="w-full">
-                                            <FormLabel>Name</FormLabel>
+                                        <FormItem>
+                                            <FormLabel className="font-semibold">Full Name</FormLabel>
                                             <FormControl>
-                                                <Input className="rounded-none py-6" placeholder="Enter name" {...field} />
+                                                <Input className="rounded-md py-6 border-gray-300 focus:ring-[#604B33]" placeholder="e.g. John Doe" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
                                     )} />
+
                                     <FormField control={form.control} name="position" render={({ field }) => (
-                                        <FormItem className="w-full">
-                                            <FormLabel>Designation</FormLabel>
-                                            {/* <Input className="rounded-none py-6" placeholder="Enter category" {...field} /> */}
-                                            <FormControl>
-                                                <Select onValueChange={field.onChange}
-                                                    defaultValue={field.value}>
-                                                    <SelectTrigger className="w-full py-6 rounded-none">
-                                                        <SelectValue placeholder="Select Designation" className="placeholder:text-black" />
+                                        <FormItem>
+                                            <FormLabel className="font-semibold">Designation</FormLabel>
+                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                <FormControl>
+                                                    <SelectTrigger className="py-6 rounded-md border-gray-300">
+                                                        <SelectValue placeholder="Select Designation" />
                                                     </SelectTrigger>
-                                                    <SelectContent>
-                                                        {designationOptions.map((option) => (
-                                                            <SelectItem key={option.value} value={option.value}>
-                                                                {option.title}
-                                                            </SelectItem>
-                                                        ))}
-                                                    </SelectContent>
-                                                </Select>
-                                            </FormControl>
+                                                </FormControl>
+                                                <SelectContent>
+                                                    {designationOptions.map((option) => (
+                                                        <SelectItem key={option.value} value={option.value}>
+                                                            {option.title}
+                                                        </SelectItem>
+                                                    ))}
+                                                </SelectContent>
+                                            </Select>
                                             <FormMessage />
                                         </FormItem>
                                     )} />
                                 </div>
-                                <div className="flex flex-col md:flex-row gap-6">
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <FormField control={form.control} name="court" render={({ field }) => (
-                                        <FormItem className="w-full">
-                                            <FormLabel>Court</FormLabel>
-                                            {/* <Input className="rounded-none py-6" placeholder="Enter category" {...field} /> */}
-                                            <FormControl>
-                                                <Select onValueChange={field.onChange}
-                                                    defaultValue={field.value}>
-                                                    <SelectTrigger className="w-full py-6 rounded-none">
-                                                        <SelectValue placeholder="Select Court" className="placeholder:text-black" />
+                                        <FormItem>
+                                            <FormLabel className="font-semibold">Associated Court</FormLabel>
+                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                <FormControl>
+                                                    <SelectTrigger className="py-6 rounded-md border-gray-300">
+                                                        <SelectValue placeholder="Select Court" />
                                                     </SelectTrigger>
-                                                    <SelectContent>
-                                                        {courtOptions.map((option) => (
-                                                            <SelectItem key={option.value} value={option.value}>
-                                                                {option.title}
-                                                            </SelectItem>
-                                                        ))}
-                                                    </SelectContent>
-                                                </Select>
-                                            </FormControl>
+                                                </FormControl>
+                                                <SelectContent>
+                                                    {courtOptions.map((option) => (
+                                                        <SelectItem key={option.value} value={option.value}>
+                                                            {option.title}
+                                                        </SelectItem>
+                                                    ))}
+                                                </SelectContent>
+                                            </Select>
                                             <FormMessage />
                                         </FormItem>
                                     )} />
 
+                                    {/* Hidden File Input Logic */}
                                     <FormField
                                         control={form.control}
                                         name="image"
                                         render={({ field: { onChange, value, ...rest } }) => (
-                                            <FormItem className="w-full">
-                                                {/* FormLabel সরিয়ে দেওয়া হয়েছে অথবা 'sr-only' ক্লাস দিয়ে হাইড করা হয়েছে */}
-                                                {/* <FormLabel htmlFor="image" className="">
-                                                    <div className="cursor-pointer">
-                                                        <img src={images.avatar} alt="avatar" className="w-40 h-40 rounded-xl aspect-square" />
-                                                        <p className="text-center text-sm text-[#604B33]">Change Photo</p>
-                                                        <p className="text-center text-xs text-black/50">Allowed *.jpeg, *.jpg, *.png, *.gif
-                                                            <br /> Max size of 3.1 MB</p>
-                                                    </div>
-                                                </FormLabel> */}
+                                            <FormItem className="hidden">
                                                 <FormControl>
                                                     <Input
                                                         id="image"
                                                         type="file"
                                                         accept="image/*"
-                                                        className="rounded-none py-2 hidden" // ফাইল ইনপুটে py-6 এর বদলে py-2 বা h-auto ভালো দেখায়
                                                         onChange={(e) => {
                                                             const file = e.target.files?.[0];
                                                             if (file) {
-                                                                onChange(file); // এটি সরাসরি ফাইল অবজেক্ট সেট করবে
+                                                                onChange(file);
+                                                                const reader = new FileReader();
+                                                                reader.onloadend = () => setPreview(reader.result as string);
+                                                                reader.readAsDataURL(file);
                                                             }
                                                         }}
-                                                        {...rest} // value বাদ দিয়ে বাকি সব (name, onBlur, ref) পাস করা হচ্ছে
+                                                        {...rest}
                                                     />
                                                 </FormControl>
-                                                <FormMessage />
                                             </FormItem>
                                         )}
                                     />
                                 </div>
 
-                                <Button type="submit" className="flex gap-2 items-center">Add Associates <Plus /></Button>
+                                <div className="pt-4">
+                                    <Button
+                                        type="submit"
+                                        className="w-full md:w-auto flex gap-2 items-center justify-center transition-transform active:scale-95"
+                                    >
+                                        Add Associate <Plus size={18} />
+                                    </Button>
+                                </div>
                             </form>
                         </Form>
                     </div>
                 </div>
             </div>
-        </section >
+        </section>
     )
 }
