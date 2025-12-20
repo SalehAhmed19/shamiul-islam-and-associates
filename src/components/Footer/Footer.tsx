@@ -28,7 +28,7 @@ export default function Footer() {
                     </div>
                         {/* Changed fixed w-1/2 to responsive width so it doesn't squash on mobile */}
                         <p className="w-full md:w-3/4 lg:w-1/2 leading-relaxed text-gray-300">
-                            Adipiscing nam neque hendrerit nec pellentesque diam a. Varius quisque odio mauris lectus consequat sed.
+                            Dedicated to providing world-class legal solutions with a commitment to integrity and personalized attention. We empower our clients with the expert guidance needed to navigate complex legal landscapes with confidence.
                         </p>
 
                         <div className="flex items-center gap-2">

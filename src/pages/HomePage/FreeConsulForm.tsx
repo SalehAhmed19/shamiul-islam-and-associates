@@ -30,7 +30,7 @@ export default function FreeConsulForm() {
 
                         {/* Responsive Paragraph Width: w-full on mobile, w-1/2 on large screens */}
                         <p className="w-full md:w-3/4 lg:w-1/2 mx-auto leading-relaxed text-sm md:text-base">
-                            Adipiscing nam neque hendrerit nec pellentesque diam a. Varius quisque odio mauris lectus consequat sed. Pretium purus feugiat volutpat pellentesque. Potenti porta mauris nec vulputate.
+                            Take the first step toward resolving your legal concerns with a complimentary, no-obligation session. Our expert team is ready to listen to your unique situation and provide professional guidance tailored to your needs. Contact us today to secure your free consultation and gain the clarity you deserve.
                         </p>
                     </div>
 

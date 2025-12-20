@@ -32,7 +32,7 @@ export default function LegalExcellence() {
                     </Heading>
 
                     <p className="text-sm md:text-base leading-relaxed">
-                        Adipiscing nam neque hendrerit nec pellentesque diam a. Varius quisque odio mauris lectus consequat sed. Pretium purus feugiat volutpat pellentesque. Potenti porta mauris nec vulputate.
+                        At our firm, we combine world-class legal expertise with a deep commitment to understanding your individual story. We believe that achieving legal excellence is only half the battle; the other half is providing the compassionate, one-on-one attention you deserve. Trust our dedicated team to protect your interests with sophisticated strategies while treating your case with the personal care it requires.
                     </p>
 
                     <div className="flex justify-center">

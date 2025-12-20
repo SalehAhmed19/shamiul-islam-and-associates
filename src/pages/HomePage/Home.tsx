@@ -2,6 +2,7 @@ import Faq from "../../components/ui/Accordants/Faq";
 import Ask from "./Ask";
 import Banner from "./Banner";
 import FreeConsulForm from "./FreeConsulForm";
+import HeadOfLegal from "./HeadOfLegal";
 import LegalExcellence from "./LegalExcellence";
 import OurAssociates from "./OurAssociates";
 import OurBlogs from "./OurBlogs";
@@ -13,6 +14,7 @@ export default function Home() {
         <div>
             <Banner />
             <Services />
+            <HeadOfLegal />
             <Ask />
             <OurAssociates sliceNumber={4} />
             <LegalExcellence />
