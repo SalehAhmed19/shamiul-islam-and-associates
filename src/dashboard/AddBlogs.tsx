@@ -75,7 +75,7 @@ export default function AddBlogs() {
         }
     };
 
-    if (isSubmitting) return <AddBlogsLoading />;
+    if (isSubmitting) return <AddBlogsLoading title="Blog Creating..." />;
 
     return (
         // Added responsive padding: p-4 on mobile, p-8 on desktop

@@ -87,7 +87,7 @@ export default function EditForm() {
         }
     };
 
-    if (isSubmitting) return <AddBlogsLoading />;
+    if (isSubmitting) return <AddBlogsLoading title="Blog Updating..." />;
 
     return (
         <section className="p-4 md:p-8 space-y-8 bg-white border border-black/10 rounded-lg max-w-5xl mx-auto shadow-sm">
