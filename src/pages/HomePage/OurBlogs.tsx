@@ -14,7 +14,7 @@ export default function OurBlogs() {
                 <Heading className="text-center">Our Blogs</Heading>
                 {/* constrained width for readability */}
                 <p className="text-center max-w-2xl mx-auto text-gray-600">
-                    Adipiscing nam neque hendrerit nec pellentesque diamarius quisque odio
+                    Stay informed with expert legal insights and the latest updates on your rights, tailored to help you navigate your journey with confidence.
                 </p>
             </Fade>
         </div>
