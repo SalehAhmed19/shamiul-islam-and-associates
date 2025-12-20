@@ -2,6 +2,7 @@
 import { Fade, Zoom } from "react-awesome-reveal";
 import { images } from "../../assets/assets";
 import Button from "../../components/ui/Buttons/Button";
+import { Link } from 'react-scroll';
 
 export default function Ask() {
     return (
@@ -20,7 +21,7 @@ export default function Ask() {
                 Have Legal Questions? Ask Our Experts!
             </h2></Zoom>
 
-            <Fade cascade={true} delay={200} direction="up"><Button className="mx-auto">Ask an expert</Button></Fade>
+            <Fade cascade={true} delay={200} direction="up"><Link to="contact"><Button className="mx-auto">Ask an expert</Button></Link></Fade>
         </section>
     )
 }

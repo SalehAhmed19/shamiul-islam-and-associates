@@ -22,6 +22,11 @@
 *{
   font-family: "Mulish", sans-serif;
 }
+
+html{
+scroll-behavior: smooth;
+}
+
 ::-webkit-scrollbar{
   display: none;
 }

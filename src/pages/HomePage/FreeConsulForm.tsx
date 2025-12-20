@@ -1,10 +1,11 @@
 import { icons, images } from "../../assets/assets";
 import { Zoom } from "react-awesome-reveal";
 import ContactForm from "@/components/ui/Forms/ContactForm";
+import { Element } from "react-scroll";
 
 export default function FreeConsulForm() {
     return (
-        <section
+        <Element name="contact"><section
             style={{
                 backgroundImage: `url(${images.freeConsultation})`,
                 backgroundSize: "cover",
@@ -39,6 +40,6 @@ export default function FreeConsulForm() {
                     <ContactForm />
                 </div>
             </div></Zoom>
-        </section >
+        </section ></Element>
     )
 }
