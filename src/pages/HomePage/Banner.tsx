@@ -1,6 +1,7 @@
 import { Fade, Zoom } from "react-awesome-reveal";
 import { images } from "../../assets/assets";
 import Button from "../../components/ui/Buttons/Button";
+import { Link } from "react-scroll";
 
 export default function Banner() {
     return (
@@ -34,7 +35,7 @@ export default function Banner() {
                 {/* Button Container with margin top */}
                 <div className="mt-8 md:mt-12">
                     <Fade cascade={true} direction="up" delay={200}>
-                        <Button className="mx-auto block">Make enquiry</Button>
+                        <Link to="contact"><Button className="mx-auto block">Make enquiry</Button></Link>
                     </Fade>
                 </div>
             </div>

@@ -1,7 +1,6 @@
 import { images } from "../../assets/assets";
 import Faq from "../../components/ui/Accordants/Faq";
 import Header from "../AboutPage/Header";
-import Ask from "../HomePage/Ask";
 import OurBlogs from "../HomePage/OurBlogs";
 import PracticeArea from "./PracticeArea";
 import ServiceContent from "./ServiceContent";
@@ -17,9 +16,6 @@ export default function Service() {
             <ServiceContent />
 
             <Steps />
-
-            {/* These sections are typically full-width and handle their own layout */}
-            <Ask />
 
             <PracticeArea />
 
