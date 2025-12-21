@@ -2,7 +2,7 @@ import { images } from "../../assets/assets";
 import Faq from "../../components/ui/Accordants/Faq";
 import Header from "../../components/ui/Header/Header";
 import OurAssociates from "../HomePage/OurAssociates";
-import OurBlogs from "../HomePage/OurBlogs";
+// import OurBlogs from "../HomePage/OurBlogs";
 import AboutContent from "./AboutContent";
 import Stats from "./Stats";
 
@@ -14,7 +14,7 @@ export default function About() {
             <OurAssociates />
             <Stats />
             <Faq />
-            <OurBlogs />
+            {/* <OurBlogs /> */}
         </div>
     )
 }
