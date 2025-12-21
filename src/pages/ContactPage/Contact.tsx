@@ -60,7 +60,7 @@ export default function Contact() {
                                 <div className="space-y-2">
                                     <h3 className="text-xl md:text-[24px] font-bold">Physical Address</h3>
                                     <div className="text-sm md:text-base text-gray-300">
-                                        <p>25/1 Court House Street, <br />Dhaka, Bangladesh</p>
+                                        <p>Room No- B15,(3rd Floor), Nahar Complex, 25/1, Court House Street, Dhaka-1100, Bangladesh.</p>
                                     </div>
                                 </div>
                             </div>

@@ -28,6 +28,7 @@ export default function EditAssociate() {
     const designationOptions = [
         { value: "Head of Legal", title: "Head of Legal" },
         { value: "Senior Consultant", title: "Senior Consultant" },
+        { value: "Consultant", title: "Consultant" },
         { value: "Associates", title: "Associates" },
     ];
 
