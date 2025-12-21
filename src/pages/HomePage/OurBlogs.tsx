@@ -11,7 +11,7 @@ export default function OurBlogs() {
         {/* Header Section */}
         <div className="container mx-auto space-y-2">
             <Fade cascade={true} delay={200} direction="up">
-                <Heading className="text-center">Our Blogs</Heading>
+                <Heading className="text-center">Our Latest Blogs</Heading>
                 {/* constrained width for readability */}
                 <p className="text-center max-w-2xl mx-auto text-gray-600">
                     Stay informed with expert legal insights and the latest updates on your rights, tailored to help you navigate your journey with confidence.
@@ -31,10 +31,10 @@ export default function OurBlogs() {
             {/* Header Section */}
             <div className="container mx-auto space-y-2">
                 <Fade cascade={true} delay={200} direction="up">
-                    <Heading className="text-center">Our Blogs</Heading>
+                    <Heading className="text-center">Our Latest Blogs</Heading>
                     {/* constrained width for readability */}
                     <p className="text-center max-w-2xl mx-auto text-gray-600">
-                        Adipiscing nam neque hendrerit nec pellentesque diamarius quisque odio
+                        Stay ahead of the curve with our expert articles and news.
                     </p>
                 </Fade>
             </div>
@@ -42,9 +42,19 @@ export default function OurBlogs() {
             {/* Grid Section */}
             {/* Added container mx-auto here so the grid aligns with the header */}
             <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-                {blogs?.slice(0, 3).map((blog, index) => (
-                    <BlogCard key={index} _id={blog._id ? blog._id : ""} image={blog.image?.url as string} title={blog.title} date={blog.date} />
-                ))}
+                {blogs
+                    ?.slice()
+                    .reverse()
+                    .slice(0, 3)
+                    .map((blog) => (
+                        <BlogCard
+                            key={blog._id}
+                            _id={blog._id || ""}
+                            image={blog.image?.url || ""}
+                            title={blog.title}
+                            date={blog.date}
+                        />
+                    ))}
             </div>
         </section>
     )
