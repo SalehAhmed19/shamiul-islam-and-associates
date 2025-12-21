@@ -16,7 +16,7 @@ export default function Home() {
             <Services />
             <HeadOfLegal />
             <Ask />
-            <OurAssociates sliceNumber={4} />
+            <OurAssociates />
             <LegalExcellence />
             <FreeConsulForm />
             <Faq />
