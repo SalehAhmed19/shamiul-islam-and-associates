@@ -3,5 +3,5 @@ export interface AssociatesInterface {
     name: string;
     court: string;
     position: string;
-    image: string;
+    image: { url: string; public_id: string } | null;
 }

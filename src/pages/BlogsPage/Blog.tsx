@@ -70,7 +70,7 @@ export default function Blog() {
                     // Changed: Responsive height (h-56 on mobile, h-[400px] on desktop)
                     <div className="mb-8 md:mb-12 w-full h-56 sm:h-72 md:h-[400px] overflow-hidden rounded-xl shadow-sm">
                         <img
-                            src={blog?.image as string}
+                            src={blog?.image.url as string}
                             alt={blog.title}
                             className="w-full h-full object-cover transform hover:scale-105 transition duration-700"
                         />

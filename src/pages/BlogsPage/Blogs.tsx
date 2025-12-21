@@ -31,7 +31,7 @@ export default function Blogs() {
                     {blogs?.map((blog, index) => (
                         <BlogCard
                             key={index}
-                            image={blog.image as string}
+                            image={blog.image?.url as string}
                             title={blog.title}
                             date={blog.date}
                             _id={blog._id ? blog._id : ""}

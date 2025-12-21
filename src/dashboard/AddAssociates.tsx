@@ -56,11 +56,50 @@ export default function AddAssociates() {
         resolver: zodResolver(fromSchema),
     });
 
+    // const onSubmit = async (data: z.infer<typeof fromSchema>) => {
+    //     try {
+    //         console.log("Associate added successfully");
+    //         setIsSubmitting(true)
+    //         let imageUrl = "";
+
+    //         const compressedOption = {
+    //             maxSizeMB: 1,
+    //             maxWidthOrHeight: 1920,
+    //             useWebWorker: true,
+    //         }
+
+    //         if (data.image) {
+    //             const compressedImage = await imageCompression(data.image, compressedOption);
+    //             imageUrl = await uploadToCloudinary(compressedImage);
+    //         }
+
+    //         const formData: AssociatesInterface = {
+    //             name: data.name,
+    //             position: data.position,
+    //             image: imageUrl,
+    //             court: data.court
+    //         };
+
+    //         await dispatch(createAssociate(formData)).unwrap();
+    //         toast.success("Associate added successfully");
+    //         navigate("/dashboard/secure/admin-panel/manage-associates");
+    //         form.reset();
+    //         setPreview(null);
+    //     } catch (error) {
+    //         toast.error("Something went wrong!");
+    //         console.error(error);
+    //     } finally {
+    //         setIsSubmitting(false);
+    //     }
+    // };
+
     const onSubmit = async (data: z.infer<typeof fromSchema>) => {
         try {
             console.log("Associate added successfully");
-            setIsSubmitting(true)
-            let imageUrl = "";
+            setIsSubmitting(true);
+
+            // ১. পরিবর্তন: শুরুতে এটি null বা undefined রাখুন
+            let imagePayload = null;
 
             const compressedOption = {
                 maxSizeMB: 1,
@@ -70,13 +109,15 @@ export default function AddAssociates() {
 
             if (data.image) {
                 const compressedImage = await imageCompression(data.image, compressedOption);
-                imageUrl = await uploadToCloudinary(compressedImage);
+                // ২. পরিবর্তন: এখানে এখন { url, public_id } অবজেক্ট আসবে
+                imagePayload = await uploadToCloudinary(compressedImage);
             }
 
             const formData: AssociatesInterface = {
                 name: data.name,
                 position: data.position,
-                image: imageUrl,
+                // ৩. পরিবর্তন: পুরো অবজেক্টটি পাস করছেন
+                image: imagePayload,
                 court: data.court
             };
 

@@ -52,7 +52,7 @@ export default function ManageAssociates() {
                                         <div className="flex justify-center">
                                             {associate.image ? (
                                                 <img
-                                                    src={associate.image as string}
+                                                    src={associate.image.url as string}
                                                     alt={associate.name}
                                                     className="w-10 h-10 rounded-full object-cover border border-gray-200"
                                                 />

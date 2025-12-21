@@ -57,17 +57,23 @@ export default function AddBlogs() {
                 maxSizeMB: 1,
                 maxWidthOrHeight: 1920,
                 useWebWorker: true,
-            }
-            let imageUrl = "";
+            };
+
+            // ১. পরিবর্তন: শুরুতে এটি null বা undefined রাখুন, স্ট্রিং "" নয়
+            let imagePayload = null;
 
             if (data.image) {
                 const compressedImage = await imageCompression(data.image, compressedOption);
-                imageUrl = await uploadToCloudinary(compressedImage);
+
+                // ২. পরিবর্তন: এখানে এখন { url, public_id } অবজেক্ট আসবে
+                // (ধরে নিচ্ছি আপনি uploadToCloudinary ফাংশনটি আগের স্টেপ অনুযায়ী আপডেট করেছেন)
+                imagePayload = await uploadToCloudinary(compressedImage);
             }
 
             const formData: Blog = {
                 ...data,
-                image: imageUrl,
+                // ৩. পরিবর্তন: পুরো অবজেক্টটি পাস করছেন (ব্যাকএন্ড স্কিমা এটি এক্সপেক্ট করছে)
+                image: imagePayload,
                 relatedVideoLink: data.relatedVideoLink || ""
             };
 

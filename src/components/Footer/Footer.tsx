@@ -55,9 +55,9 @@ export default function Footer() {
                 <Fade cascade={true} delay={200} direction="up"><div className="space-y-4">
                     <h5 className="uppercase text-base md:text-lg font-bold border-b border-gray-600 pb-2 inline-block">Find us</h5>
                     <div className="space-y-3 text-gray-300">
-                        <p>25/1 Court House Street, Dhaka, Bangladesh</p>
+                        <p>Room No- B15,(3rd Floor), Nahar Complex, 25/1, Court House Street, Dhaka-1100, Bangladesh.</p>
                         <p className="font-semibold text-white">+880 1711 602 369</p>
-                        <p>info@advprince.com</p>
+                        <p>adv.prince.islam@gmail.com</p>
                     </div>
                 </div></Fade>
 

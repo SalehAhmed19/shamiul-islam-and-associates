@@ -1,8 +1,14 @@
-export const uploadToCloudinary = async (file: File) => {
+
+interface CloudinaryResponse {
+    url: string;
+    public_id: string;
+}
+
+export const uploadToCloudinary = async (file: File): Promise<CloudinaryResponse> => {
     const formData = new FormData();
     formData.append("file", file);
 
-    // Cloudinary ড্যাশবোর্ড থেকে পাওয়া Unsigned Preset নাম এখানে বসান
+    // আপনার প্রিসেট নাম
     formData.append("upload_preset", "adv-shamiul-islam-prince-associates");
 
     const response = await fetch(
@@ -17,5 +23,10 @@ export const uploadToCloudinary = async (file: File) => {
     }
 
     const data = await response.json();
-    return data.secure_url;
+
+    // পরিবর্তন এখানে: URL এর সাথে public_id ও রিটার্ন করা হচ্ছে
+    return {
+        url: data.secure_url,
+        public_id: data.public_id
+    };
 };

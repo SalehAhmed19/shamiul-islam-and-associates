@@ -59,33 +59,34 @@ export default function EditAssociate() {
                 name: associate.name,
                 position: associate.position,
                 court: associate.court,
-                image: associate.image
+                image: associate.image?.url
             });
-            setPreview(associate.image as string);
+            setPreview(associate.image?.url as string);
         }
     }, [associate, form]);
 
     const onSubmit = async (data: z.infer<typeof fromSchema>) => {
         try {
             setIsSubmitting(true);
-            let imageUrl = associate?.image || "";
             const compressedOption = {
                 maxSizeMB: 1,
                 maxWidthOrHeight: 1920,
                 useWebWorker: true,
             }
+
+            let imagePayload = null;
             // Check if a new file was selected
             if (data.image instanceof File) {
                 const compressedImage = await imageCompression(data.image, compressedOption);
-                imageUrl = await uploadToCloudinary(compressedImage);
+                imagePayload = await uploadToCloudinary(compressedImage);
             }
 
             const formData: AssociatesInterface = {
                 _id: associate?._id || "",
-                name: data.name,
-                position: data.position,
-                image: imageUrl as string,
-                court: data.court
+                name: data.name ? data.name : associate?.name || "",
+                position: data.position ? data.position : associate?.position || "",
+                image: imagePayload ? imagePayload : associate?.image || null,
+                court: data.court ? data.court : associate?.court || ""
             };
 
             await dispatch(updateAssociate(formData)).unwrap();
