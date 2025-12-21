@@ -1,6 +1,6 @@
-
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import imageCompression from "browser-image-compression";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Button from "@/components/ui/Buttons/Button";
@@ -13,13 +13,15 @@ import toast from "react-hot-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { options } from "@/data/blogsCategory";
 import { uploadToCloudinary } from "@/utils/uploadToCloudinary";
-import { Plus, UploadCloud } from "lucide-react";
+import { Plus, UploadCloud } from "lucide-react"; // Added X icon for clear functionality optional
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import AddBlogsLoading from "@/components/ui/Loadings/AddBlogsLoading";
 
 export default function AddBlogs() {
     const [isSubmitting, setIsSubmitting] = useState(false);
+    // Preview state ব্যবহার করা হয়েছে
+    const [preview, setPreview] = useState<string | null>(null);
     const navigate = useNavigate();
     const currentDate = new Date().toDateString();
 
@@ -51,10 +53,16 @@ export default function AddBlogs() {
     const onSubmit = async (data: z.infer<typeof fromSchema>) => {
         try {
             setIsSubmitting(true);
+            const compressedOption = {
+                maxSizeMB: 1,
+                maxWidthOrHeight: 1920,
+                useWebWorker: true,
+            }
             let imageUrl = "";
 
             if (data.image) {
-                imageUrl = await uploadToCloudinary(data.image);
+                const compressedImage = await imageCompression(data.image, compressedOption);
+                imageUrl = await uploadToCloudinary(compressedImage);
             }
 
             const formData: Blog = {
@@ -65,8 +73,8 @@ export default function AddBlogs() {
 
             await dispatch(createBlog(formData)).unwrap();
             toast.success("Blog added successfully");
+            setPreview(null);
             navigate("/dashboard/secure/admin-panel/manage-blogs");
-
         } catch (error) {
             toast.error("Something went wrong!");
             console.error("Submission Error:", error);
@@ -78,7 +86,6 @@ export default function AddBlogs() {
     if (isSubmitting) return <AddBlogsLoading title="Blog Creating..." />;
 
     return (
-        // Added responsive padding: p-4 on mobile, p-8 on desktop
         <section className="p-4 md:p-8 space-y-6 bg-white border border-black/10 rounded-lg max-w-5xl mx-auto">
             <header className="space-y-1">
                 <h1 className="text-2xl md:text-3xl font-bold text-[#604B33]">Create a New Blog</h1>
@@ -162,14 +169,34 @@ export default function AddBlogs() {
                                 <FormLabel className="font-semibold">Thumbnail Image</FormLabel>
                                 <FormControl>
                                     <div className="relative group">
-                                        <label htmlFor="image-upload" className="flex flex-col items-center justify-center w-full h-32 md:h-40 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-all">
-                                            <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                                <UploadCloud className="w-8 h-8 mb-2 text-gray-400 group-hover:text-[#604B33]" />
-                                                <p className="text-xs md:text-sm text-gray-500">
-                                                    <span className="font-bold">Click to update image</span>
-                                                </p>
-                                                <p className="text-[10px] text-gray-400 mt-1">Leave blank to keep existing image</p>
-                                            </div>
+                                        <label
+                                            htmlFor="image-upload"
+                                            className={`flex flex-col items-center justify-center w-full h-32 md:h-40 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-all overflow-hidden relative ${preview ? 'border-none p-0' : ''}`}
+                                        >
+                                            {preview ? (
+                                                // Preview Image Logic
+                                                <div className="w-full h-full relative group">
+                                                    <img
+                                                        src={preview}
+                                                        alt="Preview"
+                                                        className="w-full h-full object-cover rounded-lg"
+                                                    />
+                                                    {/* Hover Overlay to show user they can change it */}
+                                                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
+                                                        <p className="text-white text-sm font-semibold">Change Image</p>
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                // Default Upload UI
+                                                <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                                                    <UploadCloud className="w-8 h-8 mb-2 text-gray-400 group-hover:text-[#604B33]" />
+                                                    <p className="text-xs md:text-sm text-gray-500">
+                                                        <span className="font-bold">Click to update image</span>
+                                                    </p>
+                                                    <p className="text-[10px] text-gray-400 mt-1">Leave blank to keep existing image</p>
+                                                </div>
+                                            )}
+
                                             <Input
                                                 id="image-upload"
                                                 type="file"
@@ -177,12 +204,19 @@ export default function AddBlogs() {
                                                 className="hidden"
                                                 onChange={(e) => {
                                                     const file = e.target.files?.[0];
-                                                    if (file) onChange(file);
+                                                    if (file) {
+                                                        onChange(file);
+                                                        // Create Preview URL
+                                                        const objectUrl = URL.createObjectURL(file);
+                                                        setPreview(objectUrl);
+                                                    }
                                                 }}
                                                 {...rest}
                                             />
                                         </label>
-                                        {form.watch("image") instanceof File && (
+
+                                        {/* Filename text below box (optional - keeping your original style logic) */}
+                                        {!preview && form.watch("image") instanceof File && (
                                             <p className="text-xs text-[#604B33] mt-1 italic">
                                                 New file selected: {form.watch("image").name}
                                             </p>

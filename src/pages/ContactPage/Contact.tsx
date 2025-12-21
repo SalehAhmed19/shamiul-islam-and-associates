@@ -1,67 +1,3 @@
-// import { Fade } from "react-awesome-reveal";
-// import { icons, images } from "../../assets/assets";
-// import Button from "../../components/ui/Buttons/Button";
-// import { Option, Select } from "@mui/joy";
-// import ContactForm from "../../components/ui/Forms/ContactForm";
-// import Ask from "../HomePage/Ask";
-
-// export default function Contact() {
-//     return (
-//         <section>
-//             <div style={{ backgroundImage: `url(${images.contact})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
-//                 <div className="flex items-center justify-center h-[420px]">
-//                     <Fade cascade={true} delay={200} direction="up">
-//                         <h1 className="text-[40px] font-bold text-white uppercase">Contact Us</h1>
-//                     </Fade>
-//                 </div>
-
-//                 <div className="container mx-auto px-4 py-10 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 text-white">
-//                     <div className="space-y-10">
-//                         <h2 className="text-[40px] font-bold">Have any questions?<br />Feel free to contact us!</h2>
-//                         <p>Adipiscing nam neque hendrerit nec pellentesque diam a. Varius quisque odio mauris lectus consequat sed. Pretium purus feugiat volutpat</p>
-
-//                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
-//                             <div className="space-y-2 flex gap-5">
-//                                 <div><img src={icons.phoneBig} alt="phone" /></div>
-//                                 <div className="space-y-6"><h3 className="text-[24px] font-bold">Phone Numbers</h3>
-//                                     <p>+880 1712 345 678</p>
-//                                     <p>+880 1717 260 765</p></div>
-//                             </div>
-
-//                             <div className="space-y-2 flex gap-5">
-//                                 <div><img src={icons.location} alt="location" /></div>
-//                                 <div className="space-y-6"><h3 className="text-[24px] font-bold">Physical Address</h3>
-//                                     <p>25/1 Court House Street, <br />Dhaka, Bangladesh</p></div>
-//                             </div>
-
-//                             <div className="space-y-2 flex gap-5">
-//                                 <div><img src={icons.email} alt="email" /></div>
-//                                 <div className="space-y-6"><h3 className="text-[24px] font-bold">Email</h3>
-//                                     <p>contact@shamiulislamandassociates.com</p></div>
-//                             </div>
-
-//                             <div className="space-y-2 flex gap-5">
-//                                 <div><img src={icons.clock} alt="clock" /></div>
-//                                 <div className="space-y-6"><h3 className="text-[24px] font-bold">Opening Hours</h3>
-//                                     <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-//                                     <p>Saturday - Sunday: Closed</p></div>
-//                             </div>
-//                         </div>
-//                     </div>
-//                     <div>
-//                         <ContactForm />
-//                     </div>
-//                 </div>
-
-//             </div>
-//             <div>
-//                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3653.0434520335757!2d90.40826927617817!3d23.710142290319126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b900c510c729%3A0x6ea1e9219addab0a!2s25%2C%20Dhaka%20Judge%20Court%20Sub%20Branch%2C%201%20Court%20House%20St%2C%20Dhaka%201000!5e0!3m2!1sen!2sbd!4v1765473785696!5m2!1sen!2sbd" width="100%" height="450" style={{ border: "0" }} allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
-//             </div>
-
-//             <Ask />
-//         </section>
-//     )
-// }
 
 import { Fade } from "react-awesome-reveal";
 import { icons, images } from "../../assets/assets";
@@ -99,7 +35,7 @@ export default function Contact() {
                                 Have any questions?<br className="hidden md:block" /> Feel free to contact us!
                             </h2>
                             <p className="text-base md:text-lg text-gray-200">
-                                Adipiscing nam neque hendrerit nec pellentesque diam a. Varius quisque odio mauris lectus consequat sed. Pretium purus feugiat volutpat
+                                Our dedicated legal team is here to provide the support and clarity you need—reach out today for a personalized consultation tailored to your situation.
                             </p>
                         </div>
 

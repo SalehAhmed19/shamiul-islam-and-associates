@@ -1,4 +1,5 @@
 
+import imageCompression from "browser-image-compression";
 import { useNavigate, useParams } from "react-router-dom"
 import { useGetAssociate } from "@/hooks/useGetAssociate"
 import BlogsLoading from "@/components/ui/Loadings/BlogsLoading"
@@ -67,10 +68,15 @@ export default function EditAssociate() {
         try {
             setIsSubmitting(true);
             let imageUrl = associate?.image || "";
-
+            const compressedOption = {
+                maxSizeMB: 1,
+                maxWidthOrHeight: 1920,
+                useWebWorker: true,
+            }
             // Check if a new file was selected
             if (data.image instanceof File) {
-                imageUrl = await uploadToCloudinary(data.image);
+                const compressedImage = await imageCompression(data.image, compressedOption);
+                imageUrl = await uploadToCloudinary(compressedImage);
             }
 
             const formData: AssociatesInterface = {

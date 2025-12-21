@@ -1,6 +1,5 @@
-
-
 import { useNavigate, useParams } from "react-router-dom"
+import imageCompression from "browser-image-compression";
 import { useGetAssociate } from "@/hooks/useGetAssociate"
 import BlogsLoading from "@/components/ui/Loadings/BlogsLoading"
 import Heading from "@/components/ui/Headings/Heading"
@@ -19,16 +18,19 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { uploadToCloudinary } from "@/utils/uploadToCloudinary"
 import { images } from "@/assets/assets"
 import { useState } from "react"
+import AddBlogsLoading from "@/components/ui/Loadings/AddBlogsLoading"
 
 export default function AddAssociates() {
     const { _id } = useParams()
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const { loading } = useGetAssociate(_id ? _id : "")
     const [preview, setPreview] = useState<string | null>(null)
 
     const designationOptions = [
         { value: "Head of Legal", title: "Head of Legal" },
         { value: "Senior Consultant", title: "Senior Consultant" },
-        { value: "Associates", title: "Associates" },
+        { value: "Consultant", title: "Consultant" },
+        { value: "Associate", title: "Associate" },
     ];
 
     const courtOptions = [
@@ -39,8 +41,10 @@ export default function AddAssociates() {
     const fromSchema = z.object({
         name: z.string().min(3, "Name must be at least 3 characters long"),
         position: z.string().min(1, "Please select a designation"),
-        image: z.any().refine((file) => file instanceof File, "Profile photo is required")
-            .refine((file) => file?.size <= 3 * 1024 * 1024, "Image size must be less than 3MB"),
+        image: z.instanceof(File).refine(
+            (file) => file.size <= 3.1 * 1024 * 1024,
+            "Image size must be less than 3.1MB"
+        ),
         court: z.string().min(1, "Please select a court"),
     });
 
@@ -54,9 +58,19 @@ export default function AddAssociates() {
 
     const onSubmit = async (data: z.infer<typeof fromSchema>) => {
         try {
+            console.log("Associate added successfully");
+            setIsSubmitting(true)
             let imageUrl = "";
+
+            const compressedOption = {
+                maxSizeMB: 1,
+                maxWidthOrHeight: 1920,
+                useWebWorker: true,
+            }
+
             if (data.image) {
-                imageUrl = await uploadToCloudinary(data.image);
+                const compressedImage = await imageCompression(data.image, compressedOption);
+                imageUrl = await uploadToCloudinary(compressedImage);
             }
 
             const formData: AssociatesInterface = {
@@ -74,10 +88,13 @@ export default function AddAssociates() {
         } catch (error) {
             toast.error("Something went wrong!");
             console.error(error);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
     if (loading) return <BlogsLoading />
+    if (isSubmitting) return <AddBlogsLoading title="Adding Associate..." />
 
     return (
         <section className="py-6 px-4 md:px-0 space-y-6 max-w-6xl mx-auto">
@@ -117,7 +134,8 @@ export default function AddAssociates() {
                     {/* Right Side: Form Inputs (Spans 8 columns on large screens) */}
                     <div className="lg:col-span-8 p-6 border border-black/10 rounded-lg bg-white">
                         <Form {...form}>
-                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                            <form onSubmit={form.handleSubmit(onSubmit, (errors) => console.log(errors))}
+                                className="space-y-6">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <FormField control={form.control} name="name" render={({ field }) => (
                                         <FormItem>

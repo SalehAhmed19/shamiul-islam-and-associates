@@ -1,4 +1,3 @@
-
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -18,6 +17,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AddBlogsLoading from "@/components/ui/Loadings/AddBlogsLoading";
 import { useGetBlog } from "@/hooks/useGetBlog";
+import imageCompression from "browser-image-compression";
 
 export default function EditForm() {
     const { id } = useParams();
@@ -58,11 +58,17 @@ export default function EditForm() {
     const onSubmit = async (data: z.infer<typeof fromSchema>) => {
         try {
             setIsSubmitting(true);
+            const compressedOption = {
+                maxSizeMB: 1,
+                maxWidthOrHeight: 1920,
+                useWebWorker: true,
+            }
             let imageUrl = blog?.image || "";
 
             // Only upload if a new file is selected
             if (data.image instanceof File) {
-                imageUrl = await uploadToCloudinary(data.image);
+                const compressedImage = await imageCompression(data.image, compressedOption);
+                imageUrl = await uploadToCloudinary(compressedImage);
             }
 
             const formData: Blog = {

@@ -1,90 +1,75 @@
 import styled from 'styled-components';
 
 const BaseLoading = () => {
-    return (
-        <StyledWrapper>
-            <div className="loader">
-                <div className="loaderMiniContainer">
-                    <div className="barContainer">
-                        <span className="bar" />
-                        <span className="bar bar2" />
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 101 114" className="svgIcon">
-                        <circle strokeWidth={7} stroke="black" transform="rotate(36.0692 46.1726 46.1727)" r="29.5497" cy="46.1727" cx="46.1726" />
-                        <line strokeWidth={7} stroke="black" y2="111.784" x2="97.7088" y1="67.7837" x1="61.7089" />
-                    </svg>
-                </div>
-            </div>
-        </StyledWrapper>
-    );
+  return (
+    <StyledWrapper>
+      <div className="loader" />
+    </StyledWrapper>
+  );
 }
 
 const StyledWrapper = styled.div`
+  /* HTML: <div class="loader"></div> */
   .loader {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    --c1: #673b14;
+    --c2: #f8b13b;
+    width: 40px;
+    height: 80px;
+    border-top: 4px solid var(--c1);
+    border-bottom: 4px solid var(--c1);
+    background: linear-gradient(90deg, var(--c1) 2px, var(--c2) 0 5px,var(--c1) 0) 50%/7px 8px no-repeat;
+    display: grid;
+    overflow: hidden;
+    animation: l5-0 2s infinite linear;
   }
-  .loaderMiniContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 130px;
-    height: fit-content;
+
+  .loader::before,
+  .loader::after {
+    content: "";
+    grid-area: 1/1;
+    width: 75%;
+    height: calc(50% - 4px);
+    margin: 0 auto;
+    border: 2px solid var(--c1);
+    border-top: 0;
+    box-sizing: content-box;
+    border-radius: 0 0 40% 40%;
+    -webkit-mask: linear-gradient(#000 0 0) bottom/4px 2px no-repeat,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    background: linear-gradient(var(--d,0deg),var(--c2) 50%,#0000 0) bottom /100% 205%,
+      linear-gradient(var(--c2) 0 0) center/0 100%;
+    background-repeat: no-repeat;
+    animation: inherit;
+    animation-name: l5-1;
   }
-  .barContainer {
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 10px;
-    background-position: left;
+
+  .loader::after {
+    transform-origin: 50% calc(100% + 2px);
+    transform: scaleY(-1);
+    --s: 3px;
+    --d: 180deg;
   }
-  .bar {
-    width: 100%;
-    height: 8px;
-    background: #41301dff; /* Change the color to black */
-    background-size: 200% 100%;
-    border-radius: 10px;
-    animation: bar ease-in-out 3s infinite alternate-reverse;
-  }
-  @keyframes bar {
-    0% {
-      background-position: left;
-    }
-    100% {
-      background-position: right;
-    }
-  }
-  .bar2 {
-    width: 50%;
-  }
-  .svgIcon {
-    position: absolute;
-    left: -25px;
-    margin-top: 18px;
-    z-index: 2;
-    width: 70%;
-    animation: search ease-in-out 3s infinite alternate-reverse;
-  }
-  @keyframes search {
-    0% {
-      transform: translateX(0%) rotate(70deg);
+
+  @keyframes l5-0 {
+    80% {
+      transform: rotate(0)
     }
 
     100% {
-      transform: translateX(100px) rotate(10deg);
+      transform: rotate(0.5turn)
     }
   }
-  .svgIcon circle,
-  line {
-    stroke: #41301dff;
-  }
-  .svgIcon circle {
-    fill: rgba(87, 64, 32, 0.24);
+
+  @keyframes l5-1 {
+    10%,70% {
+      background-size: 100% 205%,var(--s,0) 100%
+    }
+
+    70%,100% {
+      background-position: top,center
+    }
   }`;
 
 export default BaseLoading;
