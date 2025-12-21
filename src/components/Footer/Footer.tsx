@@ -1,4 +1,4 @@
-import { FaFacebookF, FaInstagram, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { FaFacebookF, FaInstagram, FaLinkedin, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import { icons, images } from "../../assets/assets";
 import { Link } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
@@ -32,10 +32,11 @@ export default function Footer() {
                         </p>
 
                         <div className="flex items-center gap-2">
-                            <a href="" className="h-8 w-8 bg-white hover:bg-[#dbb671] transition-colors flex justify-center items-center rounded-full text-black hover:text-white"><FaFacebookF /></a>
-                            <a href="" className="h-8 w-8 bg-white hover:bg-[#dbb671] transition-colors flex justify-center items-center rounded-full text-black hover:text-white"><FaXTwitter /></a>
-                            <a href="" className="h-8 w-8 bg-white hover:bg-[#dbb671] transition-colors flex justify-center items-center rounded-full text-black hover:text-white"><FaInstagram /></a>
-                            <a href="" className="h-8 w-8 bg-white hover:bg-[#dbb671] transition-colors flex justify-center items-center rounded-full text-black hover:text-white"><FaLinkedin /></a>
+                            <a href="https://www.facebook.com/shamiul.associates/" className="h-8 w-8 bg-white hover:bg-[#dbb671] transition-colors flex justify-center items-center rounded-full text-black hover:text-white"><FaFacebookF /></a>
+                            <a href="https://x.com/advprinceislam" className="h-8 w-8 bg-white hover:bg-[#dbb671] transition-colors flex justify-center items-center rounded-full text-black hover:text-white"><FaXTwitter /></a>
+                            <a href="https://www.instagram.com/adv_shamiul/" className="h-8 w-8 bg-white hover:bg-[#dbb671] transition-colors flex justify-center items-center rounded-full text-black hover:text-white"><FaInstagram /></a>
+                            <a href="https://www.linkedin.com/in/advprinceislam/" className="h-8 w-8 bg-white hover:bg-[#dbb671] transition-colors flex justify-center items-center rounded-full text-black hover:text-white"><FaLinkedin /></a>
+                            <a href="https://www.youtube.com/AdvPrinceIslam" className="h-8 w-8 bg-white hover:bg-[#dbb671] transition-colors flex justify-center items-center rounded-full text-black hover:text-white"><FaYoutube /></a>
                         </div></Fade>
                 </div>
 

@@ -29,11 +29,11 @@ export default function Message() {
                     {/* order-1: On mobile, image is FIRST. 
                         md:order-2: On desktop, image is RIGHT. */}
                     <Fade cascade={true} delay={200} direction="up">
-                        <div className="order-1 md:order-2 h-48 sm:h-64 md:h-full w-full overflow-hidden cursor-pointer">
+                        <div className="order-1 md:order-2 h-48 sm:h-64 md:h-full w-full rounded-lg overflow-hidden cursor-pointer">
                             <img
-                                src={images.prince1}
+                                src={images.prince}
                                 alt="prince-01"
-                                className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+                                className="w-full object-cover object-top hover:scale-105 transition-transform duration-500 rounded-lg"
                             />
                         </div>
                     </Fade>

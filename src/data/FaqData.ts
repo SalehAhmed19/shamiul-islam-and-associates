@@ -7,7 +7,7 @@ export const FaqData: FaqDataInterface[] = [
     },
     {
         question: "How do I book a consultation with a lawyer?",
-        answer: "You can book an appointment by calling our office directly at +880 1711 602 369, emailing us at info@shamiulislamandassociates.com, or filling out the contact form on our website. We offer both in-person meetings at our chambers and virtual consultations via Zoom/WhatsApp."
+        answer: "You can book an appointment by calling our office directly at +880 1711 602 369, emailing us at adv.prince.islam@gmail.com, or filling out the contact form on our website. We offer both in-person meetings at our chambers and virtual consultations via Zoom/WhatsApp."
     },
     {
         question: "What should I bring to my first meeting?",
