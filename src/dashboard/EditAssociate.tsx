@@ -17,7 +17,7 @@ import type { AssociatesInterface } from "@/Interfaces/AccociatesInterface"
 import { Edit, UploadCloud } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useEffect, useState } from "react"
-import { uploadToCloudinary } from "@/utils/uploadToCloudinary"
+import CloudinaryImageUploader from "txb-cloudinary-image-uploader"
 
 export default function EditAssociate() {
     const { _id } = useParams()
@@ -78,7 +78,7 @@ export default function EditAssociate() {
             // Check if a new file was selected
             if (data.image instanceof File) {
                 const compressedImage = await imageCompression(data.image, compressedOption);
-                imagePayload = await uploadToCloudinary(compressedImage);
+                imagePayload = await CloudinaryImageUploader(compressedImage, import.meta.env.VITE_CLOUDINARY_PRESET, import.meta.env.VITE_CLOUDINARY_URL);
             }
 
             const formData: AssociatesInterface = {

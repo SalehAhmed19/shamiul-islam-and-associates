@@ -15,10 +15,10 @@ import { useAppDispatch } from "@/hooks/hooks"
 import type { AssociatesInterface } from "@/Interfaces/AccociatesInterface"
 import { Plus, UploadCloud } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { uploadToCloudinary } from "@/utils/uploadToCloudinary"
 import { images } from "@/assets/assets"
 import { useState } from "react"
 import AddBlogsLoading from "@/components/ui/Loadings/AddBlogsLoading"
+import CloudinaryImageUploader from "txb-cloudinary-image-uploader"
 
 export default function AddAssociates() {
     const { _id } = useParams()
@@ -56,43 +56,6 @@ export default function AddAssociates() {
         resolver: zodResolver(fromSchema),
     });
 
-    // const onSubmit = async (data: z.infer<typeof fromSchema>) => {
-    //     try {
-    //         console.log("Associate added successfully");
-    //         setIsSubmitting(true)
-    //         let imageUrl = "";
-
-    //         const compressedOption = {
-    //             maxSizeMB: 1,
-    //             maxWidthOrHeight: 1920,
-    //             useWebWorker: true,
-    //         }
-
-    //         if (data.image) {
-    //             const compressedImage = await imageCompression(data.image, compressedOption);
-    //             imageUrl = await uploadToCloudinary(compressedImage);
-    //         }
-
-    //         const formData: AssociatesInterface = {
-    //             name: data.name,
-    //             position: data.position,
-    //             image: imageUrl,
-    //             court: data.court
-    //         };
-
-    //         await dispatch(createAssociate(formData)).unwrap();
-    //         toast.success("Associate added successfully");
-    //         navigate("/dashboard/secure/admin-panel/manage-associates");
-    //         form.reset();
-    //         setPreview(null);
-    //     } catch (error) {
-    //         toast.error("Something went wrong!");
-    //         console.error(error);
-    //     } finally {
-    //         setIsSubmitting(false);
-    //     }
-    // };
-
     const onSubmit = async (data: z.infer<typeof fromSchema>) => {
         try {
             console.log("Associate added successfully");
@@ -110,7 +73,7 @@ export default function AddAssociates() {
             if (data.image) {
                 const compressedImage = await imageCompression(data.image, compressedOption);
                 // ২. পরিবর্তন: এখানে এখন { url, public_id } অবজেক্ট আসবে
-                imagePayload = await uploadToCloudinary(compressedImage);
+                imagePayload = await CloudinaryImageUploader(compressedImage, import.meta.env.VITE_CLOUDINARY_PRESET, import.meta.env.VITE_CLOUDINARY_URL);
             }
 
             const formData: AssociatesInterface = {

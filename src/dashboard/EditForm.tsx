@@ -11,13 +11,13 @@ import { useAppDispatch } from "@/hooks/hooks";
 import toast from "react-hot-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { options } from "@/data/blogsCategory";
-import { uploadToCloudinary } from "@/utils/uploadToCloudinary";
 import { Edit, UploadCloud } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AddBlogsLoading from "@/components/ui/Loadings/AddBlogsLoading";
 import { useGetBlog } from "@/hooks/useGetBlog";
 import imageCompression from "browser-image-compression";
+import CloudinaryImageUploader from "txb-cloudinary-image-uploader"
 
 export default function EditForm() {
     const { id } = useParams();
@@ -70,7 +70,7 @@ export default function EditForm() {
             // Only upload if a new file is selected
             if (data.image instanceof File) {
                 const compressedImage = await imageCompression(data.image, compressedOption);
-                imagePayload = await uploadToCloudinary(compressedImage);
+                imagePayload = await CloudinaryImageUploader(compressedImage, import.meta.env.VITE_CLOUDINARY_PRESET, import.meta.env.VITE_CLOUDINARY_URL);
             }
 
             const formData: Blog = {

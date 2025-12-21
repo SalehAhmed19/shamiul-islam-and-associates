@@ -12,11 +12,12 @@ import { useAppDispatch } from "@/hooks/hooks";
 import toast from "react-hot-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { options } from "@/data/blogsCategory";
-import { uploadToCloudinary } from "@/utils/uploadToCloudinary";
+// import { uploadToCloudinary } from "@/utils/uploadToCloudinary";
 import { Plus, UploadCloud } from "lucide-react"; // Added X icon for clear functionality optional
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import AddBlogsLoading from "@/components/ui/Loadings/AddBlogsLoading";
+import CloudinaryImageUploader from "txb-cloudinary-image-uploader";
 
 export default function AddBlogs() {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -67,7 +68,8 @@ export default function AddBlogs() {
 
                 // ২. পরিবর্তন: এখানে এখন { url, public_id } অবজেক্ট আসবে
                 // (ধরে নিচ্ছি আপনি uploadToCloudinary ফাংশনটি আগের স্টেপ অনুযায়ী আপডেট করেছেন)
-                imagePayload = await uploadToCloudinary(compressedImage);
+                // imagePayload = await uploadToCloudinary(compressedImage);
+                imagePayload = await CloudinaryImageUploader(compressedImage, import.meta.env.VITE_CLOUDINARY_PRESET, import.meta.env.VITE_CLOUDINARY_URL);
             }
 
             const formData: Blog = {
