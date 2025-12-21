@@ -65,10 +65,6 @@ export default function AddBlogs() {
 
             if (data.image) {
                 const compressedImage = await imageCompression(data.image, compressedOption);
-
-                // ২. পরিবর্তন: এখানে এখন { url, public_id } অবজেক্ট আসবে
-                // (ধরে নিচ্ছি আপনি uploadToCloudinary ফাংশনটি আগের স্টেপ অনুযায়ী আপডেট করেছেন)
-                // imagePayload = await uploadToCloudinary(compressedImage);
                 imagePayload = await CloudinaryImageUploader(compressedImage, import.meta.env.VITE_CLOUDINARY_PRESET, import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
             }
 
