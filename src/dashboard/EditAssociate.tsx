@@ -78,7 +78,7 @@ export default function EditAssociate() {
             // Check if a new file was selected
             if (data.image instanceof File) {
                 const compressedImage = await imageCompression(data.image, compressedOption);
-                imagePayload = await CloudinaryImageUploader(compressedImage, import.meta.env.VITE_CLOUDINARY_PRESET, import.meta.env.VITE_CLOUDINARY_URL);
+                imagePayload = await CloudinaryImageUploader(compressedImage, import.meta.env.VITE_CLOUDINARY_PRESET, import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
             }
 
             const formData: AssociatesInterface = {

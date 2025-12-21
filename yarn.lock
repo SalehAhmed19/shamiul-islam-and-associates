@@ -3923,10 +3923,10 @@ twitch-video-element@^0.1.5:
   resolved "https://registry.yarnpkg.com/twitch-video-element/-/twitch-video-element-0.1.6.tgz#986668a6b676b5b42f2abab365014208e2f6edff"
   integrity sha512-X7l8gy+DEFKJ/EztUwaVnAYwQN9fUJxPkOVJj2sE62sGvGU4DNLyvmOsmVulM+8Plc5dMg6hYIMNRAPaH+39Uw==
 
-txb-cloudinary-image-uploader@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/txb-cloudinary-image-uploader/-/txb-cloudinary-image-uploader-1.0.2.tgz#6c01f00b6959137f7cb66abb8d409fbddc26e3d3"
-  integrity sha512-e7qmLWj2M1mYH2GdBUgdWQYiZJ7Xzvim+mkb6ub1kiBzSKzAeCf798MAPVJqiADXjuFD+4Yx6uZSRV3ug278SQ==
+txb-cloudinary-image-uploader@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/txb-cloudinary-image-uploader/-/txb-cloudinary-image-uploader-1.0.3.tgz#28a7e46834fcb2182e056286596505d1ca03abcf"
+  integrity sha512-i0k+zq/XWtGL6VwBWkNmHT/MlLRWDLNHNAPbEpEVVMPCSXhV4WlhLxVhj41NI6B44NwFJn9Vs+KlTSBKkci/8w==
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"

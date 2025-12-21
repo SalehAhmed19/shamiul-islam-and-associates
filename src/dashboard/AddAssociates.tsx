@@ -73,7 +73,7 @@ export default function AddAssociates() {
             if (data.image) {
                 const compressedImage = await imageCompression(data.image, compressedOption);
                 // ২. পরিবর্তন: এখানে এখন { url, public_id } অবজেক্ট আসবে
-                imagePayload = await CloudinaryImageUploader(compressedImage, import.meta.env.VITE_CLOUDINARY_PRESET, import.meta.env.VITE_CLOUDINARY_URL);
+                imagePayload = await CloudinaryImageUploader(compressedImage, import.meta.env.VITE_CLOUDINARY_PRESET, import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
             }
 
             const formData: AssociatesInterface = {
