@@ -19,12 +19,12 @@ export default function ServiceContent() {
                 {/* Paragraph Section */}
                 <Fade cascade={true} delay={200} direction="right"><div className="text-gray-700 leading-relaxed text-sm md:text-base">
                     <p>
-                        Tellus aliquet volutpat diam nulla consectetur. Sit at consectetur nam velit sollicitudin id aliquam fusce. In urna vestibulum ac eleifend quis turpis quisque arcu arcu. Ultrices varius sed quam lectus interdum. Viverra enim massa commodo in sed ipsum.
+                        We believe that every client deserves a strategy as unique as their case, which is why we meticulously craft our legal approach to align with your specific goals. By combining in-depth industry knowledge with unwavering dedication, we navigate the complexities of the law to protect your interests at every turn.
                     </p>
                     {/* Added a margin to the break to create actual visual separation */}
                     <br className="block content-[''] mt-4" />
                     <p>
-                        Lorem ipsum dolor sit amet consectetur. Nunc porttitor porttitor velit dictumst id morbi in aliquet velit.
+                        Experience the peace of mind that comes from having a partner driven to deliver the exceptional results you deserve.
                     </p>
                 </div>
                 </Fade>

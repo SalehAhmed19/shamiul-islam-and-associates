@@ -48,7 +48,7 @@ export default function Contact() {
                                 <div className="space-y-2">
                                     <h3 className="text-xl md:text-[24px] font-bold">Phone Numbers</h3>
                                     <div className="text-sm md:text-base text-gray-300">
-                                        <p>+880 1712 345 678</p>
+                                        <p>+880 1711 602 369</p>
                                         <p>+880 1717 260 765</p>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@ export default function Contact() {
                                 <div className="space-y-2">
                                     <h3 className="text-xl md:text-[24px] font-bold">Email</h3>
                                     <div className="text-sm md:text-base text-gray-300 break-all">
-                                        <p>contact@shamiulislamandassociates.com</p>
+                                        <p>adv.prince.islam@gmail.com</p>
                                     </div>
                                 </div>
                             </div>
@@ -82,8 +82,8 @@ export default function Contact() {
                                 <div className="space-y-2">
                                     <h3 className="text-xl md:text-[24px] font-bold">Opening Hours</h3>
                                     <div className="text-sm md:text-base text-gray-300">
-                                        <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                                        <p>Saturday - Sunday: Closed</p>
+                                        <p>Sunday - Thursday: 9:00 AM - 6:00 PM</p>
+                                        <p>Friday - Saturday: Closed</p>
                                     </div>
                                 </div>
                             </div>

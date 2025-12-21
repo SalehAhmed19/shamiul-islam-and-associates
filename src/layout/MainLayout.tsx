@@ -4,6 +4,8 @@ import Footer from "../components/Footer/Footer";
 import { Toaster } from 'react-hot-toast';
 import { useEffect, useState } from "react";
 import HomeLoading from "@/components/ui/Loadings/HomeLoading";
+import { FloatingWhatsApp } from 'react-floating-whatsapp'
+import { icons } from "@/assets/assets";
 // import ReactPixel from 'react-facebook-pixel';
 
 export default function MainLayout() {
@@ -36,12 +38,21 @@ export default function MainLayout() {
     if (loading) {
         return <HomeLoading />
     }
+    const phoneNumber = import.meta.env.VITE_PHONE_NUMBER as string
     return (
         <div>
             <Navbar />
             <Outlet />
             <Footer />
             <Toaster />
+            <FloatingWhatsApp
+                avatar={icons.logo}
+                accountName={"Shamiul Islam and Associates"}
+                phoneNumber={phoneNumber}
+                chatMessage="Hey, how can I help you today?"
+                placeholder="Write your queries..."
+                darkMode
+            />
         </div>
     )
 }
