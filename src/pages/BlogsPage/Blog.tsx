@@ -4,11 +4,11 @@ import { useEffect } from 'react';
 import { useParams } from "react-router-dom"
 import { useGetBlog } from "../../hooks/useGetBlog"
 import { images } from "../../assets/assets"
-import BlogHeader from "../AboutPage/BlogHeader"
 import { useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import ReactPlayer from 'react-player'
 import BlogsPageLoading from '@/components/ui/Loadings/BlogsPageLoading';
+import Header from '@/components/ui/Header/Header';
 
 export default function Blog() {
     const params = useParams()
@@ -40,7 +40,8 @@ export default function Blog() {
 
     return (
         <section>
-            <BlogHeader
+            <Header
+                title="Blog"
                 image={images.blogs}
             />
 

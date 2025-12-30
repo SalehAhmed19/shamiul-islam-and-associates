@@ -1,4 +1,3 @@
-import { Fade } from "react-awesome-reveal";
 import { images } from "../../assets/assets";
 import Button from "../../components/ui/Buttons/Button";
 import Heading from "../../components/ui/Headings/Heading";
@@ -38,7 +37,7 @@ export default function LegalExcellence() {
                     </motion.p>
 
                     <div className="flex justify-center">
-                        <Fade cascade={true} delay={200} direction="up"><Button>Learn More</Button></Fade>
+                        <Button>Learn More</Button>
                     </div>
                 </div>
             </motion.div>
