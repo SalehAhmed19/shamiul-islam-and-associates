@@ -626,3 +626,90 @@ export const footerVariants: Variants = {
         }
     }
 }
+
+export const statsVariants: Variants = {
+    initial: {
+        opacity: 0,
+        scale: 0.5
+    },
+    whileInView: {
+        opacity: 1,
+        scale: 1,
+        transition: {
+            delay: 0.5,
+            duration: 0.5,
+            ease: "easeInOut",
+        }
+    },
+    headingInitial: {
+        opacity: 0,
+        y: 20
+    },
+    headingWhileInView: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            delay: 1,
+            duration: 0.5,
+            ease: "easeInOut",
+        }
+    },
+    paragraphInitial: {
+        opacity: 0,
+        y: 20
+    },
+    paragraphWhileInView: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            delay: 1.2,
+            duration: 0.5,
+            ease: "easeInOut",
+        }
+    },
+    labelInitial: {
+        opacity: 0,
+        y: 20
+    },
+    labelWhileInView: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            delay: 0.5,
+            duration: 0.5,
+            ease: "easeInOut",
+        }
+    }
+}
+
+export const headerVariants: Variants = {
+    initial: {
+        opacity: 0,
+        y: -100
+    },
+    whileInView: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            delay: 0.5,
+            duration: 0.3,
+            ease: "easeInOut",
+        }
+    }
+}
+
+export const aboutVariants: Variants = {
+    contentInitial: {
+        opacity: 0,
+        y: 20
+    },
+    contentWhileInView: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            delay: 1.2,
+            duration: 0.5,
+            ease: "easeInOut",
+        }
+    }
+}
