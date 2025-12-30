@@ -1,6 +1,7 @@
 
-import { Zoom } from "react-awesome-reveal";
+import { motion } from "framer-motion";
 import { StepsData } from "../../data/StepsData";
+import { serviceVariant } from "@/motions/motions";
 
 export default function Steps() {
     return (
@@ -11,7 +12,7 @@ export default function Steps() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     {StepsData?.map((step, index) => (
                         // Adjusted padding: p-6 on mobile, p-10 on desktop
-                        <Zoom cascade={true} delay={200}><div key={index} className="flex items-center gap-4 bg-white p-6 md:p-10 h-full">
+                        <motion.div variants={serviceVariant} initial="stepsInitial" whileInView="stepsWhileInView"><div key={index} className="flex items-center gap-4 bg-white p-6 md:p-10 h-full">
 
                             {/* Added flex-1: Ensures text takes up available space but allows wrapping */}
                             <div className="flex-1">
@@ -32,7 +33,7 @@ export default function Steps() {
                                     className="w-8 h-8 md:w-auto md:h-auto object-contain"
                                 />
                             </div>
-                        </div></Zoom>
+                        </div></motion.div>
                     ))}
                 </div>
             </div>

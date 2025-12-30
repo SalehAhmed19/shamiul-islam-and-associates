@@ -713,3 +713,44 @@ export const aboutVariants: Variants = {
         }
     }
 }
+
+export const serviceVariant: Variants = {
+    textInitial: {
+        opacity: 0,
+        y: 20
+    },
+    textWhileInView: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.5,
+            ease: "easeInOut",
+        }
+    },
+    stepsInitial: {
+        opacity: 0,
+        scale: 0.5
+    },
+    stepsWhileInView: {
+        opacity: 1,
+        scale: 1,
+        transition: {
+            delay: 1,
+            duration: 0.5,
+            ease: "easeInOut",
+        }
+    },
+    paragraphInitial: {
+        opacity: 0,
+        y: 20
+    },
+    paragraphWhileInView: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            delay: 1.2,
+            duration: 0.5,
+            ease: "easeInOut",
+        }
+    }
+}

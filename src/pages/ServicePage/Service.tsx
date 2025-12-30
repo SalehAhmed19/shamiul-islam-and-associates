@@ -1,6 +1,6 @@
+import Header from "@/components/ui/Header/Header";
 import { images } from "../../assets/assets";
 import Faq from "../../components/ui/Accordants/Faq";
-import Header from "../AboutPage/Header";
 // import OurBlogs from "../HomePage/OurBlogs";
 import PracticeArea from "./PracticeArea";
 import ServiceContent from "./ServiceContent";
