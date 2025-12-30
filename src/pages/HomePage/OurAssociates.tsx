@@ -1,8 +1,9 @@
-import { Fade } from "react-awesome-reveal";
 import AssociatesCard from "../../components/ui/Cards/AssociatesCard";
 import Heading from "../../components/ui/Headings/Heading";
 import { useGetAssociates } from "@/hooks/useGetAssociates";
 import { BlogsSkeleton } from "@/components/ui/Skeletons/BlogsSkeleton";
+import { motion } from "framer-motion";
+import { ourAssociatesVariants } from "@/motions/motions";
 
 export default function OurAssociates({ sliceNumber }: { sliceNumber?: number }) {
     const { associates, loading } = useGetAssociates()
@@ -12,11 +13,11 @@ export default function OurAssociates({ sliceNumber }: { sliceNumber?: number })
 
     if (loading) return <section className="py-12 md:py-16 px-4 md:px-8 bg-[#FAF9F4] space-y-8 md:space-y-10">
         <div className="space-y-2">
-            <Fade cascade={true} delay={200} direction="up"><Heading className="text-center">Our Associates</Heading>
-                <p className="text-center text-sm md:text-base px-2">
-                    Experienced Legal Counsel Dedicated to Your Success
-                </p>
-            </Fade>
+            <Heading className="text-center">Our Associates</Heading>
+            <motion.p variants={ourAssociatesVariants} initial="paragraphInitial" whileInView="paragraphWhileInView" className="text-center text-sm md:text-base px-2">
+                Experienced Legal Counsel Dedicated to Your Success
+            </motion.p>
+
         </div>
 
         {/* Grid is already good, just added 'max-w-7xl' to prevent stretching on huge screens */}
@@ -30,16 +31,16 @@ export default function OurAssociates({ sliceNumber }: { sliceNumber?: number })
                 <BlogsSkeleton key={associate} />
             ))}
         </div>
-    </section>
+    </section >
 
     return (
         <section className="py-12 md:py-16 px-4 md:px-8 bg-[#FAF9F4] space-y-8 md:space-y-10">
             <div className="space-y-2">
-                <Fade cascade={true} delay={200} direction="up"><Heading className="text-center">Our Associates</Heading>
-                    <p className="text-center text-sm md:text-base px-2">
-                        Experienced Legal Counsel Dedicated to Your Success
-                    </p>
-                </Fade>
+                <Heading className="text-center">Our Associates</Heading>
+                <motion.p variants={ourAssociatesVariants} initial="paragraphInitial" whileInView="paragraphWhileInView" className="text-center text-sm md:text-base px-2">
+                    Experienced Legal Counsel Dedicated to Your Success
+                </motion.p>
+
             </div>
 
             {/* Grid is already good, just added 'max-w-7xl' to prevent stretching on huge screens */}
@@ -67,6 +68,6 @@ export default function OurAssociates({ sliceNumber }: { sliceNumber?: number })
                     />
                 ))}
             </div>
-        </section>
+        </section >
     )
 }

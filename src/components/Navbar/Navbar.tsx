@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { icons } from "../../assets/assets";
+import { motion } from "framer-motion";
+import { navbarVariants } from "@/motions/motions";
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -21,7 +23,7 @@ export default function Navbar() {
     }, []);
 
     return (
-        <nav
+        <motion.nav variants={navbarVariants} initial="initial" animate="animate"
             className={`fixed top-0 left-0 w-full z-50 text-white font-bold transition-all duration-300 ease-in-out ${isScrolled
                 ? "bg-black/60 backdrop-blur-lg py-3 shadow-md"
                 : "bg-transparent py-5"
@@ -43,11 +45,11 @@ export default function Navbar() {
                 {/* --- DESKTOP MENU (Hidden on Mobile) --- */}
                 <div className="hidden md:block">
                     <ul className="flex gap-6 lg:gap-8 text-sm lg:text-base">
-                        <li className="hover:text-gray-300 transition-colors"><Link to={"/"}>Home</Link></li>
-                        <li className="hover:text-gray-300 transition-colors"><Link to={"/about"}>About</Link></li>
-                        <li className="hover:text-gray-300 transition-colors"><Link to={"/services"}>Services</Link></li>
-                        <li className="hover:text-gray-300 transition-colors"><Link to={"/blogs"}>Blogs</Link></li>
-                        <li className="hover:text-gray-300 transition-colors"><Link to={"/contact"}>Contact</Link></li>
+                        <motion.li variants={navbarVariants} whileHover={"menuHover"} className="hover:text-gray-300 transition-colors"><Link to={"/"}>Home</Link></motion.li>
+                        <motion.li variants={navbarVariants} whileHover={"menuHover"} className="hover:text-gray-300 transition-colors"><Link to={"/about"}>About</Link></motion.li>
+                        <motion.li variants={navbarVariants} whileHover={"menuHover"} className="hover:text-gray-300 transition-colors"><Link to={"/services"}>Services</Link></motion.li>
+                        <motion.li variants={navbarVariants} whileHover={"menuHover"} className="hover:text-gray-300 transition-colors"><Link to={"/blogs"}>Blogs</Link></motion.li>
+                        <motion.li variants={navbarVariants} whileHover={"menuHover"} className="hover:text-gray-300 transition-colors"><Link to={"/contact"}>Contact</Link></motion.li>
                     </ul>
                 </div>
 
@@ -80,23 +82,25 @@ export default function Navbar() {
 
             {/* --- MOBILE MENU DROPDOWN --- */}
             {/* Using overflow-hidden to animate height could be added, but simple conditional rendering is safest for now */}
-            {isMobileMenuOpen && (
-                <div className="md:hidden bg-black/90 backdrop-blur-xl absolute top-full left-0 w-full shadow-lg border-t border-gray-700">
-                    <ul className="flex flex-col items-center gap-6 py-8 text-lg">
-                        <li onClick={() => setIsMobileMenuOpen(false)}><Link to={"/"}>Home</Link></li>
-                        <li onClick={() => setIsMobileMenuOpen(false)}><Link to={"/about"}>About</Link></li>
-                        <li onClick={() => setIsMobileMenuOpen(false)}><Link to={"/services"}>Services</Link></li>
-                        <li onClick={() => setIsMobileMenuOpen(false)}><Link to={"/blogs"}>Blogs</Link></li>
-                        <li onClick={() => setIsMobileMenuOpen(false)}><Link to={"/contact"}>Contact</Link></li>
+            {
+                isMobileMenuOpen && (
+                    <div className="md:hidden bg-black/90 backdrop-blur-xl absolute top-full left-0 w-full shadow-lg border-t border-gray-700">
+                        <ul className="flex flex-col items-center gap-6 py-8 text-lg">
+                            <li onClick={() => setIsMobileMenuOpen(false)}><Link to={"/"}>Home</Link></li>
+                            <li onClick={() => setIsMobileMenuOpen(false)}><Link to={"/about"}>About</Link></li>
+                            <li onClick={() => setIsMobileMenuOpen(false)}><Link to={"/services"}>Services</Link></li>
+                            <li onClick={() => setIsMobileMenuOpen(false)}><Link to={"/blogs"}>Blogs</Link></li>
+                            <li onClick={() => setIsMobileMenuOpen(false)}><Link to={"/contact"}>Contact</Link></li>
 
-                        {/* Mobile Contact Display */}
-                        <li className="flex items-center gap-2 mt-4 text-gray-300">
-                            <img src={icons.call} alt="call-icon" className="w-5 h-5" />
-                            <span>+880 1711 602 369</span>
-                        </li>
-                    </ul>
-                </div>
-            )}
-        </nav>
+                            {/* Mobile Contact Display */}
+                            <li className="flex items-center gap-2 mt-4 text-gray-300">
+                                <img src={icons.call} alt="call-icon" className="w-5 h-5" />
+                                <span>+880 1711 602 369</span>
+                            </li>
+                        </ul>
+                    </div>
+                )
+            }
+        </motion.nav >
     );
 }

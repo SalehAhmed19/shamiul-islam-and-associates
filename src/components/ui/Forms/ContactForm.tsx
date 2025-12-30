@@ -4,6 +4,8 @@ import Button from "../Buttons/Button";
 import { Input } from "../input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../select";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
+import { consultationVariants } from "@/motions/motions";
 
 interface Inputs {
     name: string
@@ -31,24 +33,24 @@ export default function ContactForm() {
                 {/* flex-col on mobile (stack), flex-row on desktop (side-by-side) */}
                 <div className="flex flex-col md:flex-row gap-4 w-full">
                     <div className="flex flex-col gap-2 w-full">
-                        <label htmlFor="name" className="font-bold">Name</label>
-                        <Input type="text" id="name" placeholder="Your Name" className="border-0 bg-white shadow-none rounded-none p-[28px] w-full focus:border-gray-300 transition-colors" {...register("name")} />
+                        <motion.label variants={consultationVariants} initial="formFieldInitial" whileInView="formFieldWhileInView" htmlFor="name" className="font-bold">Name</motion.label>
+                        <motion.span variants={consultationVariants} initial="formFieldInitial" whileInView="formFieldWhileInView"><Input type="text" id="name" placeholder="Your Name" className="border-0 bg-white shadow-none rounded-none p-[28px] w-full focus:border-gray-300 transition-colors" {...register("name")} /></motion.span>
                     </div>
                     <div className="flex flex-col gap-2 w-full">
-                        <label htmlFor="phone" className="font-bold">Phone</label>
-                        <Input type="text" id="phone" placeholder="Your Phone" className="border-0 bg-white shadow-none rounded-none p-[28px] w-full focus:border-gray-300 transition-colors" {...register("phone")} />
+                        <motion.label variants={consultationVariants} initial="formFieldInitial" whileInView="formFieldWhileInView" htmlFor="phone" className="font-bold">Phone</motion.label>
+                        <motion.span variants={consultationVariants} initial="formFieldInitial" whileInView="formFieldWhileInView"><Input type="text" id="phone" placeholder="Your Phone" className="border-0 bg-white shadow-none rounded-none p-[28px] w-full focus:border-gray-300 transition-colors" {...register("phone")} /></motion.span>
                     </div>
                 </div>
 
                 {/* Row 2: Email & Service */}
                 <div className="flex flex-col md:flex-row gap-4 w-full">
                     <div className="flex flex-col gap-2 w-full">
-                        <label htmlFor="email" className="font-bold">Email</label>
-                        <Input className="border-0 bg-white shadow-none rounded-none p-[28px] w-full focus:border-gray-300 transition-colors" type="email" id="email" placeholder="Your Email" {...register("email")} />
+                        <motion.label variants={consultationVariants} initial="formFieldInitial" whileInView="formFieldWhileInView" htmlFor="email" className="font-bold">Email</motion.label>
+                        <motion.span variants={consultationVariants} initial="formFieldInitial" whileInView="formFieldWhileInView"><Input className="border-0 bg-white shadow-none rounded-none p-[28px] w-full focus:border-gray-300 transition-colors" type="email" id="email" placeholder="Your Email" {...register("email")} /></motion.span>
                     </div>
                     <div className="flex flex-col gap-2 w-full">
-                        <label htmlFor="service" className="font-bold">Service</label>
-                        <Controller
+                        <motion.label variants={consultationVariants} initial="formFieldInitial" whileInView="formFieldWhileInView" htmlFor="service" className="font-bold">Service</motion.label>
+                        <motion.span variants={consultationVariants} initial="formFieldInitial" whileInView="formFieldWhileInView"><Controller
                             control={control}
                             name="service"
                             render={({ field }) => (
@@ -67,19 +69,20 @@ export default function ContactForm() {
                                 </Select>
                             )}
                         />
+                        </motion.span>
                     </div>
                 </div>
 
                 {/* Row 3: Subject */}
                 <div className="flex flex-col gap-2 w-full">
-                    <label htmlFor="subject" className="font-bold">Subject</label>
-                    <Input type="text" id="subject" placeholder="Write Subject" className="border-0 bg-white shadow-none rounded-none p-[28px] w-full focus:border-gray-300 transition-colors" {...register("subject")} />
+                    <motion.label variants={consultationVariants} initial="formFieldInitial" whileInView="formFieldWhileInView" htmlFor="subject" className="font-bold">Subject</motion.label>
+                    <motion.span variants={consultationVariants} initial="formFieldInitial" whileInView="formFieldWhileInView"><Input type="text" id="subject" placeholder="Write Subject" className="border-0 bg-white shadow-none rounded-none p-[28px] w-full focus:border-gray-300 transition-colors" {...register("subject")} /></motion.span>
                 </div>
 
                 {/* Row 4: Message */}
                 <div className="flex flex-col gap-2 w-full">
-                    <label htmlFor="message" className="font-bold">Message</label>
-                    <textarea rows={4} id="message" placeholder="Write Message" className="border-0 bg-white shadow-none rounded-none p-[28px] w-full focus:border-gray-300 transition-colors" {...register("message")} />
+                    <motion.label variants={consultationVariants} initial="formFieldInitial" whileInView="formFieldWhileInView" htmlFor="message" className="font-bold">Message</motion.label>
+                    <motion.textarea variants={consultationVariants} initial="formFieldInitial" whileInView="formFieldWhileInView" rows={4} id="message" placeholder="Write Message" className="border-0 bg-white shadow-none rounded-none p-[28px] w-full focus:border-gray-300 transition-colors" {...register("message")} />
                 </div>
 
                 <Button className="w-full">Request A Free Consultation</Button>

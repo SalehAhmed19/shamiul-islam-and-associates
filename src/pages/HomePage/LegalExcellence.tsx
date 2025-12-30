@@ -2,6 +2,8 @@ import { Fade } from "react-awesome-reveal";
 import { images } from "../../assets/assets";
 import Button from "../../components/ui/Buttons/Button";
 import Heading from "../../components/ui/Headings/Heading";
+import { motion } from "framer-motion";
+import { legalExcellenceVariants } from "@/motions/motions";
 
 export default function LegalExcellence() {
     return (
@@ -9,17 +11,17 @@ export default function LegalExcellence() {
         <section className="bg-[#FAF9F4] py-12 md:py-16 px-4 md:px-8">
 
             {/* Added 'items-center' to vertically center the image and text relative to each other */}
-            <Fade cascade={true} delay={200} direction="up"><div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <motion.div variants={legalExcellenceVariants} initial="initial" whileInView="whileInView" className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
 
                 {/* Image Wrapper: Ensures image scales correctly within the grid */}
 
-                <div className="w-full h-full overflow-hidden cursor-pointer">
-                    <img
+                <motion.div variants={legalExcellenceVariants} initial="imageInitial" whileInView="imageWhileInView" className="w-full h-full overflow-hidden cursor-pointer">
+                    <motion.img variants={legalExcellenceVariants} whileHover="imageHover"
                         src={images.legal1}
                         alt="legal"
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover"
                     />
-                </div>
+                </motion.div>
 
 
                 {/* Text Content */}
@@ -31,15 +33,15 @@ export default function LegalExcellence() {
                         Legal Excellence, <br />Personalized Care
                     </Heading>
 
-                    <p className="text-sm md:text-base leading-relaxed">
+                    <motion.p variants={legalExcellenceVariants} initial="paragraphInitial" whileInView="paragraphWhileInView" className="text-sm md:text-base leading-relaxed">
                         At our firm, we combine world-class legal expertise with a deep commitment to understanding your individual story. We believe that achieving legal excellence is only half the battle; the other half is providing the compassionate, one-on-one attention you deserve. Trust our dedicated team to protect your interests with sophisticated strategies while treating your case with the personal care it requires.
-                    </p>
+                    </motion.p>
 
                     <div className="flex justify-center">
                         <Fade cascade={true} delay={200} direction="up"><Button>Learn More</Button></Fade>
                     </div>
                 </div>
-            </div></Fade>
-        </section>
+            </motion.div>
+        </section >
     )
 }

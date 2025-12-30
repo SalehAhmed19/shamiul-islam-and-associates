@@ -65,6 +65,8 @@ export default function AddBlogs() {
 
             if (data.image) {
                 const compressedImage = await imageCompression(data.image, compressedOption);
+
+                // using txb-cloudinary-image-uploader
                 imagePayload = await CloudinaryImageUploader(compressedImage, import.meta.env.VITE_CLOUDINARY_PRESET, import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
             }
 

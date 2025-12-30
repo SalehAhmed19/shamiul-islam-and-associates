@@ -1,10 +1,10 @@
-import { Fade } from "react-awesome-reveal";
-
+import { headingVariants } from "@/motions/motions";
+import { motion } from "framer-motion";
 export default function Heading({ children, className }: { children: React.ReactNode, className?: string }) {
     return (
         // text-3xl on mobile -> text-[40px] on desktop
-        <Fade cascade={true} delay={200} direction="up"><h2 className={`text-3xl md:text-[40px] font-bold text-[#604B33] ${className}`}>
+        <motion.h2 viewport={{ once: false, amount: 0.3 }} variants={headingVariants} whileInView="whileInView" initial="initial" animate="animate" className={`text-3xl md:text-[40px] font-bold text-[#604B33] ${className}`}>
             {children}
-        </h2></Fade>
+        </motion.h2>
     )
 }

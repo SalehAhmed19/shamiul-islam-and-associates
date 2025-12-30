@@ -1,8 +1,9 @@
 import Heading from "../../components/ui/Headings/Heading";
-import { Fade } from "react-awesome-reveal";
 import BlogCard from "../../components/ui/Cards/BlogCard";
 import { useGetBlogs } from "../../hooks/useGetBlogs";
 import BlogsLoading from "@/components/ui/Loadings/BlogsLoading";
+import { motion } from "framer-motion"
+import { OurBlogsVariants } from "@/motions/motions";
 
 export default function OurBlogs() {
     const { blogs, loading } = useGetBlogs()
@@ -10,13 +11,13 @@ export default function OurBlogs() {
 
         {/* Header Section */}
         <div className="container mx-auto space-y-2">
-            <Fade cascade={true} delay={200} direction="up">
-                <Heading className="text-center">Our Latest Blogs</Heading>
-                {/* constrained width for readability */}
-                <p className="text-center max-w-2xl mx-auto text-gray-600">
-                    Stay informed with expert legal insights and the latest updates on your rights, tailored to help you navigate your journey with confidence.
-                </p>
-            </Fade>
+
+            <Heading className="text-center">Our Latest Blogs</Heading>
+            {/* constrained width for readability */}
+            <p className="text-center max-w-2xl mx-auto text-gray-600">
+                Stay informed with expert legal insights and the latest updates on your rights, tailored to help you navigate your journey with confidence.
+            </p>
+
         </div>
 
         {/* Grid Section */}
@@ -30,13 +31,17 @@ export default function OurBlogs() {
 
             {/* Header Section */}
             <div className="container mx-auto space-y-2">
-                <Fade cascade={true} delay={200} direction="up">
-                    <Heading className="text-center">Our Latest Blogs</Heading>
-                    {/* constrained width for readability */}
-                    <p className="text-center max-w-2xl mx-auto text-gray-600">
-                        Stay ahead of the curve with our expert articles and news.
-                    </p>
-                </Fade>
+
+                <Heading className="text-center">Our Latest Blogs</Heading>
+                {/* constrained width for readability */}
+                <motion.p
+                    variants={OurBlogsVariants}
+                    initial="paragraphInitial"
+                    whileInView="paragraphWhileInView"
+                    className="text-center max-w-2xl mx-auto text-gray-600">
+                    Stay ahead of the curve with our expert articles and news.
+                </motion.p>
+
             </div>
 
             {/* Grid Section */}
@@ -56,6 +61,6 @@ export default function OurBlogs() {
                         />
                     ))}
             </div>
-        </section>
+        </section >
     )
 }

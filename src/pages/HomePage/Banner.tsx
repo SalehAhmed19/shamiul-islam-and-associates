@@ -1,7 +1,8 @@
-import { Fade, Zoom } from "react-awesome-reveal";
 import { images } from "../../assets/assets";
 import Button from "../../components/ui/Buttons/Button";
 import { Link } from "react-scroll";
+import { motion } from "framer-motion";
+import { bannerVariants } from "@/motions/motions";
 
 export default function Banner() {
     return (
@@ -18,27 +19,28 @@ export default function Banner() {
                 <div className="space-y-6 md:space-y-8 max-w-4xl">
 
                     {/* Responsive Heading */}
-                    <Fade cascade={true} delay={200}><h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase leading-tight shadow-sm">
-                        Solving Complex Legal
-                        {/* Break line only on medium screens and up */}
-                        <br className="hidden md:block" />
-                        {" "}Challenges.
-                    </h1></Fade>
+                    <motion.h1 variants={bannerVariants}
+                        initial="headingInitial"
+                        whileInView="headingWhileInView"
+                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase leading-tight"
+                    >
+                        Solving Complex Legal <br className="hidden md:block" /> Challenges.
+                    </motion.h1>
 
                     {/* Responsive Paragraph */}
-                    <Zoom cascade={true} delay={250}><p className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold max-w-2xl mx-auto text-gray-100">
+                    <motion.p variants={bannerVariants}
+                        initial="paragraphInitial"
+                        whileInView="paragraphWhileInView"
+                        className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold max-w-2xl mx-auto text-gray-100">
                         Expert representation focused on achieving clear, favorable, and <br className="hidden md:block" /> decisive results for you.
-                    </p>
-                    </Zoom>
+                    </motion.p>
                 </div>
 
                 {/* Button Container with margin top */}
                 <div className="mt-8 md:mt-12">
-                    <Fade cascade={true} direction="up" delay={200}>
-                        <Link to="contact"><Button className="mx-auto block">Make enquiry</Button></Link>
-                    </Fade>
+                    <Link to="contact"><Button className="mx-auto block">Make enquiry</Button></Link>
                 </div>
             </div>
-        </section>
+        </section >
     )
 }

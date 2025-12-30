@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { images } from "../../../assets/assets";
 import { FaqData } from "../../../data/FaqData";
-import { Fade } from "react-awesome-reveal";
-
+import { AnimatePresence, motion } from "framer-motion";
+import { FAQVariants } from "@/motions/motions";
 
 export default function Faq() {
-    // State to track which item is open (null means all closed)
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     const toggleAccordion = (index: number) => {
@@ -22,69 +21,81 @@ export default function Faq() {
             }}
             className="text-white py-16 relative"
         >
-            {/* Dark Overlay (optional, for readability) */}
             <div className="absolute inset-0 bg-black/60 pointer-events-none"></div>
 
             <div className="container mx-auto px-4 relative z-10">
-                <Fade cascade={true} delay={200} direction="up">
-                    <h2 className="text-3xl md:text-[40px] font-bold text-center mb-10">
-                        Frequently Asked Questions
-                    </h2>
-                </Fade>
+                <motion.h2
+                    variants={FAQVariants}
+                    initial="headingInitial"
+                    whileInView="headingWhileInView"
+                    className="text-3xl md:text-[40px] font-bold text-center mb-10"
+                >
+                    Frequently Asked Questions
+                </motion.h2>
 
-                <Fade cascade={true} delay={200} direction="up">
-                    <div className="mx-auto flex flex-col gap-4">
-                        {FaqData?.map((item, index) => (
-                            <div
-                                key={index}
-                                className="border-b border-white/20 last:border-none cursor-pointer"
+                <div className="mx-auto flex flex-col gap-4">
+                    {FaqData?.map((item, index) => (
+                        <motion.div
+                            variants={FAQVariants}
+                            initial="faqInitial"
+                            whileInView="faqWhileInView"
+                            key={index}
+                            className="border-b border-white/20 last:border-none"
+                        >
+                            {/* Accordion Header */}
+                            <button
+                                onClick={() => toggleAccordion(index)}
+                                className="w-full flex justify-between items-center py-4 text-left focus:outline-none group cursor-pointer"
                             >
-                                {/* Accordion Header */}
-                                <button
-                                    onClick={() => toggleAccordion(index)}
-                                    className="w-full flex justify-between items-center py-4 text-left focus:outline-none group cursor-pointer"
-                                >
-                                    <span className="text-lg font-semibold text-white">
-                                        {index + 1}. {item.question}
-                                    </span>
+                                <span className="text-lg font-semibold text-white">
+                                    {index + 1}. {item.question}
+                                </span>
 
-                                    {/* Arrow Icon with Rotation Animation */}
-                                    <svg
-                                        className={`w-5 h-5 text-white transition-transform duration-300 ${openIndex === index ? "rotate-180" : "rotate-0"
-                                            }`}
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
+                                <motion.svg
+                                    animate={{ rotate: openIndex === index ? 180 : 0 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="w-5 h-5 text-white"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </motion.svg>
+                            </button>
+
+                            {/* Framer Motion Content Animation */}
+                            <AnimatePresence initial={false}>
+                                {openIndex === index && (
+                                    <motion.div
+                                        key="content"
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: "auto", opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                                        className="overflow-hidden"
                                     >
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </button>
-
-                                {/* Accordion Content (The Grid Trick for smooth height animation) */}
-                                <div
-                                    className={`grid transition-all duration-300 ease-in-out ${openIndex === index
-                                        ? "grid-rows-[1fr] opacity-100 mb-4"
-                                        : "grid-rows-[0fr] opacity-0"
-                                        }`}
-                                >
-                                    <div className="overflow-hidden space-y-3">
-                                        <p className="text-gray-200 text-base leading-relaxed">
-                                            {item.answer}
-                                        </p>
-                                        <ul>
-                                            {item.bullets?.map((bullet, index) => (
-                                                <li key={index} className="text-gray-200 text-base leading-relaxed flex items-center ml-3">
-                                                    <span className="h-1 w-1 bg-white rounded-full inline-block mr-2"></span> {bullet}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </Fade>
+                                        <div className="pb-4 space-y-3 px-1">
+                                            <p className="text-gray-200 text-base leading-relaxed">
+                                                {item.answer}
+                                            </p>
+                                            {item.bullets && (
+                                                <ul className="space-y-2">
+                                                    {item.bullets.map((bullet, bIndex) => (
+                                                        <li key={bIndex} className="text-gray-200 text-base leading-relaxed flex items-center ml-3">
+                                                            <span className="h-1.5 w-1.5 bg-white rounded-full inline-block mr-2 shrink-0"></span>
+                                                            {bullet}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            )}
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </motion.div>
+                    ))}
+                </div>
             </div>
-        </section>
+        </section >
     );
 }
