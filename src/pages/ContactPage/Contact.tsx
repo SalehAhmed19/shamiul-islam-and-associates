@@ -1,8 +1,10 @@
 
-import { Fade } from "react-awesome-reveal";
+import Heading from "@/components/ui/Headings/Heading";
 import { icons, images } from "../../assets/assets";
 import ContactForm from "../../components/ui/Forms/ContactForm";
 import Ask from "../HomePage/Ask";
+import { motion } from "framer-motion";
+import { contactVariants } from "@/motions/motions";
 
 export default function Contact() {
     return (
@@ -18,18 +20,14 @@ export default function Contact() {
             >
                 {/* Header Title Section - Adjusted height for mobile */}
                 <div className="flex items-center justify-center h-[300px] md:h-[420px]">
-                    <Fade cascade={true} delay={200} direction="up">
-                        <h1 className="text-4xl md:text-[40px] font-bold text-white uppercase text-center px-4">
-                            Contact Us
-                        </h1>
-                    </Fade>
+                    <Heading className="text-white">Contact Us</Heading>
                 </div>
 
                 {/* Main Content Grid */}
                 <div className="container mx-auto px-4 py-10 md:py-16 grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 text-white">
 
                     {/* Left Column: Contact Info */}
-                    <div className="space-y-8 md:space-y-10">
+                    <motion.div variants={contactVariants} initial="zoomInitial" whileInView="zoomWhileInView" className="space-y-8 md:space-y-10">
                         <div>
                             <h2 className="text-3xl md:text-[40px] font-bold leading-tight mb-4">
                                 Have any questions?<br className="hidden md:block" /> Feel free to contact us!
@@ -89,17 +87,17 @@ export default function Contact() {
                             </div>
 
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Right Column: Form */}
-                    <div>
+                    <motion.div variants={contactVariants} initial="zoomInitial" whileInView="zoomWhileInView">
                         <ContactForm />
-                    </div>
+                    </motion.div>
                 </div>
             </div>
 
             {/* Map Section */}
-            <div>
+            <motion.div variants={contactVariants} initial="initial" whileInView="whileInView">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4713.672920403525!2d90.4104194!3d23.712493900000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b9006ff7419b%3A0xf565c2cb52f9d3ab!2sAdvocate%20Shamiul%20Islam%20Prince%20%26%20Associates!5e1!3m2!1sen!2sbd!4v1765907450771!5m2!1sen!2sbd"
                     width="100%"
@@ -110,7 +108,7 @@ export default function Contact() {
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
-            </div>
+            </motion.div>
 
             <Ask />
         </section>

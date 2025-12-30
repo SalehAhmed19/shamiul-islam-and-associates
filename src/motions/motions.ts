@@ -754,3 +754,42 @@ export const serviceVariant: Variants = {
         }
     }
 }
+
+export const contactVariants: Variants = {
+    initial: {
+        opacity: 0,
+        y: 20
+    },
+    whileInView: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            delay: 1.2,
+            duration: 0.5,
+            ease: "easeInOut",
+        }
+    },
+    zoomInitial: {
+        scale: 0.5
+    },
+    zoomWhileInView: {
+        scale: 1,
+        transition: {
+            duration: 0.5,
+            ease: "easeInOut",
+        }
+    },
+    textInitial: {
+        opacity: 0,
+        y: 20
+    },
+    textWhileInView: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            delay: 1.2,
+            duration: 0.5,
+            ease: "easeInOut",
+        }
+    }
+}
