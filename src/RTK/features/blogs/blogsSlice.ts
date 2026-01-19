@@ -64,17 +64,14 @@ export const BlogsSlice = createSlice({
         builder.addCase(getBlogs.pending, (state) => {
             state.loading = true
         })
-        // আপনার বিদ্যমান কোডের getBlogs.fulfilled অংশটি এভাবে লিখুন
         builder.addCase(getBlogs.fulfilled, (state, action) => {
             // এখানে চেক করা হচ্ছে action.payload আসলেই Array কিনা
             if (Array.isArray(action.payload)) {
                 state.blogs = action.payload;
             }
-            // যদি ব্যাকেন্ড { blogs: [...] } এমন অবজেক্ট পাঠায়
             else if (action.payload && Array.isArray(action.payload.blogs)) {
                 state.blogs = action.payload.blogs;
             }
-            // যদি কোনো ডাটাই ঠিকমতো না আসে, তবে ফাঁকা অ্যারে সেট হবে (সেফটি)
             else {
                 state.blogs = [];
                 console.error("API Error: Payload is not an array", action.payload);
