@@ -16,7 +16,7 @@ import blogs from "../assets/images/blogs.png";
 import contact from "../assets/images/contact.png";
 import tanvir from "../assets/images/tanvir.png";
 import avatar from "@/assets/images/avatar.png";
-import prince from "@/assets/images/prince.png";
+import prince from "@/assets/images/prince.jpg";
 
 export const images = {
     hero,
