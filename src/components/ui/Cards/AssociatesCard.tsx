@@ -9,7 +9,7 @@ export default function AssociatesCard({ image, name, position, court }: { image
             <div className="text-center font-bold">
                 <motion.h3 variants={ourAssociatesVariants} initial="nameInitial" whileInView="nameWhileInView" className="text-[24px]">{name}</motion.h3>
                 <motion.p variants={ourAssociatesVariants} initial="positionInitial" whileInView="positionWhileInView" className="text-[#94744E]">{position}</motion.p>
-                <motion.p variants={ourAssociatesVariants} initial="courtInitial" whileInView="courtWhileInView">Advocate {court}</motion.p>
+                <motion.p variants={ourAssociatesVariants} initial="courtInitial" whileInView="courtWhileInView">Advocate, {court}</motion.p>
             </div>
         </motion.div>
     )
