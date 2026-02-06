@@ -52,6 +52,7 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.10.1",
     "react-scroll": "^1.9.3",
+    "react-share": "^5.2.2",
     "styled-components": "^6.1.19",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.17",
