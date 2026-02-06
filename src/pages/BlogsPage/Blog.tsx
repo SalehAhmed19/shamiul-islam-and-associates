@@ -129,6 +129,7 @@ import BlogsPageLoading from '@/components/ui/Loadings/BlogsPageLoading';
 import Header from '@/components/ui/Header/Header';
 import SEO from '@/components/SEO';
 import { Helmet } from 'react-helmet-async'; // Schema-এর জন্য এটি লাগবে
+import ShareButtons from '@/components/ShareButtons';
 
 // HTML ট্যাগ রিমুভ করার ফাংশন (Description এর জন্য)
 const stripHtml = (html: any) => {
@@ -262,6 +263,8 @@ export default function Blog() {
                     </div>
                 )}
             </article>
+
+            <ShareButtons blogId={String(blog?.id || "")} title={blog?.title || ""} />
         </section>
     )
 }
