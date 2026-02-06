@@ -6,6 +6,7 @@ import { routes } from './router/routes'
 import { Provider } from 'react-redux'
 import { store } from './RTK/app/store'
 import { ClerkProvider } from '@clerk/clerk-react'
+import { HelmetProvider } from 'react-helmet-async'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -17,7 +18,11 @@ if (!PUBLISHABLE_KEY) {
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-      <Provider store={store}><RouterProvider router={routes} /></Provider>
+      <Provider store={store}>
+        <HelmetProvider>
+          <RouterProvider router={routes} />
+        </HelmetProvider>
+      </Provider>
     </ClerkProvider>
   </StrictMode>,
 )
