@@ -16,15 +16,10 @@ const ShareButtons = ({ slug, title }: { slug: string; title: string }) => {
 
     const [copied, setCopied] = useState(false);
 
-    // ⚠️ সুরক্ষা: যদি কোনো কারণে slug না আসে, তবে বাটন রেন্ডার হবে না
     if (!slug) return null;
 
-    // ✅ ফিক্স: এখানে dynamic window.location.origin ব্যবহার করবেন না।
-    // কারণ লোকালহোস্টে কাজ করার সময় এটি ভুল লিংক জেনারেট করবে।
-    // শেয়ার লিংক সবসময় লাইভ সাইটের হতে হবে।
     const domain = "https://www.advprince.com/";
 
-    // ২. ম্যাজিক লিংক তৈরি (এটি ব্যাকএন্ডে হিট করে প্রিভিউ আনবে)
     const shareUrl = `${domain}/api/share/blog/${slug}`;
 
     const handleCopyLink = async () => {
