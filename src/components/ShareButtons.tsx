@@ -12,22 +12,31 @@ import {
 import { Link, Check, Share2 } from "lucide-react";
 import toast from "react-hot-toast";
 
-const ShareButtons = ({ slug, title }: { slug: string; title: string }) => {
+// ইন্টারফেসে _id যুক্ত করা হয়েছে
+interface ShareButtonsProps {
+    slug: string;
+    title: string;
+    id: string; // ✅ নতুন প্রপ: ব্লগের আইডি
+}
+
+const ShareButtons = ({ slug, title, id }: ShareButtonsProps) => {
 
     const [copied, setCopied] = useState(false);
 
-    // সুরক্ষা: স্লাগ না থাকলে রেন্ডার হবে না
-    if (!slug) return null;
+    if (!slug || !id) return null;
 
-    // ✅ ফিক্স: শেষের স্ল্যাশ (/) সরানো হয়েছে যাতে ডবল স্ল্যাশ না হয়
     const domain = "https://www.advprince.com";
 
-    // লিংক তৈরি
-    const shareUrl = `${domain}/api/share/blog/${slug}`;
+    // 🔗 ১. ফেসবুকের জন্য স্লাগ লিংক (আগের মতোই)
+    const slugShareUrl = `${domain}/api/share/blog/${slug}`;
+
+    // 🔗 ২. বাকিদের জন্য আইডি লিংক (যেটা প্রিভিউ কাজ করে)
+    const idShareUrl = `${domain}/api/share/blog/${id}`;
 
     const handleCopyLink = async () => {
         try {
-            await navigator.clipboard.writeText(shareUrl);
+            // কপি হবে আইডি ওয়ালা লিংক
+            await navigator.clipboard.writeText(idShareUrl);
             setCopied(true);
             toast.success("Link copied with preview!");
             setTimeout(() => setCopied(false), 2000);
@@ -39,7 +48,6 @@ const ShareButtons = ({ slug, title }: { slug: string; title: string }) => {
 
     return (
         <div className="w-full mt-8 mb-4">
-            {/* কন্টেইনার ডিজাইন: মোবাইলে কলাম, বড় স্ক্রিনে রো (Row) */}
             <div className="flex flex-col sm:flex-row items-center sm:justify-between bg-gray-50 border border-gray-100 p-4 rounded-xl shadow-sm gap-4">
 
                 {/* টেক্সট সেকশন */}
@@ -50,20 +58,20 @@ const ShareButtons = ({ slug, title }: { slug: string; title: string }) => {
                     <p className="font-bold text-sm uppercase tracking-wide">Share this article</p>
                 </div>
 
-                {/* বাটন গ্রুপ: মোবাইলে র‍্যাপ হবে এবং সেন্টারে থাকবে */}
+                {/* বাটন গ্রুপ */}
                 <div className="flex flex-wrap justify-center sm:justify-end gap-3">
 
-                    {/* Facebook */}
+                    {/* ✅ Facebook: আগের স্লাগ লিংক ব্যবহার করবে */}
                     <FacebookShareButton
-                        url={shareUrl}
+                        url={slugShareUrl}
                         className="hover:scale-110 transition-transform duration-200 focus:outline-none"
                     >
                         <FacebookIcon size={40} round={true} />
                     </FacebookShareButton>
 
-                    {/* WhatsApp */}
+                    {/* ✅ WhatsApp: এখন আইডি লিংক ব্যবহার করবে */}
                     <WhatsappShareButton
-                        url={shareUrl}
+                        url={idShareUrl}
                         title={title}
                         separator=":: "
                         className="hover:scale-110 transition-transform duration-200 focus:outline-none"
@@ -71,9 +79,9 @@ const ShareButtons = ({ slug, title }: { slug: string; title: string }) => {
                         <WhatsappIcon size={40} round={true} />
                     </WhatsappShareButton>
 
-                    {/* LinkedIn */}
+                    {/* ✅ LinkedIn: এখন আইডি লিংক ব্যবহার করবে */}
                     <LinkedinShareButton
-                        url={shareUrl}
+                        url={idShareUrl}
                         title={title}
                         summary={title}
                         source="Adv Prince"
@@ -82,21 +90,21 @@ const ShareButtons = ({ slug, title }: { slug: string; title: string }) => {
                         <LinkedinIcon size={40} round={true} />
                     </LinkedinShareButton>
 
-                    {/* Twitter (X) */}
+                    {/* ✅ Twitter: এখন আইডি লিংক ব্যবহার করবে */}
                     <TwitterShareButton
-                        url={shareUrl}
+                        url={idShareUrl}
                         title={title}
                         className="hover:scale-110 transition-transform duration-200 focus:outline-none"
                     >
                         <TwitterIcon size={40} round={true} />
                     </TwitterShareButton>
 
-                    {/* ✅ Copy Link Button (Custom Styled) */}
+                    {/* ✅ Copy Link: এখন আইডি লিংক কপি করবে */}
                     <button
                         onClick={handleCopyLink}
                         className={`flex items-center justify-center w-[40px] h-[40px] rounded-full shadow-sm transition-all duration-200 hover:scale-110 focus:outline-none ${copied
-                                ? "bg-green-500 text-white shadow-green-200"
-                                : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-100"
+                            ? "bg-green-500 text-white shadow-green-200"
+                            : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-100"
                             }`}
                         title="Copy Link with Preview"
                     >
