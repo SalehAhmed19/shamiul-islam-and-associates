@@ -264,7 +264,7 @@ export default function Blog() {
                 )}
             </article>
 
-            <ShareButtons blogId={String(blog?.id || "")} title={blog?.title || ""} />
+            <ShareButtons blogId={String(blog?._id || "")} title={blog?.title || ""} />
         </section>
     )
 }

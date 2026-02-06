@@ -11,7 +11,7 @@ import {
 
 // ১. Props-এ 'url' এর বদলে 'blogId' নিচ্ছি, যাতে ব্যাকএন্ড লিংক বানাতে পারি
 const ShareButtons = ({ blogId, title }: { blogId: string; title: string }) => {
-
+    console.log(blogId)
     // ২. আপনার ব্যাকএন্ডের ডোমেইন এখানে বসান (অথবা .env ফাইল থেকে নিন)
     // উদাহরণ: https://api.advprince.com বা http://localhost:5000
     const backendUrl = import.meta.env.VITE_baseURL || "http://localhost:4000/api";
