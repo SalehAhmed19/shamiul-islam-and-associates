@@ -1,8 +1,12 @@
 {
   "rewrites": [
     {
+      "source": "/api/share/blog/:match*",
+      "destination": "https://shamiul-islam-and-associates-server.onrender.com/api/share/blog/:match*"
+    },
+    {
       "source": "/(.*)",
-      "destination": "/index.html" 
+      "destination": "/index.html"
     }
   ]
 }
