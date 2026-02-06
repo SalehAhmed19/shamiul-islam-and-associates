@@ -265,7 +265,7 @@ export default function Blog() {
             </article>
 
             <div className="container max-w-4xl mx-auto px-4 py-6 md:py-12">
-                <ShareButtons blogId={String(blog?._id || "")} title={blog?.title || ""} />
+                <ShareButtons slug={blog?.slug || ""} title={blog?.title || ""} />
             </div>
         </section>
     )
