@@ -59,9 +59,9 @@ export default function MainLayout() {
                 chatMessage="Hey, how can I help you today?"
                 darkMode
             />
-            <div className="flex justify-center items-center p-5">
-                <TotalVisitors />
-            </div>
+
+            <TotalVisitors />
+
         </div>
     );
 }
