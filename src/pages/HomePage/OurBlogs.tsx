@@ -54,7 +54,7 @@ export default function OurBlogs() {
                     .map((blog) => (
                         <BlogCard
                             key={blog._id}
-                            _id={blog._id || ""}
+                            slug={blog.slug || ""}
                             image={blog.image?.url || ""}
                             title={blog.title}
                             date={blog.date}

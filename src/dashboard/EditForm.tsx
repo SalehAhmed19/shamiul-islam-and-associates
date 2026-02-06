@@ -17,46 +17,58 @@ import { useState, useEffect } from "react";
 import AddBlogsLoading from "@/components/ui/Loadings/AddBlogsLoading";
 import { useGetBlog } from "@/hooks/useGetBlog";
 import imageCompression from "browser-image-compression";
-import CloudinaryImageUploader from "txb-cloudinary-image-uploader"
+import CloudinaryImageUploader from "txb-cloudinary-image-uploader";
 
 export default function EditForm() {
     const { id } = useParams();
     const [preview, setPreview] = useState<string | null>(null);
-    const { blog } = useGetBlog(id ? id : "");
+
+    // id না থাকলে খালি স্ট্রিং পাঠানো হচ্ছে যাতে useGetBlog ক্রাশ না করে
+    const { blog } = useGetBlog(id || "");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
-    const fromSchema = z.object({
+    // স্কিমার নাম ঠিক করা হয়েছে: fromSchema -> formSchema
+    const formSchema = z.object({
         title: z.string().min(3, "Title must be at least 3 characters long").optional().or(z.literal("")),
-        category: z.string().min(3, "Category is required").optional().or(z.literal("")),
-        date: z.string().min(3, "Date is required").optional().or(z.literal("")),
-        author: z.string().min(3, "Author is required").optional().or(z.literal("")),
+        category: z.string().min(1, "Category is required").optional().or(z.literal("")),
+        date: z.string().min(1, "Date is required").optional().or(z.literal("")),
+        author: z.string().min(1, "Author is required").optional().or(z.literal("")),
         image: z.any().optional(),
         relatedVideoLink: z.string().optional().or(z.literal("")),
-        content: z.string().min(3, "Content is required").optional().or(z.literal("")),
+        content: z.string().min(10, "Content needs to be more descriptive").optional().or(z.literal("")),
     });
 
-    const form = useForm<z.infer<typeof fromSchema>>({
+    const form = useForm<z.infer<typeof formSchema>>({
         mode: "onChange",
-        resolver: zodResolver(fromSchema),
+        resolver: zodResolver(formSchema),
     });
 
-    // Update form values when blog data arrives
+    // Update form values AND Preview when blog data arrives
     useEffect(() => {
         if (blog) {
+            // ১. ক্যাটাগরি ম্যাচিং লজিক (Title বা Value দুটোর সাথেই চেক করবে)
+            const matchedOption = options.find(opt => opt.title === blog.category || opt.value === blog.category);
+            const categoryValue = matchedOption ? matchedOption.value : blog.category;
+
             form.reset({
                 title: blog.title,
-                category: blog.category,
+                category: categoryValue, // ফিক্সড ক্যাটাগরি ভ্যালু
                 date: blog.date,
                 author: blog.author || "অ্যাড. সামিউল ইসলাম প্রিন্স",
                 relatedVideoLink: blog.relatedVideoLink,
                 content: blog.content
             });
+
+            // ২. প্রিভিউ ইমেজ ফিক্স: আগের ছবি থাকলে সেটা দেখাবে
+            if (blog.image && blog.image.url) {
+                setPreview(blog.image.url);
+            }
         }
     }, [blog, form]);
 
-    const onSubmit = async (data: z.infer<typeof fromSchema>) => {
+    const onSubmit = async (data: z.infer<typeof formSchema>) => {
         try {
             setIsSubmitting(true);
             const compressedOption = {
@@ -67,10 +79,14 @@ export default function EditForm() {
 
             let imagePayload = null;
 
-            // Only upload if a new file is selected
+            // যদি নতুন ফাইল সিলেক্ট করা হয়, তবেই আপলোড হবে
             if (data.image instanceof File) {
                 const compressedImage = await imageCompression(data.image, compressedOption);
-                imagePayload = await CloudinaryImageUploader(compressedImage, import.meta.env.VITE_CLOUDINARY_PRESET, import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
+                imagePayload = await CloudinaryImageUploader(
+                    compressedImage,
+                    import.meta.env.VITE_CLOUDINARY_PRESET,
+                    import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
+                );
             }
 
             const formData: Blog = {
@@ -79,9 +95,11 @@ export default function EditForm() {
                 category: data.category || "",
                 date: data.date || "",
                 author: data.author || "অ্যাড. সামিউল ইসলাম প্রিন্স",
-                image: imagePayload,
+                // লজিক: নতুন ছবি ? নতুন ছবি : (আগের ছবি ? আগের ছবি : null)
+                image: imagePayload ? imagePayload : (blog?.image || null),
                 relatedVideoLink: data.relatedVideoLink || "",
                 content: data.content || ""
+                // slug পাঠানো হচ্ছে না, যাতে সার্ভারে ডুপ্লিকেট এরর না দেয়
             };
 
             await dispatch(updateBlog(formData)).unwrap();
@@ -186,20 +204,18 @@ export default function EditForm() {
                                             className={`flex flex-col items-center justify-center w-full h-32 md:h-40 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-all overflow-hidden relative ${preview ? 'border-none p-0' : ''}`}
                                         >
                                             {preview ? (
-                                                // Preview Image Logic
                                                 <div className="w-full h-full relative group">
                                                     <img
                                                         src={preview}
                                                         alt="Preview"
                                                         className="w-full h-full object-cover rounded-lg"
                                                     />
-                                                    {/* Hover Overlay to show user they can change it */}
+                                                    {/* Hover Overlay */}
                                                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
                                                         <p className="text-white text-sm font-semibold">Change Image</p>
                                                     </div>
                                                 </div>
                                             ) : (
-                                                // Default Upload UI
                                                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
                                                     <UploadCloud className="w-8 h-8 mb-2 text-gray-400 group-hover:text-[#604B33]" />
                                                     <p className="text-xs md:text-sm text-gray-500">
@@ -227,7 +243,7 @@ export default function EditForm() {
                                             />
                                         </label>
 
-                                        {/* Filename text below box (optional - keeping your original style logic) */}
+                                        {/* Show filename only if it's a NEW file */}
                                         {!preview && form.watch("image") instanceof File && (
                                             <p className="text-xs text-[#604B33] mt-1 italic">
                                                 New file selected: {form.watch("image").name}
@@ -265,9 +281,8 @@ export default function EditForm() {
                         </Button>
                         <Button
                             type="button"
-                            // variant="outline"
                             onClick={() => navigate(-1)}
-                            className="w-full md:w-auto px-10 h-12 border-gray-300"
+                            className="w-full md:w-auto px-10 h-12 text-lg flex gap-2 items-center justify-center"
                         >
                             Cancel
                         </Button>

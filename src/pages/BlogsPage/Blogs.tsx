@@ -34,7 +34,7 @@ export default function Blogs() {
                             image={blog.image?.url as string}
                             title={blog.title}
                             date={blog.date}
-                            _id={blog._id ? blog._id : ""}
+                            slug={blog.slug || ""}
                         />
                     ))}
                 </div>

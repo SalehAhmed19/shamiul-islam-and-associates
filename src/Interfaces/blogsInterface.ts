@@ -4,6 +4,7 @@ export interface Blog {
     title: string;
     author: string;
     category: string;
+    slug?: string;
     date: string;
     relatedVideoLink: string;
     content: string; // The HTML string from Tiptap

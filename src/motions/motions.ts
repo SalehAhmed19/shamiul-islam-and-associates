@@ -61,7 +61,7 @@ export const bannerVariants: Variants = {
 
 export const buttonVariants: Variants = {
     hover: {
-        scale: 1.2,
+        scale: 1.1,
         transition: {
             type: "spring",
             stiffness: 260,

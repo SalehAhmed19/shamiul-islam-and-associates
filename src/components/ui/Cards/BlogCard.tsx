@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { OurBlogsVariants } from "@/motions/motions";
 import { motion } from "framer-motion";
 
-export default function BlogCard({ image, title, date, _id }: { image: string, title: string, date: string, _id: string }) {
+export default function BlogCard({ image, title, date, slug }: { image: string, title: string, date: string, slug: string }) {
     return (
         <motion.div
             variants={OurBlogsVariants}
@@ -29,7 +29,7 @@ export default function BlogCard({ image, title, date, _id }: { image: string, t
                         whileInView="textWhileInView"
                         className="text-black/60 text-sm">{date}</motion.p>
 
-                    <Link to={`/blogs/${_id}`}>
+                    <Link to={`/blogs/${slug}`}>
                         <motion.h5
                             variants={OurBlogsVariants}
                             initial="titleInitial"
