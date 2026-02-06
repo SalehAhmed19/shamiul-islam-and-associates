@@ -81,6 +81,7 @@ export default function Footer() {
             <div className="relative z-10 p-5 mt-10 text-center text-white/50 border-t border-white/10 text-sm">
                 <p>&copy; {new Date().getFullYear()} | <a href="https://www.facebook.com/adv.prince.islam/" target="_blank" className="font-bold hover:text-white">Shamiul Islam & Associates</a>. All rights reserved. | Developed by <a href="https://www.facebook.com/techxbureau" target="_blank" className="font-bold hover:text-white">Tech<span className="text-orange-500">X</span>bureau</a></p>
             </div>
+
         </motion.footer >
     )
 }
