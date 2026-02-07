@@ -5,6 +5,10 @@
       "destination": "https://shamiul-islam-and-associates-server.onrender.com/api/share/blog/:match*"
     },
     {
+      "source": "/www-advprince-com-sitemap.xml",
+      "destination": "https://shamiul-islam-and-associates-server.onrender.com/www-advprince-com-sitemap.xml"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
