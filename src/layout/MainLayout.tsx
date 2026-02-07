@@ -8,7 +8,6 @@ import { FloatingWhatsApp } from 'react-floating-whatsapp'
 import { icons } from "@/assets/assets";
 // import ReactPixel from 'react-facebook-pixel';
 import { AnimatePresence, motion } from "framer-motion";
-import TotalVisitors from "@/components/TotalVisitors";
 
 export default function MainLayout() {
     const [loading, setLoading] = useState<boolean>(true);
@@ -59,8 +58,6 @@ export default function MainLayout() {
                 chatMessage="Hey, how can I help you today?"
                 darkMode
             />
-
-            <TotalVisitors />
 
         </div>
     );

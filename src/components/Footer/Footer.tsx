@@ -3,6 +3,7 @@ import { icons, images } from "../../assets/assets";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { footerVariants } from "@/motions/motions";
+import TotalVisitors from "../TotalVisitors";
 
 export default function Footer() {
     return (
@@ -78,8 +79,9 @@ export default function Footer() {
             </div>
 
             {/* copyright */}
-            <div className="relative z-10 p-5 mt-10 text-center text-white/50 border-t border-white/10 text-sm">
+            <div className="relative z-10 flex flex-col items-center justify-center gap-2 p-5 mt-10 text-center text-white/50 border-t border-white/10 text-sm">
                 <p>&copy; {new Date().getFullYear()} | <a href="https://www.facebook.com/adv.prince.islam/" target="_blank" className="font-bold hover:text-white">Shamiul Islam & Associates</a>. All rights reserved. | Developed by <a href="https://www.facebook.com/techxbureau" target="_blank" className="font-bold hover:text-white">Tech<span className="text-orange-500">X</span>bureau</a></p>
+                <TotalVisitors />
             </div>
 
         </motion.footer >

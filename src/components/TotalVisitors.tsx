@@ -33,7 +33,7 @@ const TotalVisitors = () => {
 
     return (
         <div
-            className="fixed bottom-5 left-5 z-50 flex items-center gap-3 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-[#604B33]/20 shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-default"
+            className="flex items-center gap-3 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#604B33]/20 shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-default"
         >
             {/* Icon Box */}
             <div className="p-1.5 bg-[#604B33] rounded-full text-white shadow-sm">
@@ -42,11 +42,11 @@ const TotalVisitors = () => {
 
             {/* Text Content */}
             <div className="flex flex-col leading-none pr-1">
-                <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">
+                <span className="text-[10px] text-white font-bold uppercase tracking-wider">
                     Total Visitors
                 </span>
                 {/* টেক্সট কালার পরিবর্তন করেছি কারণ ব্যাকগ্রাউন্ড সাদা */}
-                <span className="text-base font-extrabold text-[#604B33]">
+                <span className="text-base font-extrabold text-white">
                     {visitors.toLocaleString()}
                 </span>
             </div>

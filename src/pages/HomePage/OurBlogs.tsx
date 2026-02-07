@@ -48,9 +48,7 @@ export default function OurBlogs() {
             {/* Added container mx-auto here so the grid aligns with the header */}
             <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
                 {blogs
-                    ?.slice()
-                    .reverse()
-                    .slice(0, 3)
+                    ?.slice(0, 3)
                     .map((blog) => (
                         <BlogCard
                             key={blog._id}
