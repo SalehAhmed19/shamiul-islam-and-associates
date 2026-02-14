@@ -1,0 +1,82 @@
+{
+  "nav_logo": "Shamiul Islam & Associates",
+  "nav_home": "Home",
+  "nav_about": "About",
+  "nav_blogs": "Blogs",
+  "nav_services": "Services",
+  "nav_associates": "Associates",
+  "nav_contact": "Contact",
+
+  "banner_title": "Solving Complex Legal Challenges.",
+  "banner_description": "Expert representation focused on achieving clear, favorable, and decisive results for you.",
+  "banner_btn_text": "Make enquiry",
+
+  "message_heading": "Dedicated Expertise for Your Legal Needs",
+  "message_description": "We provide clear, effective, and trustworthy legal services. We're here to understand your unique situation and guide you with expert advice and strong representation. Your legal clarity and peace of mind are our priority.",
+
+  "service_civil_title": "Civil Law",
+  "service_civil_desc": "We provides clear and effective legal solutions for a wide range of civil matters. We help clients navigate complex disputes, ensuring their rights and interests are protected through dedicated representation.",
+  "service_criminal_title": "Criminal Law",
+  "service_criminal_desc": "We provides clear and effective legal solutions for a wide range of civil matters. We help clients navigate complex disputes, ensuring their rights and interests are protected through dedicated representation.",
+  "service_family_title": "Family Law",
+  "service_family_desc": "We provides clear and compassionate legal support for all Family Law matters. We assist with cases including divorce, child custody, and maintenance.",
+  "service_banking_title": "Banking & Finance",
+  "service_banking_desc": "We offer expert legal services in Banking and Finance, helping clients navigate complex regulations and transactions. Our focus is on providing clear, practical solutions.",
+  "service_corporate_title": "Corporate Law",
+  "service_corporate_desc": "We offers expert counsel in Corporate Law, simplifying complex legal challenges for businesses. We assist with a variety of needs, including contracts and compliance.",
+  "service_cyber_title": "Cyber Law",
+  "service_cyber_desc": "We offers expert counsel in Cyber Law, simplifying complex legal challenges for businesses. We assist with a variety of needs, including contracts, compliance, and corporate structuring.",
+
+  "hol_name": "Shamiul Islam Prince",
+  "hol_designation": "Head of Legal",
+  "hol_court": "Advocate Bangladesh Supreme Court",
+  "hol_meet_title": "Meet Advocate Shamiul Islam Prince",
+  "hol_quote_main": "Justice is not",
+  "hol_quote_sub": "just a profession; it is a responsibility",
+  "hol_intro": "Hello, I am Advocate Md. Shamiul Islam (Prince), an Advocate of the Supreme Court of Bangladesh. My career is built on a foundation of integrity and a passion for upholding the law.",
+  "hol_education": "I graduated from Northern University Bangladesh (NUB) and have since dedicated my life to the legal profession. Beyond representing clients, I served as an Executive Committee Member (2022-23) of the Dhaka Bar Association.",
+  "hol_strategic_quote": "\"Whether you are seeking legal counsel for complex litigation or require guidance on legal procedures, I am here to provide strategic and effective solutions.\"",
+  "hol_commitment": "Committed to ensuring your rights are protected within the complex framework of our legal system.",
+
+  "ask_title": "Have Legal Questions? Ask Our Experts!",
+  "ask_btn": "Ask an expert",
+
+  "associates_heading": "Our Associates",
+  "associates_subtitle": "Experienced Legal Counsel Dedicated to Your Success",
+
+  "legal_exc_heading": "Legal Excellence, <br /> Personalized Care",
+  "legal_exc_description": "At our firm, we combine world-class legal expertise with a deep commitment to understanding your individual story. We believe that achieving legal excellence is only half the battle; the other half is providing the compassionate, one-on-one attention you deserve. Trust our dedicated team to protect your interests with sophisticated strategies while treating your case with the personal care it requires.",
+  "legal_exc_btn": "Learn More",
+
+  "consult_title": "Request A Free <br className='hidden md:block' />Consultation",
+  "consult_description": "Take the first step toward resolving your legal concerns with a complimentary, no-obligation session. Our expert team is ready to listen to your unique situation and provide professional guidance tailored to your needs. Contact us today to secure your free consultation and gain the clarity you deserve.",
+
+  "faq_heading": "Frequently Asked Questions",
+  "faq_q1": "What types of cases does your firm handle?",
+  "faq_a1": "We are a full-service law firm. Our expertise spans across Civil Litigation, Criminal Defense, Corporate Law, Family Law (including Divorce and Inheritance), Land Disputes, and Writ Petitions in the Supreme Court of Bangladesh.",
+
+  "faq_q2": "How do I book a consultation with a lawyer?",
+  "faq_a2": "You can book an appointment by calling our office directly at +880 1711 602 369, emailing us at adv.prince.islam@gmail.com, or filling out the contact form on our website. We offer both in-person meetings at our chambers and virtual consultations via Zoom/WhatsApp.",
+
+  "faq_q3": "What should I bring to my first meeting?",
+  "faq_a3": "To provide the best advice, please bring all relevant documents, including:",
+  "faq_b1": "National ID (NID) or Passport.",
+  "faq_b2": "Copies of any existing court orders or summons.",
+  "faq_b3": "Relevant contracts, land deeds (Khatiyan/Dalil), or police reports (FIR/GD).",
+  "faq_b4": "Any other documents that may be relevant to your case.",
+
+  "faq_q4": "How are legal fees determined in Bangladesh?",
+  "faq_a4": "Fees vary based on the complexity of the case and the level of the court (e.g., Assistant Judge Court vs. High Court Division).",
+
+  "blogs_heading": "Our Latest Blogs",
+  "blogs_subtitle": "Stay ahead of the curve with our expert articles and news.",
+  "blogs_loading_subtitle": "Stay informed with expert legal insights and the latest updates on your rights, tailored to help you navigate your journey with confidence.",
+
+  "footer_desc": "Dedicated to providing world-class legal solutions with a commitment to integrity and personalized attention. We empower our clients with the expert guidance needed to navigate complex legal landscapes with confidence.",
+  "footer_quick_links": "Quick Links",
+  "footer_find_us": "Find us",
+  "footer_practice_areas": "Practice Areas",
+  "footer_address": "Room No- B15,(3rd Floor), Nahar Complex, 25/1, Court House Street, Dhaka-1100, Bangladesh.",
+  "footer_rights": "All rights reserved.",
+  "footer_developed": "Developed by"
+}
