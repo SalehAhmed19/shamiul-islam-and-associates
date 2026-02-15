@@ -40,13 +40,13 @@ export default function HomeLoading() {
         xmlns="http://www.w3.org/2000/svg"
       >
         <motion.path
-          stroke="#DBB671"
+          stroke="#604B33"
           strokeWidth="3"
           initial={{ pathLength: 0, opacity: 0 }}
           animate={{
             pathLength: 1,
             opacity: 1,
-            fill: "#DBB671",
+            fill: "#604B33",
           }}
           transition={{
             pathLength: { duration: 2, ease: "easeInOut" },
