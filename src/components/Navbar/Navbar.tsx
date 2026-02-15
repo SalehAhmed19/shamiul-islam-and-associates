@@ -24,7 +24,7 @@ export default function Navbar() {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
-  const navLinks = ["home", "about", "services", "blogs", "contact"];
+  const navLinks = ["home", "about", "services", "blogs", "news", "contact"];
 
   return (
     <motion.nav
