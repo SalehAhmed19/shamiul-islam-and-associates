@@ -92,5 +92,31 @@
   "stats_satisfied_clients": "Satisfied Clients",
   "stats_success_rate": "Success Rate",
   "stats_experience": "Years of Experience",
-  "stats_case_closed": "Case Closed"
+  "stats_case_closed": "Case Closed",
+
+  "service_content_heading": "Tailored Legal Solutions, <br className='hidden md:block' /> Exceptional Results",
+  "service_content_p1": "We believe that every client deserves a strategy as unique as their case, which is why we meticulously craft our legal approach to align with your specific goals. By combining in-depth industry knowledge with unwavering dedication, we navigate the complexities of the law to protect your interests at every turn.",
+  "service_content_p2": "Experience the peace of mind that comes from having a partner driven to deliver the exceptional results you deserve.",
+
+  "step_1_title": "Schedule a Time",
+  "step_1_desc": "Choose a convenient slot on our calendar to book your expert consultation",
+  "step_2_title": "Meet a Consultant",
+  "step_2_desc": "Schedule a one-on-one session with our experienced consultants to receive tailored advice and strategic solutions for your unique legal challenges.",
+  "step_3_title": "Successful Planning",
+  "step_3_desc": "Strategic success begins with meticulous preparation, transforming your long-term vision into a clear and actionable roadmap for growth.",
+  "step_4_title": "Successful Case",
+  "step_4_desc": "Celebrating a proven track record of victory and justice through our history of landmark legal achievements.",
+
+  "practice_area_heading": "Practice Area",
+  "practice_area_subtitle": "Providing specialized legal representation across a comprehensive range of disciplines to protect your rights and interests.",
+
+  "contact_heading": "Contact Us",
+  "contact_sub_title": "Have any questions? <br className='hidden md:block' /> Feel free to contact us!",
+  "contact_desc": "Our dedicated legal team is here to provide the support and clarity you need—reach out today for a personalized consultation tailored to your situation.",
+  "contact_phone_title": "Phone Numbers",
+  "contact_address_title": "Physical Address",
+  "contact_email_title": "Email",
+  "contact_hours_title": "Opening Hours",
+  "contact_hours_week": "Sunday - Thursday: 9:00 AM - 6:00 PM",
+  "contact_hours_off": "Friday - Saturday: Closed"
 }

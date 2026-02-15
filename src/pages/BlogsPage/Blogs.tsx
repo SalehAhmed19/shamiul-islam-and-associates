@@ -18,7 +18,7 @@ export default function Blogs() {
 
   return (
     <section>
-      <Header image={images.blogs} title="Blogs" />
+      <Header image={images.blogs} title="page_title_blogs" />
 
       {/* Changes made:
                 1. Added 'px-4': Prevents cards from touching screen edges on mobile.
