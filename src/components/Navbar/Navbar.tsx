@@ -288,7 +288,7 @@
 
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { icons } from "../../assets/assets";
+import { icons, images } from "../../assets/assets";
 import { motion, AnimatePresence } from "framer-motion";
 import { navbarVariants } from "@/motions/motions";
 import LanguageSwitcher from "../ui/LanguageSwitcher";
@@ -331,7 +331,7 @@ export default function Navbar() {
         {/* --- LOGO --- */}
         <Link to="/" className="flex items-center gap-2 group shrink-0">
           <img
-            src={icons.logo}
+            src={images.logoV2}
             alt="logo"
             className="w-8 h-8 transition-transform duration-300 group-hover:scale-110 md:w-10 md:h-10"
           />
@@ -377,7 +377,7 @@ export default function Navbar() {
           <div className="flex items-center gap-2 px-4 py-2 border rounded-full bg-white/10 backdrop-blur-sm border-white/20">
             <img src={icons.call} alt="call" className="w-4 h-4" />
             <span className="text-xs font-bold tracking-tighter text-white lg:text-sm">
-              +880 1711 602 369
+              {t("nav_phone_number")}
             </span>
           </div>
           <LanguageSwitcher />
@@ -426,7 +426,7 @@ export default function Navbar() {
               <div className="flex flex-col items-center w-3/4 gap-6 pt-6 border-t border-white/10">
                 <div className="flex items-center gap-2 text-white">
                   <img src={icons.call} alt="call" className="w-5 h-5" />
-                  <span className="font-bold">+880 1711 602 369</span>
+                  <span className="font-bold">{t("nav_phone_number")}</span>
                 </div>
                 <LanguageSwitcher />
               </div>

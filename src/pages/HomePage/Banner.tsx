@@ -73,6 +73,14 @@ export default function Banner() {
       {/* --- Content Container --- */}
       <div className="container relative z-10 flex flex-col items-center px-4 mx-auto text-center sm:px-6 md:px-12">
         <div className="max-w-4xl space-y-6 md:space-y-8">
+          <motion.img
+            variants={bannerVariants}
+            initial="logoInitial"
+            whileInView="logoWhileInView"
+            src={images.logoV2}
+            alt="logo"
+            className="w-20 h-20 mx-auto mb-4 md:w-36 md:h-36"
+          />
           {/* Responsive Heading */}
           <motion.h1
             variants={bannerVariants}

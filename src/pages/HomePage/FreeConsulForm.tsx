@@ -80,9 +80,9 @@ export default function FreeConsulForm() {
                 <motion.img
                   variants={consultationVariants}
                   whileInView="logoRotation"
-                  src={icons.logo2}
+                  src={images.logoV2}
                   alt="logo"
-                  className="w-20 mx-auto rounded-full md:w-24"
+                  className="w-20 mx-auto md:w-24"
                 />
               </div>
 

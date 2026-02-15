@@ -94,7 +94,7 @@ import {
   FaXTwitter,
   FaYoutube,
 } from "react-icons/fa6";
-import { icons, images } from "../../assets/assets";
+import { images } from "../../assets/assets";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { footerVariants } from "@/motions/motions";
@@ -125,7 +125,7 @@ export default function Footer() {
         <div className="col-span-1 space-y-6 md:col-span-2">
           <div className="flex items-center gap-2">
             <img
-              src={icons.logo}
+              src={images.logoV2}
               alt="logo"
               className="object-contain w-10 h-10"
             />
@@ -236,18 +236,38 @@ export default function Footer() {
           </h5>
           <ul className="space-y-3 text-gray-300">
             {[
-              "civil",
-              "criminal",
-              "family",
-              "banking",
-              "corporate",
-              "cyber",
-            ].map((area) => (
+              {
+                link: "https://www.judiciary.org.bd/",
+                title: t("footer_important_link_1"),
+              },
+              {
+                link: "https://www.supremecourt.gov.bd/",
+                title: t("footer_important_link_2"),
+              },
+              {
+                link: "https://scba.org.bd/",
+                title: t("footer_important_link_3"),
+              },
+              {
+                link: "https://dhakabarassociation.com/",
+                title: t("footer_important_link_4"),
+              },
+              {
+                link: "https://uttoradhikar.gov.bd/",
+                title: t("footer_important_link_5"),
+              },
+              {
+                link: "https://bdlaws.minlaw.gov.bd/",
+                title: t("footer_important_link_6"),
+              },
+            ].map((link) => (
               <li
-                key={area}
+                key={link.link}
                 className="hover:text-[#dbb671] transition-colors cursor-pointer"
               >
-                {t(`service_${area}_title`)}
+                <a href={link.link} target="_blank">
+                  {link.title}
+                </a>
               </li>
             ))}
           </ul>

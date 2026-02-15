@@ -17,29 +17,31 @@ import contact from "../assets/images/contact.png";
 import tanvir from "../assets/images/tanvir.png";
 import avatar from "@/assets/images/avatar.png";
 import prince from "@/assets/images/prince.jpg";
+import logoV2 from "@/assets/images/logo-law.png";
 
 export const images = {
-    hero,
-    prince1,
-    prince2,
-    soton1,
-    zakaria1,
-    ask,
-    footer,
-    legal1,
-    freeConsultation,
-    Header,
-    signature,
-    serviceHeader,
-    faq,
-    blogs,
-    contact,
-    tanvir,
-    avatar,
-    prince
-}
+  hero,
+  prince1,
+  prince2,
+  soton1,
+  zakaria1,
+  ask,
+  footer,
+  legal1,
+  freeConsultation,
+  Header,
+  signature,
+  serviceHeader,
+  faq,
+  blogs,
+  contact,
+  tanvir,
+  avatar,
+  prince,
+  logoV2,
+};
 
-import logo from "../assets/icons/logo.png"
+import logo from "../assets/icons/logo.png";
 import logo2 from "../assets/icons/logo.jpg";
 import shield1 from "../assets/icons/shield 1.svg";
 import banking from "../assets/icons/banking.svg";
@@ -48,7 +50,7 @@ import corporate from "../assets/icons/corporate.svg";
 import criminal from "../assets/icons/criminal.svg";
 import cyber from "../assets/icons/cyber.svg";
 import family from "../assets/icons/family.svg";
-import call from "../assets/icons/call.svg"
+import call from "../assets/icons/call.svg";
 import calendar from "../assets/icons/calendar.svg";
 import consult from "../assets/icons/consult.svg";
 import handshake from "../assets/icons/handshake.svg";
@@ -59,27 +61,27 @@ import email from "../assets/icons/email (1).svg";
 import clock from "../assets/icons/clock.svg";
 
 export const icons = {
-    logo,
-    shield1,
-    banking,
-    civil,
-    corporate,
-    criminal,
-    cyber,
-    family,
-    call,
-    calendar,
-    consult,
-    handshake,
-    order,
-    logo2,
-    clock,
-    email,
-    location,
-    phoneBig
-}
+  logo,
+  shield1,
+  banking,
+  civil,
+  corporate,
+  criminal,
+  cyber,
+  family,
+  call,
+  calendar,
+  consult,
+  handshake,
+  order,
+  logo2,
+  clock,
+  email,
+  location,
+  phoneBig,
+};
 
 import legalVideo from "../assets/video/legal.mp4";
 export const videos = {
-    legalVideo
-}
+  legalVideo,
+};

@@ -10,17 +10,17 @@ import OurBlogs from "./OurBlogs";
 import Services from "./Services";
 
 export default function Home() {
-    return (
-        <div>
-            <Banner />
-            <Services />
-            <HeadOfLegal />
-            <Ask />
-            <OurAssociates />
-            <LegalExcellence />
-            <FreeConsulForm />
-            <Faq />
-            <OurBlogs />
-        </div>
-    )
+  return (
+    <div>
+      <Banner />
+      <Services />
+      <HeadOfLegal />
+      <Ask />
+      <OurAssociates />
+      <LegalExcellence />
+      <FreeConsulForm />
+      <Faq />
+      <OurBlogs />
+    </div>
+  );
 }
