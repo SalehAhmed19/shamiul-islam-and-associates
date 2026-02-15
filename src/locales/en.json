@@ -78,5 +78,19 @@
   "footer_practice_areas": "Practice Areas",
   "footer_address": "Room No- B15,(3rd Floor), Nahar Complex, 25/1, Court House Street, Dhaka-1100, Bangladesh.",
   "footer_rights": "All rights reserved.",
-  "footer_developed": "Developed by"
+  "footer_developed": "Developed by",
+
+  "page_title_about": "About Us",
+  "page_title_services": "Our Services",
+  "page_title_contact": "Contact Us",
+  "page_title_blogs": "Latest Blogs",
+
+  "about_content_text": "Established in 2014 by Advocate Md. Shamiul Islam, This Law Chamber has swiftly emerged as one of the top law firms in Dhaka, Bangladesh. Over the years, our chamber has garnered a strong reputation as a premier full-service law firm for its exceptional legal counselling, documentation and representation in and out of the Courtroom. Our team of highly skilled and dedicated lawyers, including company lawyers, corporate lawyers, civil lawyers, and criminal defence lawyers, are renowned for their unwavering determination, hard work, and consistent delivery of the best legal aid to businesses and individuals within and beyond the borders of Bangladesh.",
+
+  "stats_heading": "We Provide Best Solutions",
+  "stats_description": "We provide clear, effective, and trustworthy legal services. We're here to understand your unique situation and guide you with expert advice and strong representation. Your legal clarity and peace of mind are our priority.",
+  "stats_satisfied_clients": "Satisfied Clients",
+  "stats_success_rate": "Success Rate",
+  "stats_experience": "Years of Experience",
+  "stats_case_closed": "Case Closed"
 }
