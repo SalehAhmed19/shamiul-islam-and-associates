@@ -519,10 +519,10 @@ export const consultationVariants: Variants = {
       ease: "easeInOut",
     },
   },
-  logoRotation: {
-    rotate: 360,
-    transition: { delay: 1.2, duration: 1, ease: "linear" },
-  },
+  //   logoRotation: {
+  //     rotate: 360,
+  //     transition: { delay: 1.2, duration: 1, ease: "linear" },
+  //   },
   formFieldInitial: {
     opacity: 0,
     y: -20,
