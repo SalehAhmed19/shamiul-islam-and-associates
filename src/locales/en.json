@@ -118,5 +118,12 @@
   "contact_email_title": "Email",
   "contact_hours_title": "Opening Hours",
   "contact_hours_week": "Sunday - Thursday: 9:00 AM - 6:00 PM",
-  "contact_hours_off": "Friday - Saturday: Closed"
+  "contact_hours_off": "Friday - Saturday: Closed",
+
+  "Head of Legal": "Head of Legal",
+  "Consultant": "Consultant",
+  "Senior Consultant": "Senior Consultant",
+  "Advocate Bangladesh Supreme Court": "Advocate Bangladesh Supreme Court",
+  "Senior Associate": "Senior Associate",
+  "Associate": "Associate"
 }

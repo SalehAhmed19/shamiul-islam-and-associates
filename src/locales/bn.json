@@ -118,5 +118,12 @@
   "contact_email_title": "ইমেইল",
   "contact_hours_title": "অফিস আওয়ার",
   "contact_hours_week": "রবিবার - বৃহস্পতিবার: সকাল ৯:০০ - সন্ধ্যা ৬:০০",
-  "contact_hours_off": "শুক্রবার - শনিবার: বন্ধ"
+  "contact_hours_off": "শুক্রবার - শনিবার: বন্ধ",
+
+  "Head of Legal": "হেড অফ লিগ্যাল",
+  "Consultant": "কন্সালট্যান্ট",
+  "Senior Consultant": "সিনিয়র কন্সালট্যান্ট",
+  "Advocate Bangladesh Supreme Court": "আইনজীবী, বাংলাদেশ সুপ্রিম কোর্ট",
+  "Senior Associate": "সিনিয়র সহযোগী",
+  "Associate": "সহযোগী"
 }
