@@ -44,7 +44,7 @@
 //         </section ></Element>
 //     )
 // }
-import { icons, images } from "../../assets/assets";
+import { images } from "../../assets/assets";
 import ContactForm from "@/components/ui/Forms/ContactForm";
 import { Element } from "react-scroll";
 import { motion } from "framer-motion";

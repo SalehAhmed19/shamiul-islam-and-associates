@@ -24,7 +24,7 @@ export default function Navbar() {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
-  const navLinks = ["home", "about", "services", "blogs", "news", "contact"];
+  const navLinks = ["home", "about", "services", "blogs", "contact"];
 
   return (
     <motion.nav
@@ -93,6 +93,7 @@ export default function Navbar() {
             </span>
           </div>
           <LanguageSwitcher />
+          {/* <LogoSvg /> */}
         </div>
 
         {/* --- MOBILE TOGGLE --- */}
