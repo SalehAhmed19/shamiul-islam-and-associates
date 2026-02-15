@@ -37,7 +37,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 export default function AboutContent() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   return (
     <section
