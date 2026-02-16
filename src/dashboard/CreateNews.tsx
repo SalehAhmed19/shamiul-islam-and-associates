@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import imageCompression from "browser-image-compression";
 import {
   Form,
   FormControl,
@@ -12,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import TipTap from "@/components/ui/TextEditor/TipTap";
 import type { Blog } from "@/Interfaces/blogsInterface";
-import { updateBlog } from "@/RTK/features/blogs/blogsSlice";
+import { createBlog } from "@/RTK/features/blogs/blogsSlice";
 import { useAppDispatch } from "@/hooks/hooks";
 import toast from "react-hot-toast";
 import {
@@ -23,82 +24,48 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { options } from "@/data/blogsCategory";
-import { Edit, UploadCloud } from "lucide-react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+// import { uploadToCloudinary } from "@/utils/uploadToCloudinary";
+import { Plus, UploadCloud } from "lucide-react"; // Added X icon for clear functionality optional
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import AddBlogsLoading from "@/components/ui/Loadings/AddBlogsLoading";
-import { useGetBlog } from "@/hooks/useGetBlog";
-import imageCompression from "browser-image-compression";
 import CloudinaryImageUploader from "txb-cloudinary-image-uploader";
 
-export default function EditForm() {
-  const { id } = useParams();
-  const [preview, setPreview] = useState<string | null>(null);
-
-  // id না থাকলে খালি স্ট্রিং পাঠানো হচ্ছে যাতে useGetBlog ক্রাশ না করে
-  const { blog } = useGetBlog(id || "");
+export default function CreateNews() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // Preview state ব্যবহার করা হয়েছে
+  const [preview, setPreview] = useState<string | null>(null);
   const navigate = useNavigate();
+  const currentDate = new Date().toDateString();
+
+  const fromSchema = z.object({
+    title: z.string().min(3, "Title must be at least 3 characters long"),
+    category: z.string().min(1, "Please select a category"),
+    date: z.string().min(3, "Date is required"),
+    author: z.string().min(3, "Author must be at least 3 characters long"),
+    image: z
+      .instanceof(File)
+      .refine(
+        (file) => file.size <= 3.1 * 1024 * 1024,
+        "Image size must be less than 3.1MB",
+      ),
+    relatedVideoLink: z.string().optional(),
+    content: z.string().min(10, "Content must be at least 10 characters long"),
+  });
+
+  const form = useForm<z.infer<typeof fromSchema>>({
+    mode: "onChange",
+    resolver: zodResolver(fromSchema),
+    defaultValues: {
+      date: currentDate,
+      author: "অ্যাড. সামিউল ইসলাম প্রিন্স",
+      content: "",
+    },
+  });
+
   const dispatch = useAppDispatch();
 
-  // স্কিমার নাম ঠিক করা হয়েছে: fromSchema -> formSchema
-  const formSchema = z.object({
-    title: z
-      .string()
-      .min(3, "Title must be at least 3 characters long")
-      .optional()
-      .or(z.literal("")),
-    category: z
-      .string()
-      .min(1, "Category is required")
-      .optional()
-      .or(z.literal("")),
-    date: z.string().min(1, "Date is required").optional().or(z.literal("")),
-    author: z
-      .string()
-      .min(1, "Author is required")
-      .optional()
-      .or(z.literal("")),
-    image: z.any().optional(),
-    relatedVideoLink: z.string().optional().or(z.literal("")),
-    content: z
-      .string()
-      .min(10, "Content needs to be more descriptive")
-      .optional()
-      .or(z.literal("")),
-  });
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    mode: "onChange",
-    resolver: zodResolver(formSchema),
-  });
-
-  // Update form values AND Preview when blog data arrives
-  useEffect(() => {
-    if (blog) {
-      // ১. ক্যাটাগরি ম্যাচিং লজিক (Title বা Value দুটোর সাথেই চেক করবে)
-      const matchedOption = options.find(
-        (opt) => opt.title === blog.category || opt.value === blog.category,
-      );
-      const categoryValue = matchedOption ? matchedOption.value : blog.category;
-
-      form.reset({
-        title: blog.title,
-        category: categoryValue, // ফিক্সড ক্যাটাগরি ভ্যালু
-        date: blog.date,
-        author: blog.author || "অ্যাড. সামিউল ইসলাম প্রিন্স",
-        relatedVideoLink: blog.relatedVideoLink,
-        content: blog.content,
-      });
-
-      // ২. প্রিভিউ ইমেজ ফিক্স: আগের ছবি থাকলে সেটা দেখাবে
-      if (blog.image && blog.image.url) {
-        setPreview(blog.image.url);
-      }
-    }
-  }, [blog, form]);
-
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+  const onSubmit = async (data: z.infer<typeof fromSchema>) => {
     try {
       setIsSubmitting(true);
       const compressedOption = {
@@ -107,14 +74,16 @@ export default function EditForm() {
         useWebWorker: true,
       };
 
+      // ১. পরিবর্তন: শুরুতে এটি null বা undefined রাখুন, স্ট্রিং "" নয়
       let imagePayload = null;
 
-      // যদি নতুন ফাইল সিলেক্ট করা হয়, তবেই আপলোড হবে
-      if (data.image instanceof File) {
+      if (data.image) {
         const compressedImage = await imageCompression(
           data.image,
           compressedOption,
         );
+
+        // using txb-cloudinary-image-uploader
         imagePayload = await CloudinaryImageUploader(
           compressedImage,
           import.meta.env.VITE_CLOUDINARY_PRESET,
@@ -123,46 +92,41 @@ export default function EditForm() {
       }
 
       const formData: Blog = {
-        _id: blog?._id || "",
-        title: data.title || "",
-        category: data.category || "",
-        date: data.date || "",
-        author: data.author || "অ্যাড. সামিউল ইসলাম প্রিন্স",
-        // লজিক: নতুন ছবি ? নতুন ছবি : (আগের ছবি ? আগের ছবি : null)
-        image: imagePayload ? imagePayload : blog?.image || null,
+        ...data,
+        // ৩. পরিবর্তন: পুরো অবজেক্টটি পাস করছেন (ব্যাকএন্ড স্কিমা এটি এক্সপেক্ট করছে)
+        image: imagePayload,
         relatedVideoLink: data.relatedVideoLink || "",
-        content: data.content || "",
-        // slug পাঠানো হচ্ছে না, যাতে সার্ভারে ডুপ্লিকেট এরর না দেয়
       };
 
-      await dispatch(updateBlog(formData)).unwrap();
-      toast.success("Blog updated successfully");
+      await dispatch(createBlog(formData)).unwrap();
+      toast.success("Blog added successfully");
+      setPreview(null);
       navigate("/dashboard/secure/admin-panel/manage-blogs");
     } catch (error) {
       toast.error("Something went wrong!");
-      console.error(error);
+      console.error("Submission Error:", error);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  if (isSubmitting) return <AddBlogsLoading title="Blog Updating..." />;
+  if (isSubmitting) return <AddBlogsLoading title="Blog Creating..." />;
 
   return (
-    <section className="max-w-5xl p-4 mx-auto space-y-8 bg-white border rounded-lg shadow-sm md:p-8 border-black/10">
+    <section className="max-w-5xl p-4 mx-auto space-y-6 bg-white border rounded-lg md:p-8 border-black/10">
       <header className="space-y-1">
         <h1 className="text-2xl md:text-3xl font-bold text-[#604B33]">
-          Update Blog Post
+          Create a News
         </h1>
         <p className="text-sm text-gray-500">
-          Fill in the details below to update a blog post.
+          Fill in the details below to publish a new post.
         </p>
       </header>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          {/* Grid for Title and Category */}
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {/* Title & Category Row */}
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
             <FormField
               control={form.control}
               name="title"
@@ -171,8 +135,8 @@ export default function EditForm() {
                   <FormLabel className="font-semibold">Title</FormLabel>
                   <FormControl>
                     <Input
-                      className="rounded-md py-6 border-gray-300 focus:ring-2 focus:ring-[#604B33]"
-                      placeholder="Enter title"
+                      className="py-5 rounded-md md:py-6"
+                      placeholder="e.g. Legal rules for marriage..."
                       {...field}
                     />
                   </FormControl>
@@ -187,9 +151,12 @@ export default function EditForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="font-semibold">Category</FormLabel>
-                  <Select onValueChange={field.onChange} value={field.value}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <FormControl>
-                      <SelectTrigger className="py-6 border-gray-300 rounded-md">
+                      <SelectTrigger className="py-5 rounded-md md:py-6">
                         <SelectValue placeholder="Select Category" />
                       </SelectTrigger>
                     </FormControl>
@@ -207,8 +174,8 @@ export default function EditForm() {
             />
           </div>
 
-          {/* Grid for Date and Author */}
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {/* Date & Author Row */}
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
             <FormField
               control={form.control}
               name="date"
@@ -216,10 +183,7 @@ export default function EditForm() {
                 <FormItem>
                   <FormLabel className="font-semibold">Date</FormLabel>
                   <FormControl>
-                    <Input
-                      className="py-6 border-gray-300 rounded-md"
-                      {...field}
-                    />
+                    <Input className="py-5 rounded-md md:py-6" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -233,10 +197,7 @@ export default function EditForm() {
                 <FormItem>
                   <FormLabel className="font-semibold">Author</FormLabel>
                   <FormControl>
-                    <Input
-                      className="py-6 border-gray-300 rounded-md"
-                      {...field}
-                    />
+                    <Input className="py-5 rounded-md md:py-6" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -244,20 +205,20 @@ export default function EditForm() {
             />
           </div>
 
-          {/* Video Link & Image Upload Section */}
-          <div className="grid items-start grid-cols-1 gap-6 md:grid-cols-2">
+          {/* Video Link & Image Upload Row */}
+          <div className="grid items-start grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
             <FormField
               control={form.control}
               name="relatedVideoLink"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="font-semibold">
-                    Related Video Link
+                    Video Link (Optional)
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="py-6 border-gray-300 rounded-md"
-                      placeholder="Paste video URL"
+                      className="py-5 rounded-md md:py-6"
+                      placeholder="YouTube/Vimeo URL"
                       {...field}
                     />
                   </FormControl>
@@ -281,13 +242,14 @@ export default function EditForm() {
                         className={`flex flex-col items-center justify-center w-full h-32 md:h-40 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-all overflow-hidden relative ${preview ? "border-none p-0" : ""}`}
                       >
                         {preview ? (
+                          // Preview Image Logic
                           <div className="relative w-full h-full group">
                             <img
                               src={preview}
                               alt="Preview"
                               className="object-cover w-full h-full rounded-lg"
                             />
-                            {/* Hover Overlay */}
+                            {/* Hover Overlay to show user they can change it */}
                             <div className="absolute inset-0 flex items-center justify-center transition-opacity rounded-lg opacity-0 bg-black/40 group-hover:opacity-100">
                               <p className="text-sm font-semibold text-white">
                                 Change Image
@@ -295,6 +257,7 @@ export default function EditForm() {
                             </div>
                           </div>
                         ) : (
+                          // Default Upload UI
                           <div className="flex flex-col items-center justify-center pt-5 pb-6">
                             <UploadCloud className="w-8 h-8 mb-2 text-gray-400 group-hover:text-[#604B33]" />
                             <p className="text-xs text-gray-500 md:text-sm">
@@ -326,7 +289,7 @@ export default function EditForm() {
                         />
                       </label>
 
-                      {/* Show filename only if it's a NEW file */}
+                      {/* Filename text below box (optional - keeping your original style logic) */}
                       {!preview && form.watch("image") instanceof File && (
                         <p className="text-xs text-[#604B33] mt-1 italic">
                           New file selected: {form.watch("image").name}
@@ -340,7 +303,7 @@ export default function EditForm() {
             />
           </div>
 
-          {/* Rich Text Content */}
+          {/* Full Width Content Area */}
           <FormField
             control={form.control}
             name="content"
@@ -348,9 +311,9 @@ export default function EditForm() {
               <FormItem>
                 <FormLabel className="font-semibold">Blog Content</FormLabel>
                 <FormControl>
-                  <div className="border rounded-md overflow-hidden min-h-[300px] bg-white">
+                  <div className="min-h-[300px] border rounded-md overflow-hidden bg-white">
                     <TipTap
-                      description={field.value || ""}
+                      description={field.value}
                       onChange={field.onChange}
                     />
                   </div>
@@ -360,18 +323,12 @@ export default function EditForm() {
             )}
           />
 
-          <div className="flex flex-col gap-4 pt-4 md:flex-row">
+          <div className="pt-4">
             <button
               type="submit"
               className="flex items-center justify-center w-full gap-2 transition-transform md:w-auto active:scale-95 bg-[#604B33] text-white font-semibold px-6 py-3 rounded-md cursor-pointer"
             >
-              Update Blog <Edit size={18} />
-            </button>
-            <button
-              type="submit"
-              className="flex items-center justify-center w-full gap-2 px-6 text-white transition-transform duration-300 bg-red-700 border-gray-300 rounded-md cursor-pointer md:w-auto active:scale-95 sm:w-auto hover:bg-red-800"
-            >
-              Cancel
+              Publish Blog <Plus size={20} />
             </button>
           </div>
         </form>

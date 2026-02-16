@@ -7,6 +7,14 @@ import MainLayout from "../layout/MainLayout";
 import DashboardLayout from "../layout/DashboardLayout";
 import ProtectedRoute from "./ProtectedRoute";
 import HomeLoading from "@/components/ui/Loadings/HomeLoading";
+import ManageNews from "@/dashboard/ManageNews";
+import CreateNews from "@/dashboard/CreateNews";
+import EditNews from "@/dashboard/EditNews";
+import DashboardLayoutV2 from "@/layout/DashboardLayoutV2";
+import Dashboard from "@/dashboardV2/Dashboard";
+import BlogsManagement from "@/dashboardV2/BlogsManagement";
+import AssociateManagement from "@/dashboardV2/AssociateManagement";
+import NewsManagement from "@/dashboardV2/NewsManagement";
 
 // Lazy Imports for Public Pages
 const Home = lazy(() => import("../pages/HomePage/Home"));
@@ -90,6 +98,32 @@ export const routes = createBrowserRouter([
     ],
   },
   {
+    path: "/dashboard-v2",
+    element: (
+      <ProtectedRoute>
+        <DashboardLayoutV2 />
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Dashboard />,
+      },
+      {
+        path: "blogs",
+        element: <BlogsManagement />,
+      },
+      {
+        path: "members",
+        element: <AssociateManagement />,
+      },
+      {
+        path: "news",
+        element: <NewsManagement />,
+      },
+    ],
+  },
+  {
     path: "/dashboard/secure/admin-panel",
     // ProtectedRoute এবং Layout সাধারণভাবেই লোড হবে
     element: (
@@ -119,6 +153,30 @@ export const routes = createBrowserRouter([
         element: (
           <Suspense fallback={<HomeLoading />}>
             <EditBlogs />
+          </Suspense>
+        ),
+      },
+      {
+        path: "create-news",
+        element: (
+          <Suspense fallback={<HomeLoading />}>
+            <CreateNews />
+          </Suspense>
+        ),
+      },
+      {
+        path: "manage-news",
+        element: (
+          <Suspense fallback={<HomeLoading />}>
+            <ManageNews />
+          </Suspense>
+        ),
+      },
+      {
+        path: "manage-news/edit-news/:id",
+        element: (
+          <Suspense fallback={<HomeLoading />}>
+            <EditNews />
           </Suspense>
         ),
       },
