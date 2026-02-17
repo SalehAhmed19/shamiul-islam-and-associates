@@ -40,7 +40,7 @@ export default function Navbar() {
       }`}
     >
       <div className="container flex items-center justify-between px-4 mx-auto md:px-6 lg:px-8">
-        {/* --- LOGO --- */}
+        {/* --- LOGO Changed--- */}
         <Link to="/" className="flex items-center gap-2 group shrink-0">
           <img
             src={images.logoV2}
