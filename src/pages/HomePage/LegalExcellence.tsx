@@ -92,7 +92,7 @@ export default function LegalExcellence() {
           variants={legalExcellenceVariants}
           initial="imageInitial"
           whileInView="imageWhileInView"
-          className="w-full h-full overflow-hidden cursor-pointer"
+          className="w-full h-full overflow-hidden rounded-lg shadow-lg cursor-pointer"
         >
           <motion.img
             variants={legalExcellenceVariants}

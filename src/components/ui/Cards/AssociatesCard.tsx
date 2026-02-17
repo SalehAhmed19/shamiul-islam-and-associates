@@ -76,7 +76,11 @@ export default function AssociatesCard({
         i18n.language === "bn" ? "font-bengali" : "font-english"
       }`}
     >
-      <img src={image} alt={name} className="object-cover w-full" />
+      <img
+        src={image}
+        alt={name}
+        className="object-cover w-full rounded-lg shadow-lg aspect-square"
+      />
       <div className="font-bold text-center">
         <motion.h3
           variants={ourAssociatesVariants}
