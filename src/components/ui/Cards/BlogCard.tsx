@@ -22,7 +22,7 @@ export default function BlogCard({
     >
       <div className="space-y-4 cursor-pointer group">
         {/* Image Wrapper for scaling effect */}
-        <div className="overflow-hidden">
+        <div className="overflow-hidden rounded-lg">
           <motion.img
             variants={OurBlogsVariants}
             whileHover="imageHover"
