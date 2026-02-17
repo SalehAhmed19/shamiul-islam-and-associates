@@ -45,7 +45,7 @@ export default function Navbar() {
           <img
             src={images.logoV2}
             alt="logo"
-            className="w-8 h-8 transition-transform duration-300 group-hover:scale-110 md:w-10 md:h-10"
+            className="w-8 h-8 transition-transform duration-300 group-hover:scale-110 md:w-20 md:h-20"
           />
           <h1 className="text-sm font-bold tracking-tight text-white uppercase sm:text-base lg:text-lg">
             {t("nav_logo")}
