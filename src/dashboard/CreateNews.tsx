@@ -432,7 +432,7 @@ export default function CreateNews() {
       await dispatch(createNews(formData)).unwrap();
       toast.success("News published successfully!");
       setPreview(null);
-      navigate("/dashboard/secure/admin-panel/manage-blogs");
+      navigate("/dashboard/secure/admin-panel/manage-news");
     } catch (error) {
       toast.error("Failed to publish news.");
       console.error("Submission Error:", error);

@@ -14,19 +14,21 @@ import toast from "react-hot-toast";
 
 interface ShareButtonsProps {
   title: string;
-  id: string; // ✅ আইডি অবশ্যই লাগবে
+  id: string;
+  type?: "blogs" | "news"; // ✅ নতুন প্রপস যোগ করা হয়েছে (ডিফল্ট blog)
 }
 
-const ShareButtons = ({ title, id }: ShareButtonsProps) => {
+const ShareButtons = ({ title, id, type = "blogs" }: ShareButtonsProps) => {
   const [copied, setCopied] = useState(false);
 
   if (!id) return null;
 
   const domain = "https://www.advprince.com";
 
-  // ✅ একটাই লিংক (সবাই ID ব্যবহার করবে)
-  // এটি প্রিভিউ জেনারেট করার জন্য পারফেক্ট
-  const shareUrl = `${domain}/api/share/blog/${id}`;
+  // ✅ এখন এটি ডাইনামিকালি টাইপ অনুযায়ী API URL তৈরি করবে
+  // type 'news' হলে আসবে /api/share/news/${id}
+  // type 'blog' হলে আসবে /api/share/blog/${id}
+  const shareUrl = `${domain}/api/share/${type}/${id}`;
 
   const handleCopyLink = async () => {
     try {
@@ -48,13 +50,11 @@ const ShareButtons = ({ title, id }: ShareButtonsProps) => {
             <Share2 size={18} />
           </div>
           <p className="text-sm font-bold tracking-wide uppercase">
-            Share this article
+            Share this {type === "news" ? "news" : "article"}
           </p>
         </div>
 
         <div className="flex flex-wrap justify-center gap-3 sm:justify-end">
-          {/* ✅ সবাই এখন shareUrl (ID Link) ব্যবহার করছে */}
-
           <FacebookShareButton
             url={shareUrl}
             className="transition-transform duration-200 hover:scale-110"
@@ -91,7 +91,11 @@ const ShareButtons = ({ title, id }: ShareButtonsProps) => {
 
           <button
             onClick={handleCopyLink}
-            className={`flex items-center justify-center w-[40px] h-[40px] rounded-full shadow-sm transition-all duration-200 hover:scale-110 ${copied ? "bg-green-500 text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-100"}`}
+            className={`flex items-center justify-center w-[40px] h-[40px] rounded-full shadow-sm transition-all duration-200 hover:scale-110 ${
+              copied
+                ? "bg-green-500 text-white"
+                : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-100"
+            }`}
           >
             {copied ? <Check size={20} /> : <Link size={20} />}
           </button>
