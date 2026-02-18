@@ -22,7 +22,8 @@ const About = lazy(() => import("../pages/AboutPage/About"));
 const Service = lazy(() => import("../pages/ServicePage/Service"));
 const Blogs = lazy(() => import("../pages/BlogsPage/Blogs"));
 const Blog = lazy(() => import("../pages/BlogsPage/Blog"));
-const News = lazy(() => import("../pages/NewsUpdates/NewsUpdatePage"));
+const NewsUpdate = lazy(() => import("../pages/NewsUpdates/NewsUpdatePage"));
+const NewsDetail = lazy(() => import("../pages/NewsUpdates/News"));
 const Contact = lazy(() => import("../pages/ContactPage/Contact"));
 
 // Lazy Imports for Dashboard Pages
@@ -83,7 +84,15 @@ export const routes = createBrowserRouter([
         path: "/news",
         element: (
           <Suspense fallback={<HomeLoading />}>
-            <News />
+            <NewsUpdate />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/news/:slug",
+        element: (
+          <Suspense fallback={<HomeLoading />}>
+            <NewsDetail />
           </Suspense>
         ),
       },

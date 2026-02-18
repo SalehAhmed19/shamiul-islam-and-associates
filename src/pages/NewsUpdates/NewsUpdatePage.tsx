@@ -1,11 +1,12 @@
 import Header from "../../components/ui/Header/Header";
 import { images } from "../../assets/assets";
 import BlogCard from "../../components/ui/Cards/BlogCard";
-import { useGetBlogs } from "../../hooks/useGetBlogs";
 import BlogsPageLoading from "@/components/ui/Loadings/BlogsPageLoading";
+import { useGetNews } from "@/hooks/useGetNews";
+import NewsCard from "@/components/ui/Cards/NewsCard";
 
 export default function NewsUpdatePage() {
-  const { blogs, loading } = useGetBlogs();
+  const { news, loading } = useGetNews();
 
   if (loading)
     return (
@@ -14,7 +15,7 @@ export default function NewsUpdatePage() {
         <BlogsPageLoading />
       </section>
     );
-  console.log(blogs);
+  console.log(news);
 
   return (
     <section>
@@ -27,13 +28,13 @@ export default function NewsUpdatePage() {
       <div className="container px-4 py-10 mx-auto md:py-16">
         {/* Grid Layout */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-10">
-          {blogs?.map((blog, index) => (
-            <BlogCard
+          {news?.map((newsItem, index) => (
+            <NewsCard
               key={index}
-              image={blog.image?.url as string}
-              title={blog.title}
-              date={blog.date}
-              slug={blog.slug || ""}
+              image={newsItem.image?.url as string}
+              title={newsItem.title}
+              date={newsItem.date}
+              slug={newsItem.slug || ""}
             />
           ))}
         </div>

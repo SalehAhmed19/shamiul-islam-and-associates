@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { OurBlogsVariants } from "@/motions/motions";
 import { motion } from "framer-motion";
 
-export default function BlogCard({
+export default function NewsCard({
   image,
   title,
   date,
@@ -42,7 +42,7 @@ export default function BlogCard({
             {date}
           </motion.p>
 
-          <Link to={`/blogs/${slug}`}>
+          <Link to={`/news/${slug}`}>
             <motion.h5
               variants={OurBlogsVariants}
               initial="titleInitial"

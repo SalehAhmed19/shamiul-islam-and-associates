@@ -40,12 +40,12 @@ export default function Navbar() {
       }`}
     >
       <div className="container flex items-center justify-between px-4 mx-auto md:px-6 lg:px-8">
-        {/* --- LOGO --- */}
+        {/* --- LOGO Changed--- */}
         <Link to="/" className="flex items-center gap-2 group shrink-0">
           <img
             src={images.logoV2}
             alt="logo"
-            className="w-8 h-8 transition-transform duration-300 group-hover:scale-110 md:w-10 md:h-10"
+            className="w-8 h-8 transition-transform duration-300 group-hover:scale-110 md:w-20 md:h-20"
           />
           <h1 className="text-sm font-bold tracking-tight text-white uppercase sm:text-base lg:text-lg">
             {t("nav_logo")}
