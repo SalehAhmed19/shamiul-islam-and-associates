@@ -1,6 +1,5 @@
 import Header from "../../components/ui/Header/Header";
 import { images } from "../../assets/assets";
-import BlogCard from "../../components/ui/Cards/BlogCard";
 import BlogsPageLoading from "@/components/ui/Loadings/BlogsPageLoading";
 import { useGetNews } from "@/hooks/useGetNews";
 import NewsCard from "@/components/ui/Cards/NewsCard";

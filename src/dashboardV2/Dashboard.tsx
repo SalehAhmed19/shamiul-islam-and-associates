@@ -1,25 +1,25 @@
 import { useGetAssociates } from "@/hooks/useGetAssociates";
 import { useGetBlogs } from "@/hooks/useGetBlogs";
 import { axiosPublic } from "@/utils/axiosInstance";
-import { useAuth } from "@clerk/clerk-react";
+// import { useAuth } from "@clerk/clerk-react";
 import {
   BookOpen,
   Clock,
   ExternalLink,
   Eye,
   Facebook,
-  Link,
-  Link2Icon,
+  // Link,
+  // Link2Icon,
   Newspaper,
   ScanSearch,
-  Share,
+  // Share,
   Users,
   YoutubeIcon,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function Dashboard() {
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const { blogs } = useGetBlogs();
   const { associates } = useGetAssociates();
 
@@ -77,7 +77,7 @@ export default function Dashboard() {
   return (
     <div>
       <h2 className="text-2xl font-bold">
-        Welcome Back, {user?.firstName || "User"}!
+        {/* Welcome Back,  {user?.firstName || "User"}! */}
       </h2>
       <p className="text-black/50">Here's what happening on your CMS today.</p>
 
