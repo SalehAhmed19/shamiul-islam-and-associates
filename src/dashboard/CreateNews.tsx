@@ -31,9 +31,9 @@
 // import AddBlogsLoading from "@/components/ui/Loadings/AddBlogsLoading";
 // import CloudinaryImageUploader from "txb-cloudinary-image-uploader";
 
-// export default function AddBlogs() {
+// export default function CreateNews() {
 //   const [isSubmitting, setIsSubmitting] = useState(false);
-//   // Preview state ব্যবহার করা হয়েছে
+//   // Preview state ব্যবহার করা হয়েছে
 //   const [preview, setPreview] = useState<string | null>(null);
 //   const navigate = useNavigate();
 //   const currentDate = new Date().toDateString();
@@ -116,7 +116,7 @@
 //     <section className="max-w-5xl p-4 mx-auto space-y-6 bg-white border rounded-lg md:p-8 border-black/10">
 //       <header className="space-y-1">
 //         <h1 className="text-2xl md:text-3xl font-bold text-[#604B33]">
-//           Create a New Blog
+//           Create a News
 //         </h1>
 //         <p className="text-sm text-gray-500">
 //           Fill in the details below to publish a new post.
@@ -350,37 +350,26 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import TipTap from "@/components/ui/TextEditor/TipTap";
-import type { Blog } from "@/Interfaces/blogsInterface";
-import { createBlog } from "@/RTK/features/blogs/blogsSlice";
 import { useAppDispatch } from "@/hooks/hooks";
 import toast from "react-hot-toast";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { options } from "@/data/blogsCategory";
-import {
   Plus,
   UploadCloud,
-  PenTool,
   Type,
-  List,
   Calendar,
   User,
-  Youtube,
+  FileText,
   ImageIcon,
   Loader2,
-  FileText,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import AddBlogsLoading from "@/components/ui/Loadings/AddBlogsLoading";
 import CloudinaryImageUploader from "txb-cloudinary-image-uploader";
+import { createNews } from "@/RTK/features/news/newsSlice";
+import type { News } from "@/Interfaces/NewsInterface";
 
-export default function AddBlogs() {
+export default function CreateNews() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -388,7 +377,6 @@ export default function AddBlogs() {
 
   const fromSchema = z.object({
     title: z.string().min(3, "Title must be at least 3 characters long"),
-    category: z.string().min(1, "Please select a category"),
     date: z.string().min(3, "Date is required"),
     author: z.string().min(3, "Author must be at least 3 characters long"),
     image: z
@@ -397,7 +385,6 @@ export default function AddBlogs() {
         (file) => file.size <= 3.1 * 1024 * 1024,
         "Image size must be less than 3.1MB",
       ),
-    relatedVideoLink: z.string().optional(),
     content: z.string().min(10, "Content must be at least 10 characters long"),
   });
 
@@ -437,38 +424,37 @@ export default function AddBlogs() {
         );
       }
 
-      const formData: Blog = {
+      const formData: News = {
         ...data,
         image: imagePayload,
-        relatedVideoLink: data.relatedVideoLink || "",
       };
 
-      await dispatch(createBlog(formData)).unwrap();
-      toast.success("Blog added successfully");
+      await dispatch(createNews(formData)).unwrap();
+      toast.success("News published successfully!");
       setPreview(null);
       navigate("/dashboard/secure/admin-panel/manage-blogs");
     } catch (error) {
-      toast.error("Something went wrong!");
+      toast.error("Failed to publish news.");
       console.error("Submission Error:", error);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  if (isSubmitting) return <AddBlogsLoading title="Creating Blog..." />;
+  if (isSubmitting) return <AddBlogsLoading title="Publishing News..." />;
 
   return (
     <div className="min-h-screen p-4 font-sans bg-gray-50/50 md:p-8">
-      <section className="max-w-5xl mx-auto overflow-hidden bg-white border border-gray-200 shadow-sm rounded-xl">
+      <section className="max-w-4xl mx-auto overflow-hidden bg-white border border-gray-200 shadow-sm rounded-xl">
         {/* Header Section */}
         <div className="bg-[#604B33]/5 px-6 py-8 border-b border-[#604B33]/10">
           <div className="flex flex-col gap-2">
             <h1 className="text-2xl md:text-3xl font-bold text-[#604B33] flex items-center gap-2">
-              <PenTool className="w-8 h-8 opacity-80" />
-              Create a New Blog
+              <FileText className="w-8 h-8 opacity-80" />
+              Create News
             </h1>
             <p className="ml-1 text-sm text-gray-500 md:text-base">
-              Share your thoughts and knowledge with the world.
+              Share the latest updates with your audience.
             </p>
           </div>
         </div>
@@ -484,14 +470,16 @@ export default function AddBlogs() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="flex items-center gap-2 font-semibold text-gray-700">
-                        <Type size={16} /> Blog Title
+                        <Type size={16} /> Headline
                       </FormLabel>
                       <FormControl>
-                        <Input
-                          className="py-6 px-4 text-lg font-medium border-gray-200 focus:border-[#604B33] focus:ring-[#604B33]/20 transition-all rounded-lg"
-                          placeholder="e.g. The Future of Web Development..."
-                          {...field}
-                        />
+                        <div className="relative">
+                          <Input
+                            className="py-6 px-4 text-lg font-medium border-gray-200 focus:border-[#604B33] focus:ring-[#604B33]/20 transition-all rounded-lg"
+                            placeholder="Enter a catchy headline..."
+                            {...field}
+                          />
+                        </div>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -499,38 +487,8 @@ export default function AddBlogs() {
                 />
               </div>
 
-              {/* Category & Date Row */}
+              {/* Meta Info Row */}
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                <FormField
-                  control={form.control}
-                  name="category"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="flex items-center gap-2 font-semibold text-gray-700">
-                        <List size={16} /> Category
-                      </FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger className="py-5 border-gray-200 bg-gray-50/50">
-                            <SelectValue placeholder="Select Category" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {options.map((option) => (
-                            <SelectItem key={option.value} value={option.value}>
-                              {option.title}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
                 <FormField
                   control={form.control}
                   name="date"
@@ -549,10 +507,7 @@ export default function AddBlogs() {
                     </FormItem>
                   )}
                 />
-              </div>
 
-              {/* Author & Video Link Row */}
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <FormField
                   control={form.control}
                   name="author"
@@ -564,26 +519,6 @@ export default function AddBlogs() {
                       <FormControl>
                         <Input
                           className="py-5 border-gray-200 bg-gray-50/50"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="relatedVideoLink"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="flex items-center gap-2 font-semibold text-gray-700">
-                        <Youtube size={16} /> Video Link (Optional)
-                      </FormLabel>
-                      <FormControl>
-                        <Input
-                          className="py-5 border-gray-200 bg-gray-50/50"
-                          placeholder="https://youtube.com/..."
                           {...field}
                         />
                       </FormControl>
@@ -639,7 +574,7 @@ export default function AddBlogs() {
                                   Click to upload or drag and drop
                                 </p>
                                 <p className="text-xs text-gray-500">
-                                  JPG, PNG, WEBP (Max 3.1MB)
+                                  SVG, PNG, JPG or GIF (max. 3MB)
                                 </p>
                               </div>
                             </div>
@@ -712,7 +647,7 @@ export default function AddBlogs() {
                     </>
                   ) : (
                     <>
-                      Publish Blog <Plus size={20} className="stroke-[3px]" />
+                      Publish News <Plus size={20} className="stroke-[3px]" />
                     </>
                   )}
                 </button>
