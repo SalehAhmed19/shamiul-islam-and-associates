@@ -282,12 +282,7 @@ export default function News() {
       </article>
 
       <div className="container max-w-4xl px-4 py-6 mx-auto md:py-12">
-        <ShareButtons
-          title={news.title}
-          id={news._id as string}
-          slug={news.slug as string}
-          type="news"
-        />
+        <ShareButtons title={news.title} id={news._id as string} type="news" />
       </div>
     </section>
   );
