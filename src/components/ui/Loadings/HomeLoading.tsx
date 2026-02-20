@@ -66,7 +66,7 @@ import { motion, type Variants } from "framer-motion";
 
 export default function HomeLoading() {
   const brandColor = "#604B33"; // আপনার দেওয়া ব্র্যান্ড কালার
-  const bgColor = "#120F0D"; // ডার্ক ব্যাকগ্রাউন্ড
+  // const bgColor = "#120F0D"; // ডার্ক ব্যাকগ্রাউন্ড
 
   // মেইন কন্টেইনার ভেরিয়েন্ট (staggerChildren ব্যবহার করা হয়েছে যাতে একটির পর একটি ড্র হয়)
   const containerVariants: Variants = {
