@@ -1,21 +1,86 @@
+// // import { images } from "../../assets/assets";
+// // import Button from "../../components/ui/Buttons/Button";
+// // import { Link } from "react-scroll";
+// // import { motion } from "framer-motion";
+// // import { bannerVariants } from "@/motions/motions";
+
+// // export default function Banner() {
+// //   return (
+// //     <section
+// //       style={{ backgroundImage: `url(${images.hero})` }}
+// //       className="relative flex items-center justify-center h-screen text-white bg-center bg-no-repeat bg-cover"
+// //     >
+// //       {/* --- Overlay (Optional but recommended for text readability) --- */}
+// //       <div className="absolute inset-0 bg-black/40"></div>
+
+// //       {/* --- Content Container --- */}
+// //       <div className="container relative z-10 flex flex-col items-center px-4 mx-auto text-center sm:px-6 md:px-12">
+// //         <div className="max-w-4xl space-y-6 md:space-y-8">
+// //           {/* Responsive Heading */}
+// //           <motion.h1
+// //             variants={bannerVariants}
+// //             initial="headingInitial"
+// //             whileInView="headingWhileInView"
+// //             className="text-3xl font-bold leading-tight uppercase sm:text-4xl md:text-5xl lg:text-6xl"
+// //           >
+// //             Solving Complex Legal <br className="hidden md:block" /> Challenges.
+// //           </motion.h1>
+
+// //           {/* Responsive Paragraph */}
+// //           <motion.p
+// //             variants={bannerVariants}
+// //             initial="paragraphInitial"
+// //             whileInView="paragraphWhileInView"
+// //             className="max-w-2xl mx-auto text-sm font-semibold text-gray-100 sm:text-base md:text-lg lg:text-xl"
+// //           >
+// //             Expert representation focused on achieving clear, favorable, and{" "}
+// //             <br className="hidden md:block" /> decisive results for you.
+// //           </motion.p>
+// //         </div>
+
+// //         {/* Button Container with margin top */}
+// //         <div className="mt-8 md:mt-12">
+// //           <Link to="contact">
+// //             <Button className="block mx-auto">Make enquiry</Button>
+// //           </Link>
+// //         </div>
+// //       </div>
+// //     </section>
+// //   );
+// // }
+
 // import { images } from "../../assets/assets";
 // import Button from "../../components/ui/Buttons/Button";
 // import { Link } from "react-scroll";
 // import { motion } from "framer-motion";
 // import { bannerVariants } from "@/motions/motions";
+// import { useTranslation } from "react-i18next";
 
 // export default function Banner() {
+//   const { t, i18n } = useTranslation(); // i18n অবজেক্টটি নিয়ে আসা হলো
+
 //   return (
 //     <section
 //       style={{ backgroundImage: `url(${images.hero})` }}
-//       className="relative flex items-center justify-center h-screen text-white bg-center bg-no-repeat bg-cover"
+//       // ভাষা অনুযায়ী ফন্ট ক্লাস সেট করা হলো
+//       className={`relative flex items-center justify-center h-screen text-white bg-center bg-no-repeat bg-cover ${
+//         i18n.language === "bn" ? "font-bengali" : "font-english"
+//       }`}
 //     >
-//       {/* --- Overlay (Optional but recommended for text readability) --- */}
+//       {/* --- Overlay --- */}
 //       <div className="absolute inset-0 bg-black/40"></div>
 
 //       {/* --- Content Container --- */}
 //       <div className="container relative z-10 flex flex-col items-center px-4 mx-auto text-center sm:px-6 md:px-12">
 //         <div className="max-w-4xl space-y-6 md:space-y-8">
+//           <motion.img
+//             variants={bannerVariants}
+//             initial="logoInitial"
+//             whileInView="logoWhileInView"
+//             src={images.logoV2}
+//             alt="logo"
+//             className="w-20 h-20 mx-auto mb-4 md:w-36 md:h-36"
+//           />
 //           {/* Responsive Heading */}
 //           <motion.h1
 //             variants={bannerVariants}
@@ -23,7 +88,8 @@
 //             whileInView="headingWhileInView"
 //             className="text-3xl font-bold leading-tight uppercase sm:text-4xl md:text-5xl lg:text-6xl"
 //           >
-//             Solving Complex Legal <br className="hidden md:block" /> Challenges.
+//             {/* JSON থেকে ডাটা আনা হলো */}
+//             {t("banner_title")}
 //           </motion.h1>
 
 //           {/* Responsive Paragraph */}
@@ -33,15 +99,15 @@
 //             whileInView="paragraphWhileInView"
 //             className="max-w-2xl mx-auto text-sm font-semibold text-gray-100 sm:text-base md:text-lg lg:text-xl"
 //           >
-//             Expert representation focused on achieving clear, favorable, and{" "}
-//             <br className="hidden md:block" /> decisive results for you.
+//             {/* JSON থেকে ডাটা আনা হলো */}
+//             {t("banner_description")}
 //           </motion.p>
 //         </div>
 
-//         {/* Button Container with margin top */}
+//         {/* Button Container */}
 //         <div className="mt-8 md:mt-12">
 //           <Link to="contact">
-//             <Button className="block mx-auto">Make enquiry</Button>
+//             <Button className="block mx-auto">{t("banner_btn_text")}</Button>
 //           </Link>
 //         </div>
 //       </div>
@@ -57,60 +123,111 @@ import { bannerVariants } from "@/motions/motions";
 import { useTranslation } from "react-i18next";
 
 export default function Banner() {
-  const { t, i18n } = useTranslation(); // i18n অবজেক্টটি নিয়ে আসা হলো
+  const { t, i18n } = useTranslation();
 
   return (
     <section
-      style={{ backgroundImage: `url(${images.hero})` }}
-      // ভাষা অনুযায়ী ফন্ট ক্লাস সেট করা হলো
-      className={`relative flex items-center justify-center h-screen text-white bg-center bg-no-repeat bg-cover ${
+      className={`relative flex items-center justify-center min-h-[100svh] overflow-hidden text-white bg-center bg-no-repeat bg-cover bg-local lg:bg-fixed ${
         i18n.language === "bn" ? "font-bengali" : "font-english"
       }`}
+      style={{
+        backgroundImage: `url(${images.hero})`,
+      }}
     >
-      {/* --- Overlay --- */}
-      <div className="absolute inset-0 bg-black/40"></div>
+      {/* --- Sophisticated Overlays --- */}
+      {/* Base dark overlay */}
+      <div className="absolute inset-0 bg-black/50"></div>
+      {/* Gradient from bottom to top to make text pop more while keeping top slightly lighter */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
 
       {/* --- Content Container --- */}
-      <div className="container relative z-10 flex flex-col items-center px-4 mx-auto text-center sm:px-6 md:px-12">
-        <div className="max-w-4xl space-y-6 md:space-y-8">
+      {/* Adjusted padding to prevent overlap with navbar on top and scroll indicator on bottom */}
+      <div className="container relative z-10 flex flex-col items-center justify-center h-full px-4 pt-24 pb-16 mx-auto text-center sm:px-6 md:px-12 md:pt-32 lg:pt-0 lg:pb-0">
+        {/* Responsive gaps: tighter on mobile, looser on desktop */}
+        <div className="flex flex-col items-center w-full max-w-6xl gap-4 sm:gap-6 md:gap-8 lg:gap-10">
+          {/* Animated Logo */}
           <motion.img
             variants={bannerVariants}
             initial="logoInitial"
             whileInView="logoWhileInView"
+            viewport={{ once: true }}
             src={images.logoV2}
-            alt="logo"
-            className="w-20 h-20 mx-auto mb-4 md:w-36 md:h-36"
+            alt={`${t("nav_logo")} Logo`}
+            className="object-contain w-16 h-16 drop-shadow-2xl sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-36 lg:h-36 xl:w-40 xl:h-40"
           />
-          {/* Responsive Heading */}
+
+          {/* Heading with progressive scaling */}
           <motion.h1
             variants={bannerVariants}
             initial="headingInitial"
             whileInView="headingWhileInView"
-            className="text-3xl font-bold leading-tight uppercase sm:text-4xl md:text-5xl lg:text-6xl"
+            viewport={{ once: true }}
+            className="text-3xl font-extrabold leading-[1.15] tracking-tight uppercase sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl drop-shadow-lg"
           >
-            {/* JSON থেকে ডাটা আনা হলো */}
-            {t("banner_title")}
+            <span className="block max-w-xs mx-auto text-transparent sm:max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl bg-clip-text bg-gradient-to-r from-white via-gray-100 to-gray-300">
+              {t("banner_title")}
+            </span>
           </motion.h1>
 
-          {/* Responsive Paragraph */}
+          {/* Decorative Divider Line */}
+          <motion.div
+            initial={{ width: 0, opacity: 0 }}
+            whileInView={{ width: "80px", opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            viewport={{ once: true }}
+            className="h-[3px] sm:h-1 rounded-full bg-[#dbb671]"
+          />
+
+          {/* Description Paragraph with progressive scaling */}
           <motion.p
             variants={bannerVariants}
             initial="paragraphInitial"
             whileInView="paragraphWhileInView"
-            className="max-w-2xl mx-auto text-sm font-semibold text-gray-100 sm:text-base md:text-lg lg:text-xl"
+            viewport={{ once: true }}
+            className="max-w-xs mx-auto text-sm font-medium leading-relaxed text-gray-200 sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl sm:text-base md:text-lg lg:text-xl xl:text-2xl drop-shadow-md"
           >
-            {/* JSON থেকে ডাটা আনা হলো */}
             {t("banner_description")}
           </motion.p>
-        </div>
 
-        {/* Button Container */}
-        <div className="mt-8 md:mt-12">
-          <Link to="contact">
-            <Button className="block mx-auto">{t("banner_btn_text")}</Button>
-          </Link>
+          {/* Call to Action Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            viewport={{ once: true }}
+            className="mt-2 sm:mt-4 md:mt-6 lg:mt-8"
+          >
+            <Link
+              to="contact"
+              smooth={true}
+              duration={500}
+              offset={-80}
+              className="inline-block cursor-pointer"
+            >
+              <Button className="px-6 py-3 text-sm font-bold tracking-wider uppercase transition-all duration-300 hover:scale-105 sm:px-8 sm:py-4 sm:text-base md:px-10 md:text-lg">
+                {t("banner_btn_text")}
+              </Button>
+            </Link>
+          </motion.div>
         </div>
       </div>
+
+      {/* Scroll Down Indicator - Hidden on very short screens (like landscape mobile) to save space */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 hidden min-[500px]:flex flex-col items-center gap-2"
+      >
+        <span className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-white/70">
+          Scroll
+        </span>
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 1.5 }}
+          className="w-0.5 h-8 sm:h-12 bg-linear-to-b from-white/70 to-transparent"
+        />
+      </motion.div>
     </section>
   );
 }
