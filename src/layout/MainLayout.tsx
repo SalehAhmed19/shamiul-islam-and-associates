@@ -4,11 +4,13 @@ import Footer from "../components/Footer/Footer";
 import { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import HomeLoading from "@/components/ui/Loadings/HomeLoading";
-import { FloatingWhatsApp } from "react-floating-whatsapp";
+
 import { icons } from "@/assets/assets";
 // import ReactPixel from 'react-facebook-pixel';
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import FloatingYouTube from "@/components/ui/FloatingYouTube";
+import CustomWhatsApp from "@/components/ui/FloatingWP";
 
 export default function MainLayout() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -57,13 +59,21 @@ export default function MainLayout() {
       </AnimatePresence>
       <Footer />
       <Toaster />
-      <FloatingWhatsApp
+      {/* <FloatingWhatsApp
         avatar={icons.logo}
         accountName="Shamiul Islam and Associates"
         phoneNumber={phoneNumber}
         chatMessage="Hey, how can I help you today?"
         darkMode
+      /> */}
+      <CustomWhatsApp
+        avatar={icons.logo}
+        accountName="Shamiul Islam and Associates"
+        phoneNumber={phoneNumber} // আপনার আসল নাম্বার দিন
+        chatMessage="Hey, how can I help you today?"
+        darkMode={true} // Dark Mode চাইলে true, Light Mode চাইলে false
       />
+      <FloatingYouTube />
     </div>
   );
 }
