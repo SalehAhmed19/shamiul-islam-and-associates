@@ -58,7 +58,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 export default function PracticeArea() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <section className="container px-4 mx-auto my-20 sm:px-6 lg:px-8 max-w-7xl md:mt-28">

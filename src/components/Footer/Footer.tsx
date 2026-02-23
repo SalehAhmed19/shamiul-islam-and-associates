@@ -471,7 +471,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-gray-400 sm:text-base">
               {[
                 {
-                  link: "https://www.judiciary.org.bd/",
+                  link: "https://judiciary.gov.bd/bn",
                   title: t("footer_important_link_1"),
                 },
                 {
@@ -491,7 +491,7 @@ export default function Footer() {
                   title: t("footer_important_link_5"),
                 },
                 {
-                  link: "https://bdlaws.minlaw.gov.bd/",
+                  link: "http://bdlaws.minlaw.gov.bd/",
                   title: t("footer_important_link_6"),
                 },
               ].map((item, index) => (

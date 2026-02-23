@@ -116,7 +116,7 @@ export default function BlogCard({
             transition={{ duration: 0.6, ease: "easeOut" }}
             src={image}
             alt={title}
-            className="object-cover w-full h-64"
+            className="object-contain w-full"
           />
 
           {/* ইমেজের ওপর হালকা একটি ব্ল্যাক ওভারলে, যা হোভার করলে সরে যাবে */}

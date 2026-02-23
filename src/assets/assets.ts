@@ -18,6 +18,7 @@ import tanvir from "../assets/images/tanvir.png";
 import avatar from "@/assets/images/avatar.png";
 import prince from "@/assets/images/prince.jpg";
 import logoV2 from "@/assets/images/logo-law.png";
+import logoLight from "@/assets/images/logo-V2.png";
 
 export const images = {
   hero,
@@ -39,6 +40,7 @@ export const images = {
   avatar,
   prince,
   logoV2,
+  logoLight,
 };
 
 import logo from "../assets/icons/logo.png";

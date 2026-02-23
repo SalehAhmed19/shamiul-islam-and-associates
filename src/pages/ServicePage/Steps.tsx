@@ -58,9 +58,24 @@ import { serviceVariant } from "@/motions/motions";
 import { useTranslation } from "react-i18next";
 
 // ==========================================
+// TYPES/INTERFACES ADDED FOR TYPESCRIPT
+// ==========================================
+interface StepType {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface StepCardProps {
+  step: StepType;
+  index: number;
+  t: any; // অথবা t: (key: string) => string;
+}
+
+// ==========================================
 // INDIVIDUAL STEP CARD COMPONENT
 // ==========================================
-const StepCard = ({ step, index, t }) => {
+const StepCard = ({ step, index, t }: StepCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (

@@ -230,7 +230,6 @@ import { serviceCardVariants } from "@/motions/motions";
 import type { ServiceInterface } from "../../../Interfaces/ServiceInterface";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { FaArrowRight } from "react-icons/fa6";
 
 export default function ServiceCard({
   icon,
