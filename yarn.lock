@@ -3569,6 +3569,11 @@ react-router@7.10.1:
     cookie "^1.0.1"
     set-cookie-parser "^2.6.0"
 
+react-scroll-to-top@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/react-scroll-to-top/-/react-scroll-to-top-3.1.0.tgz#d79c0df8fabbc1bec00bfd12ac3a52aa0a1f0cad"
+  integrity sha512-hD3bJQgCblywG2gcI515BcxP43MZkBidsYEVt9ak5pu1UOoQDJzIJp89zwccbpFuqeHZ29Lxs00T9DSxQr4cmw==
+
 react-scroll@^1.9.3:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/react-scroll/-/react-scroll-1.9.3.tgz#8312831244a7a8f86036e72c71de155a454a78c0"
