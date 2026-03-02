@@ -43,7 +43,7 @@ export default function FloatingYouTube() {
               animate={{ width: "auto", opacity: 1, marginLeft: 10 }}
               exit={{ width: 0, opacity: 0, marginLeft: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="overflow-hidden whitespace-nowrap text-sm sm:text-base font-bold text-white uppercase tracking-wider"
+              className="overflow-hidden text-sm font-bold tracking-wider text-white uppercase whitespace-nowrap sm:text-base"
             >
               Subscribe
             </motion.span>
