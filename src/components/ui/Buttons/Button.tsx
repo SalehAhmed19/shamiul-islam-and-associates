@@ -20,7 +20,7 @@ export default function Button({
       whileInView="whileInView"
       onClick={onClick}
       type={type}
-      className={`bg-[#604B33] text-white px-8 py-3 rounded-md font-bold cursor-pointer ${className}`}
+      className={`bg-[#604B33] text-white rounded-md font-bold cursor-pointer ${className}`}
     >
       {children}
     </motion.button>
