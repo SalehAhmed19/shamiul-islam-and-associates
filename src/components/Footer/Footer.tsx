@@ -332,7 +332,7 @@ export default function Footer() {
     >
       {/* --- Premium Dark Overlay --- */}
       {/* একটি ডার্ক গ্রেডিয়েন্ট ওভারলে যা টেক্সটগুলোকে খুব স্পষ্ট ও প্রিমিয়াম করে তুলবে */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#111827]/95 to-black/95"></div>
+      <div className="absolute inset-0 bg-linear-to-b from-[#111827]/95 to-black/95"></div>
 
       <div className="container relative z-10 px-6 pt-16 pb-8 mx-auto md:pt-20 max-w-7xl">
         {/* --- Main Footer Grid --- */}
@@ -443,6 +443,14 @@ export default function Footer() {
                   className="hover:text-[#dbb671] transition-colors"
                 >
                   +880 1711 602 369
+                </a>
+              </p>
+              <p className="font-semibold tracking-wider text-white">
+                <a
+                  href="tel:+8801711602369"
+                  className="hover:text-[#dbb671] transition-colors"
+                >
+                  +880 1717 260 765
                 </a>
               </p>
               <p>

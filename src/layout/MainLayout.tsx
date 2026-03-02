@@ -11,6 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import FloatingYouTube from "@/components/ui/FloatingYouTube";
 import CustomWhatsApp from "@/components/ui/FloatingWP";
+import ScrollToTop from "@/components/ui/ScrollToTop";
 
 export default function MainLayout() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -74,6 +75,7 @@ export default function MainLayout() {
         darkMode={true} // Dark Mode চাইলে true, Light Mode চাইলে false
       />
       <FloatingYouTube />
+      <ScrollToTop />
     </div>
   );
 }
