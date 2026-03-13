@@ -348,7 +348,7 @@ export default function Navbar() {
                   whileTap={{ scale: 0.95 }}
                   className="relative group/link"
                 >
-                  <Link
+                  <Link 
                     to={item === "home" ? "/" : `/${item}`}
                     className={`lg:text-xs xl:text-sm font-bold uppercase tracking-[0.15em] transition-colors duration-300 hover:text-[#dbb671] ${
                       isActive ? "text-[#dbb671]" : "text-gray-200"

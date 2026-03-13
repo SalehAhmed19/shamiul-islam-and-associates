@@ -121,7 +121,7 @@ export default function Blog() {
 
         {/* --- CONTENT BODY --- */}
         <div
-          className="space-y-4 text-base font-light leading-relaxed text-justify text-gray-800 blog-content md:text-lg md:leading-9 md:space-y-6"
+          className="space-y-4 text-base font-light font-medium leading-relaxed text-justify blog-content md:text-lg md:leading-9 md:space-y-6"
           dangerouslySetInnerHTML={{ __html: sanitizedContent }}
         ></div>
 
