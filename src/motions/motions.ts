@@ -9,7 +9,7 @@ export const navbarVariants: Variants = {
     y: 0,
     opacity: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -30,7 +30,7 @@ export const bannerVariants: Variants = {
   whileInView: {
     opacity: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -52,7 +52,7 @@ export const bannerVariants: Variants = {
   paragraphWhileInView: {
     opacity: 1,
     transition: {
-      delay: 0.5,
+      delay: 0.3,
       duration: 0.8,
       ease: "easeOut",
     },
@@ -63,7 +63,7 @@ export const bannerVariants: Variants = {
   logoWhileInView: {
     opacity: 1,
     transition: {
-      delay: 0.5,
+      delay: 0.3,
       duration: 0.8,
       ease: "easeOut",
     },
@@ -88,8 +88,8 @@ export const buttonVariants: Variants = {
     y: 0,
     opacity: 1,
     transition: {
-      delay: 0.5,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -119,7 +119,7 @@ export const messageSectionVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -133,7 +133,7 @@ export const messageSectionVariants: Variants = {
     y: 0,
     fontSize: "18px",
     transition: {
-      delay: 0.5,
+      delay: 0.3,
       duration: 0.3,
       ease: "easeInOut",
     },
@@ -146,8 +146,8 @@ export const messageSectionVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -159,8 +159,8 @@ export const messageSectionVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -169,14 +169,14 @@ export const messageSectionVariants: Variants = {
 export const serviceCardVariants: Variants = {
   initial: {
     opacity: 0,
-    scale: 0.5,
+    scale: 0.3,
   },
   whileInView: {
     opacity: 1,
     scale: 1,
     transition: {
-      delay: 0.5,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -187,13 +187,13 @@ export const serviceCardVariants: Variants = {
       ease: "easeInOut",
     },
   },
-  zoomInital: { opacity: 0, scale: 0.5 },
+  zoomInital: { opacity: 0, scale: 0.3 },
   zoomWhileInview: {
     opacity: 1,
     scale: 1,
     transition: {
-      delay: 1,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -205,8 +205,8 @@ export const serviceCardVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -235,11 +235,11 @@ export const headOfLegalVariants: Variants = {
     opacity: 1,
     x: 0,
     transition: {
-      delay: 1,
+      delay: 0.3,
       type: "spring",
       stiffness: 260,
       damping: 20,
-      duration: 0.5,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -251,11 +251,11 @@ export const headOfLegalVariants: Variants = {
     opacity: 1,
     x: 0,
     transition: {
-      delay: 1,
+      delay: 0.3,
       type: "spring",
       stiffness: 260,
       damping: 20,
-      duration: 0.5,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -267,8 +267,8 @@ export const headOfLegalVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -287,8 +287,8 @@ export const headOfLegalVariants: Variants = {
     opacity: 1,
     x: 0,
     transition: {
-      delay: 1,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -300,8 +300,8 @@ export const headOfLegalVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -313,8 +313,8 @@ export const headOfLegalVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -326,8 +326,8 @@ export const headOfLegalVariants: Variants = {
     opacity: 1,
     x: 0,
     transition: {
-      delay: 1,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -342,8 +342,8 @@ export const askVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -355,8 +355,8 @@ export const askVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1.5,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -371,21 +371,21 @@ export const ourAssociatesVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
   associatesInitial: {
     opacity: 0,
-    scale: 0.5,
+    scale: 0.3,
   },
   associatesWhileInView: {
     opacity: 1,
     scale: 1,
     transition: {
-      delay: 1.5,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -397,8 +397,8 @@ export const ourAssociatesVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1.5,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -410,8 +410,8 @@ export const ourAssociatesVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 2,
-      duration: 0.5,
+      delay: 0.5,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -423,8 +423,8 @@ export const ourAssociatesVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 2.3,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -439,8 +439,8 @@ export const legalExcellenceVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -452,8 +452,8 @@ export const legalExcellenceVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1.5,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -472,8 +472,8 @@ export const legalExcellenceVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1.5,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -482,14 +482,14 @@ export const legalExcellenceVariants: Variants = {
 export const consultationVariants: Variants = {
   initial: {
     opacity: 0,
-    scale: 0.5,
+    scale: 0.3,
   },
   whileInView: {
     opacity: 1,
     scale: 1,
     transition: {
-      delay: 1,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -501,8 +501,8 @@ export const consultationVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1.5,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -514,14 +514,14 @@ export const consultationVariants: Variants = {
     opacity: 1.5,
     y: 0,
     transition: {
-      delay: 1.5,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
   //   logoRotation: {
   //     rotate: 360,
-  //     transition: { delay: 1.2, duration: 1, ease: "linear" },
+  //     transition: { delay: 0.3.2, duration: 1, ease: "linear" },
   //   },
   formFieldInitial: {
     opacity: 0,
@@ -531,8 +531,8 @@ export const consultationVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1.5,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -547,8 +547,8 @@ export const FAQVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -560,8 +560,8 @@ export const FAQVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1.5,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -576,18 +576,18 @@ export const OurBlogsVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1.5,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
   zoomInitial: {
-    scale: 0.5,
+    scale: 0.3,
   },
   zoomWhileInView: {
     scale: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -606,8 +606,8 @@ export const OurBlogsVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1.2,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -619,8 +619,8 @@ export const OurBlogsVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1.5,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -635,8 +635,8 @@ export const footerVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -645,14 +645,14 @@ export const footerVariants: Variants = {
 export const statsVariants: Variants = {
   initial: {
     opacity: 0,
-    scale: 0.5,
+    scale: 0.3,
   },
   whileInView: {
     opacity: 1,
     scale: 1,
     transition: {
-      delay: 0.5,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -664,8 +664,8 @@ export const statsVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -677,8 +677,8 @@ export const statsVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1.2,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -690,8 +690,8 @@ export const statsVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.5,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -706,7 +706,7 @@ export const headerVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.5,
+      delay: 0.3,
       duration: 0.3,
       ease: "easeInOut",
     },
@@ -722,8 +722,8 @@ export const aboutVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1.2,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -738,20 +738,20 @@ export const serviceVariant: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
   stepsInitial: {
     opacity: 0,
-    scale: 0.5,
+    scale: 0.3,
   },
   stepsWhileInView: {
     opacity: 1,
     scale: 1,
     transition: {
-      delay: 1,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -763,8 +763,8 @@ export const serviceVariant: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1.2,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -779,18 +779,18 @@ export const contactVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1.2,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
   zoomInitial: {
-    scale: 0.5,
+    scale: 0.3,
   },
   zoomWhileInView: {
     scale: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -802,8 +802,8 @@ export const contactVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 1.2,
-      duration: 0.5,
+      delay: 0.3,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
