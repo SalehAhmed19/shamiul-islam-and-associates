@@ -35,7 +35,7 @@ export default function MainLayout() {
   // }, [location.pathname]);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 4000);
+    const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
   }, []);
 
